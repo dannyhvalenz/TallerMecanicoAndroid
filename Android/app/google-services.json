@@ -1,0 +1,44 @@
+{
+  "project_info": {
+    "project_number": "765545628713",
+    "firebase_url": "https://serviciomecanico-1998.firebaseio.com",
+    "project_id": "serviciomecanico-1998",
+    "storage_bucket": "serviciomecanico-1998.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:765545628713:android:84fbaa24fffea163",
+        "android_client_info": {
+          "package_name": "com.serviciomecanico.serviciomecanico"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "765545628713-o2ad3qqud31ge66e2g2bjtjsi3tefgai.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.serviciomecanico.serviciomecanico",
+            "certificate_hash": "3ba164d44458a752ec99747ca77aaedba86bf20a"
+          }
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCeaiNVd4Q12wRVrxoaa_qp0GgbOyKHqyU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "765545628713-9ta8j1nvorrk68308subpjn2qh153jal.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

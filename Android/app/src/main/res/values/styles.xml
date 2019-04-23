@@ -1,0 +1,37 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorControlNormal">@color/colorPrimaryDark</item>
+        <item name="colorControlActivated">@color/colorPrimary</item>
+    </style>
+
+    <style name="boton_principal" parent="Theme.AppCompat.Light">
+        <item name="colorButtonNormal">#DB3709</item>
+        <item name="colorControlHighlight">#F9A20A</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:bottomLeftRadius">20dp</item>
+        <item name="android:bottomRightRadius">20dp</item>
+        <item name="android:topLeftRadius">20dp</item>
+        <item name="android:topRightRadius">20dp</item>
+    </style>
+
+    <style name="boton_secundario" parent="Theme.AppCompat.Light">
+        <item name="colorButtonNormal">#F9A20A</item>
+        <item name="colorControlHighlight">#DB3709</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+    <style name="themeInput" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorControlNormal">@color/colorPrimaryDark</item>
+        <item name="colorControlActivated">@color/colorPrimary</item>
+    </style>
+
+</resources>
