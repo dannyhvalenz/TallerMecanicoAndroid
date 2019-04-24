@@ -4,6 +4,8 @@
         <b>Aplicacion para un taller mecanico, creado para la Experiencia Educativa de Desarrollo Movil</b>
 </p>
 
+[![forthebadge](https://forthebadge.com/images/badges/built-for-android.svg)](https://forthebadge.com)
+
 [![forthebadge](https://forthebadge.com/images/badges/contains-technical-debt.svg)](https://forthebadge.com)
 
 [![forthebadge](https://forthebadge.com/images/badges/made-with-java.svg)](https://forthebadge.com)
