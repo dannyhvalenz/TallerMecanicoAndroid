@@ -1,0 +1,9 @@
+=================================================================
+Para que no de error con Google maps deben pegar estos archivos en
+/user/SuUsuario/.android
+
+Lo mas seguro es que les diga que si quieren remplazar y en dado caso de que aun asi no les muestre
+lo de google maps me pueden decir y agregamos su SSH-1 a el API
+
+Atte: Ruben Mackin :D
+=================================================================

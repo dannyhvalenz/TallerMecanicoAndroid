@@ -11,16 +11,19 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.serviciomecanico.serviciomecanico.Adaptadores.ClienteAdapter;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.database.DatabaseReference;
+import com.serviciomecanico.serviciomecanico.Adaptadores.ClienteAdapter;
 import com.serviciomecanico.serviciomecanico.Conexion.Conexion;
 import com.serviciomecanico.serviciomecanico.Consultar.ConsultarClienteActivity;
 import com.serviciomecanico.serviciomecanico.Modelo.Cliente;
 import com.serviciomecanico.serviciomecanico.R;
+import com.serviciomecanico.serviciomecanico.Registrar.RegistrarClienteActivity;
 import com.serviciomecanico.serviciomecanico.Sesion.IniciarSeionActivity;
 
 public class VisualizarClientesActivity extends AppCompatActivity {
