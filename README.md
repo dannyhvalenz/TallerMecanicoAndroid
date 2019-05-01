@@ -14,22 +14,28 @@
 
 ## Requerimientos Funcionales
 
+- [ ] Iniciar Sesion
+
+### Cliente
 - [ ] Agregar Cliente
 - [ ] Actualizar Cliente
 - [ ] Eliminar Cliente
 - [ ] Consultar Cliente
+- [ ] Buscar Cliente
+- [ ] Visualizar Clientes
+
+### Automovil
 - [ ] Agregar Automóvil
 - [ ] Actualizar Automóvil
 - [ ] Eliminar Automóvil
 - [ ] Consultar Automóvil
+- [ ] Buscar Automóvil
+- [ ] Ver automoviles del cliente
+
+### Reparacion
 - [ ] Agregar Reparación
 - [ ] Actualizar Reparación
 - [ ] Eliminar Reparación
 - [ ] Consultar Reparación
-- [ ] Buscar Cliente
-- [ ] Buscar Automóvil
 - [ ] Buscar Reparaciones
 - [ ] Ver historial de reparaciones
-- [ ] Ver automoviles del cliente
-- [ ] Visualizar Clientes
-- [ ] Iniciar Sesion
