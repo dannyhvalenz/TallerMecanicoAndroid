@@ -39,15 +39,8 @@
         <activity android:name=".Actualizar.ActualizarClienteActivity" />
         <activity android:name=".Consultar.ConsultarClienteActivity" />
         <activity android:name=".Visualizar.VisualizarClientesActivity" />
-        <activity android:name=".Visualizar.VisualizarReparacionesActivity" />
-        <activity android:name=".Registrar.RegistrarClienteActivity" />
-        <activity android:name=".Registrar.RegisterAdministradorActivity" />
-        <activity android:name=".Consultar.ConsultarAutomovilActivity" />
-        <activity android:name=".Consultar.ConsultarReparacionActivity" />
         <activity android:name=".Actualizar.ActualizarAutomovilActivity" />
         <activity android:name=".Actualizar.ActualizarReparacionActivity" />
-        <activity android:name=".Registrar.RegistrarReparacionActivity" />
-        <activity android:name=".Visualizar.VisualizarAutomovilesActivity" />
         <activity android:name=".Sesion.IniciarSeionActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

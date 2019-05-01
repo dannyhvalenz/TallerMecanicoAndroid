@@ -18,7 +18,6 @@ import com.serviciomecanico.serviciomecanico.Actualizar.ActualizarClienteActivit
 import com.serviciomecanico.serviciomecanico.Conexion.Conexion;
 import com.serviciomecanico.serviciomecanico.Mapas.MapsActivity2;
 import com.serviciomecanico.serviciomecanico.R;
-import com.serviciomecanico.serviciomecanico.Visualizar.VisualizarAutomovilesActivity;
 import com.serviciomecanico.serviciomecanico.Visualizar.VisualizarClientesActivity;
 
 public class ConsultarClienteActivity extends AppCompatActivity {
