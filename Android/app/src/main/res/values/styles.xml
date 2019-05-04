@@ -11,13 +11,13 @@
     </style>
 
     <style name="boton_principal" parent="Theme.AppCompat.Light">
-        <item name="colorButtonNormal">#DB3709</item>
-        <item name="colorControlHighlight">#F9A20A</item>
+        <item name="colorButtonNormal">@color/colorPrimaryLight</item>
+        <item name="colorControlHighlight">@color/colorPrimaryDark</item>
         <item name="android:textColor">@android:color/white</item>
-        <item name="android:bottomLeftRadius">20dp</item>
-        <item name="android:bottomRightRadius">20dp</item>
-        <item name="android:topLeftRadius">20dp</item>
-        <item name="android:topRightRadius">20dp</item>
+        <item name="android:bottomLeftRadius">10dp</item>
+        <item name="android:bottomRightRadius">10dp</item>
+        <item name="android:topLeftRadius">10dp</item>
+        <item name="android:topRightRadius">10dp</item>
     </style>
 
     <style name="boton_secundario" parent="Theme.AppCompat.Light">
