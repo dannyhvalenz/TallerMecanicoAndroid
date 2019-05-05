@@ -55,7 +55,7 @@
             android:layout_marginStart="24dp"
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="8dp"
-            android:drawableLeft="@drawable/ic_telefono"
+            android:drawableLeft="@drawable/ic_phone"
             android:drawablePadding="5dp"
             android:text="modelo"
             android:textSize="12sp"

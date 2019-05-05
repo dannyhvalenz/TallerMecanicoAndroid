@@ -20,6 +20,12 @@
         <item name="android:topRightRadius">10dp</item>
     </style>
 
+    <style name="boton_abajo" parent="Theme.AppCompat.Light">
+        <item name="colorButtonNormal">@color/colorPrimaryDark</item>
+        <item name="colorControlHighlight">@color/colorPrimaryLight</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
     <style name="boton_secundario" parent="Theme.AppCompat.Light">
         <item name="colorButtonNormal">#F9A20A</item>
         <item name="colorControlHighlight">#DB3709</item>
