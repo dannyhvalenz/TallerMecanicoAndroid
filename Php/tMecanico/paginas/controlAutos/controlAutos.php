@@ -17,7 +17,18 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+         <script type="text/javascript">
+         function confirmar(){
+        var respuesta = confirm("¿Seguro que desea elimianr este elemento?");
+        if(respuesta == true){
+            return true;
+        }else{
+            return false;
+        }
+         }
+     </script>
     <title>Login</title>
+    
   </head>
   <bodys>
               
@@ -157,30 +168,9 @@
                                  </a>
                               </td>
                               <td>
-                                 <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#eliminar">E</button>
+                                 <a href="../../operacionesPhp/crudeAuto/eliminarAuto.php?M=<?php echo $row['Matricula']?>&idC=<?php echo $row['id_cliente']?>&idA=<?php echo $row['id_administrador']?>"><button button onclick="return confirmar()" type="button" class="btn btn-dark">E</button></a>
                               </td>
-                              <div class="modal" tabindex="-1" role="dialog" id="eliminar">
-                                 <div class="modal-dialog" role="document">
-                                    <div class="modal-content">
-                                       <div class="modal-header">
-                                          <h5 class="modal-title">Eliminar</h5>
-                                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                          <span aria-hidden="true">&times;</span>
-                                          </button>
-                                       </div>
-                                       <div class="modal-body">
-                                          <p>¿Seguro que desea eliminar este usuario?</p>
-                                       </div>
-                                       <div class="modal-footer">
-                                          <button type="button" class="btn btn-dark" >
-                                          <a onClick="return eliminar(<?php echo $row['Matricula'];?>);" style="text-decoration: none" href="../../operacionesPhp/crudeAuto/eliminarAuto.php?M=<?php echo $row['Matricula']?>&idC=<?php echo $row['id_cliente']?>&idA=<?php echo $row['id_administrador']?>">Eliminar
-                                          </a>
-                                          </button>
-                                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                                       </div>
-                                    </div>
-                                 </div>
-                              </div>
+
                               <td>
                                  <a href="../controlReparaciones/controlReparaciones.php?M=<?php echo $row['Matricula']?>&id=<?php echo $row['id_cliente']?>&idA=<?php echo $row['id_administrador']?>">
                                  <button type="button" class="btn btn-success">Reparacion</button>

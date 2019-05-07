@@ -18,6 +18,19 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+     
+     <script type="text/javascript">
+         function confirmar(){
+        var respuesta = confirm("¿Seguro que desea elimianr este elemento?");
+        if(respuesta == true){
+            return true;
+        }else{
+            return false;
+        }
+         }
+     </script>
+     
+      
     <title>Login</title>
   </head>
   <body>
@@ -131,7 +144,7 @@
                               ?>
                            <tr>
                               <td>
-                                 <?php echo $r=$row['Identificador']?>
+                                 <?php echo $row['Identificador']?>
                               </td>
                               <td>
                                  <?php echo $row['Nombre']?>
@@ -146,37 +159,17 @@
                                  <?php echo $row['Correo']?>
                               </td>
                               <td>
-                                 <a href="actualizarCliente.php?id=<?php echo $r?>">
+                                 <a href="actualizarCliente.php?id=<?php echo $row['Identificador']?>">
                                  <button type="button" class="btn btn-dark">M</button>
                                  </a>
                               </td>
+                              
+                              
                               <td>
-                                 <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#eliminar">E</button>
+                                  <a href="../../operacionesPhp/crudeCliente/eliminarUsuario.php?id=<?php echo $row['Identificador']?>&idA=<?php echo $row['id_aministrador']?>"><button onclick="return confirmar()" type="button" class="btn btn-dark">E</button></a>        
                               </td>
-                              <div class="modal" tabindex="-1" role="dialog" id="eliminar">
-                                 <div class="modal-dialog" role="document">
-                                    <div class="modal-content">
-                                       <div class="modal-header">
-                                          <h5 class="modal-title">Eliminar</h5>
-                                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                          <span aria-hidden="true">&times;</span>
-                                          </button>
-                                       </div>
-                                       <div class="modal-body">
-                                          <p>¿Seguro que desea eliminar este usuario?</p>
-                                       </div>
-                                       <div class="modal-footer">
-                                          <button type="button" class="btn btn-dark" >
-                                          <a onClick="return eliminar(
-                                             <?php echo $row['Identificador'];?>);" style="text-decoration: none" href="../../operacionesPhp/crudeCliente/eliminarUsuario.php?id=
-                                             <?php echo $row['Identificador']?>&idA=<?php echo $row['id_aministrador']?>">Eliminar
-                                          </a>
-                                          </button>
-                                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                                       </div>
-                                    </div>
-                                 </div>
-                              </div>
+                              
+
                               <td>
                                  <a href="../controlAutos/controlAutos.php?id=<?php echo $row['Identificador']?>&idA=<?php echo $_GET['id']?>">
                                  <button type="button" class="btn btn-success">Autos</button>
