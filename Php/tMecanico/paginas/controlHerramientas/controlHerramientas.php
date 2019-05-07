@@ -4,7 +4,7 @@
    
    $where="";
    
-   $sql = "SELECT * FROM cliente";
+   $sql = "SELECT * FROM herramientas";
    
    $resultado = mysqli_query($conexion, $sql);
    
@@ -18,19 +18,6 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-     
-     <script type="text/javascript">
-         function confirmar(){
-        var respuesta = confirm("¿Seguro que desea elimianr este elemento?");
-        if(respuesta == true){
-            return true;
-        }else{
-            return false;
-        }
-         }
-     </script>
-     
-      
     <title>Login</title>
   </head>
   <body>
@@ -56,14 +43,7 @@
               <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
               </button>
-               <div class="collapse navbar-collapse">
-                <ul class="navbar-nav ml-auto">
-                  <li class="nav-item active">
-                   <a class="nav-link" href="../controlHerramientas/controlHerramientas.php">Herramientas</a>
-                  </li>
-                </ul>                
-              </div>
-               <div class="collapse navbar-collapse">
+              <div class="collapse navbar-collapse">
                 <ul class="navbar-nav ml-auto">
                   <li class="nav-item active">
                    <a class="nav-link" href="../../operacionesPhp/sesion/cerrarSesion.php">Cerrar Sesion</a>
@@ -79,16 +59,6 @@
                      <div>
                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Nuevo</button>  
                      </div>
-                     <div>
-                         <form method="post" action="../buscar/buscar.php?id=<?php echo $_GET['id']?>">
-                              <div class="form-group">
-                              <h5>Introdusca la matricula que desee buscar</h5>
-                               <input type="text" id="BMatricula" placeholder="Buscar matricula" name="matricula">
-                               <button type="submit" class="btn btn-primary">Burcar</button>
-                               
-                              </div>
-                            </form>
-                     </div>
                      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog" role="document">
                            <div class="modal-content">
@@ -99,24 +69,24 @@
                                  </button>
                               </div>
                               <div class="modal-body">
-                                 <form method="post" action="../../operacionesPhp/crudeCliente/crearUsuario.php">
+                                 <form method="post" action="../../operacionesPhp/crudeHerramientas/crearHerramienta.php">
                                     <div class="form-row">
                                        <div class="form-group col-md-6">
                                           <label for="inputEmail4">Nombre</label>
-                                          <input class="form-control" placeholder="Cliente" name="nombre">
+                                          <input class="form-control" placeholder="Herramienta" name="nombre">
                                        </div>
                                        <div class="form-group col-md-6">
-                                          <label for="inputPassword4">Telefono</label>
-                                          <input class="form-control" placeholder="Telefono" name="telefono">
+                                          <label for="inputPassword4">Marca</label>
+                                          <input class="form-control" placeholder="Marca" name="marca">
                                        </div>
                                     </div>
                                     <div class="form-group">
-                                       <label for="inputAddress">Direccion</label>
-                                       <input type="text" class="form-control" placeholder="Calle-Numero-Ciudad" name="direccion">
+                                       <label for="inputAddress">Descripcion</label>
+                                       <input type="text" class="form-control" placeholder="Descipcion" name="descripcion">
                                     </div>
                                     <div class="form-group">
-                                       <label for="inputAddress2">Correo</label>
-                                       <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Correo electronico" name="correo">
+                                       <label for="inputAddress2">Cantidad</label>
+                                       <input type="cantidad" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Cantidad" name="cantidad">
                                     </div>
                                     <div>
                                        <input type='hidden' name='id' value='<?php echo $_GET['id']?>'>
@@ -138,9 +108,9 @@
                            <tr>
                               <th>ID</th>
                               <th>Nombre</th>
-                              <th>Telefono</th>
-                              <th>Direccion</th>
-                              <th>Correo</th>
+                              <th>Marca</th>
+                              <th>Descripcion</th>
+                              <th>Cantidad</th>
                               <th></th>
                               <th></th>
                               <th></th>
@@ -151,37 +121,52 @@
                               ?>
                            <tr>
                               <td>
-                                 <?php echo $row['Identificador']?>
+                                 <?php echo $r=$row['Id']?>
                               </td>
                               <td>
                                  <?php echo $row['Nombre']?>
                               </td>
                               <td>
-                                 <?php echo $row['Telefono']?>
+                                 <?php echo $row['Marca']?>
                               </td>
                               <td>
-                                 <?php echo $row['Direccion']?>
+                                 <?php echo $row['Descripcion']?>
                               </td>
                               <td>
-                                 <?php echo $row['Correo']?>
+                                 <?php echo $row['Cantidad']?>
                               </td>
                               <td>
-                                 <a href="actualizarCliente.php?id=<?php echo $row['Identificador']?>">
+                                 <a href="actualizarHerramienta.php?id=<?php echo $r?>">
                                  <button type="button" class="btn btn-dark">M</button>
                                  </a>
                               </td>
-                              
-                              
                               <td>
-                                  <a href="../../operacionesPhp/crudeCliente/eliminarUsuario.php?id=<?php echo $row['Identificador']?>&idA=<?php echo $row['id_aministrador']?>"><button onclick="return confirmar()" type="button" class="btn btn-dark">E</button></a>        
+                                 <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#eliminar">E</button>
                               </td>
-                              
-
-                              <td>
-                                 <a href="../controlAutos/controlAutos.php?id=<?php echo $row['Identificador']?>&idA=<?php echo $_GET['id']?>">
-                                 <button type="button" class="btn btn-success">Autos</button>
-                                 </a>
-                              </td>
+                              <div class="modal" tabindex="-1" role="dialog" id="eliminar">
+                                 <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                       <div class="modal-header">
+                                          <h5 class="modal-title">Eliminar</h5>
+                                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                          <span aria-hidden="true">&times;</span>
+                                          </button>
+                                       </div>
+                                       <div class="modal-body">
+                                          <p>¿Seguro que desea eliminar la herramienta?</p>
+                                       </div>
+                                       <div class="modal-footer">
+                                          <button type="button" class="btn btn-dark" >
+                                          <a onClick="return eliminar(
+                                             &id=<?php echo $row['Id']?>);" style="text-decoration: none" href="../../operacionesPhp/crudeHerramientas/eliminarHerramienta.php?
+                                             id=<?php echo $row['Id'];?>">Eliminar
+                                          </a>
+                                          </button>
+                                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
                            </tr>
                            <?php } ?>
                         </tbody>

@@ -1,7 +1,11 @@
 package com.serviciomecanico.serviciomecanico.Consultar;
 
+import android.Manifest;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -11,6 +15,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.google.firebase.database.DatabaseReference;
@@ -18,13 +23,16 @@ import com.serviciomecanico.serviciomecanico.Actualizar.ActualizarClienteActivit
 import com.serviciomecanico.serviciomecanico.Conexion.Conexion;
 import com.serviciomecanico.serviciomecanico.Mapas.MapsActivity2;
 import com.serviciomecanico.serviciomecanico.R;
+import com.serviciomecanico.serviciomecanico.Registrar.RegistrarClienteActivity;
+import com.serviciomecanico.serviciomecanico.Visualizar.VisualizarAutomovilesActivity;
 import com.serviciomecanico.serviciomecanico.Visualizar.VisualizarClientesActivity;
 
 public class ConsultarClienteActivity extends AppCompatActivity {
 
+    private int MY_PERMISSIONS_REQUEST_READ_CONTACTS;
     Conexion  conexion = new Conexion();
     DatabaseReference firebase;
-    EditText edt_nombre_consultar, edt_correo_consultar, edt_telefono_consultar;
+    TextView edt_nombre_consultar, edt_correo_consultar, edt_telefono_consultar;
     String nombre, correo, telefono, urlimagen, latitud, longitud;
     ImageView img_avatar_consultar;
 
@@ -61,9 +69,29 @@ public class ConsultarClienteActivity extends AppCompatActivity {
         edt_correo_consultar.setText(getIntent().getStringExtra("correo"));
         edt_telefono_consultar.setText(getIntent().getStringExtra("telefono"));
 
+        edt_telefono_consultar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String numeroTel = edt_telefono_consultar.getText().toString();
+                Intent i = new Intent(Intent.ACTION_CALL, Uri.parse("tel:"+numeroTel));
+                startActivity(i);
+            }
+        });
+
+        pedirPermiso();
+
         Glide.with(getApplicationContext())
                 .load(urlimagen)
                 .into(img_avatar_consultar);
+    }
+
+    public void pedirPermiso(){
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(ConsultarClienteActivity.this,
+                    new String[]{Manifest.permission.CALL_PHONE},
+                    MY_PERMISSIONS_REQUEST_READ_CONTACTS);
+            return;
+        }
     }
 
     public void btn_direccion_maps(View view){
@@ -113,14 +141,14 @@ public class ConsultarClienteActivity extends AppCompatActivity {
                 intent2.putExtra("longitud",longitud);
                 startActivity(intent2);
                 break;
-
-            case R.id.action_car:
-                Intent intent3 = new Intent(ConsultarClienteActivity.this, VisualizarAutomovilesActivity.class);
-                intent3.putExtra("nombrecliente",nombre);
-                startActivity(intent3);
-                break;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    public void btn_abajo_cliente(View view){
+        Intent intent3 = new Intent(ConsultarClienteActivity.this, VisualizarAutomovilesActivity.class);
+        intent3.putExtra("nombrecliente",nombre);
+        startActivity(intent3);
     }
 
     @Override

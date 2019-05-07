@@ -15,44 +15,52 @@
 
         <TextView
             android:id="@+id/txv_automovil_placa"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
+            android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
             android:layout_marginBottom="8dp"
+            android:drawableLeft="@drawable/ic_license_plate"
+            android:drawablePadding="5dp"
             android:fontFamily="@font/roboto"
             android:gravity="left"
-            android:text="nombre"
+            android:text="placa"
             android:textColor="@android:color/black"
-            android:textSize="24sp"
+            android:textSize="14sp"
             app:layout_constraintBottom_toTopOf="@+id/txv_automovil_marca"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/guideline3"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/txv_automovil_marca"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
+            android:layout_marginEnd="16dp"
             android:layout_marginBottom="8dp"
             android:drawableLeft="@drawable/ic_correo"
             android:drawablePadding="5dp"
-            android:text="correo"
-            android:textSize="18sp"
+            android:text="marca"
+            android:textSize="12sp"
             app:layout_constraintBottom_toTopOf="@+id/txv_automovil_linea"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/guideline3" />
 
         <TextView
             android:id="@+id/txv_automovil_linea"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
+            android:layout_marginEnd="16dp"
             android:layout_marginBottom="8dp"
-            android:drawableLeft="@drawable/ic_telefono"
+            android:drawableLeft="@drawable/ic_phone"
             android:drawablePadding="5dp"
-            android:text="telefono"
-            android:textSize="18sp"
+            android:text="modelo"
+            android:textSize="12sp"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/guideline3" />
 
         <ImageView
