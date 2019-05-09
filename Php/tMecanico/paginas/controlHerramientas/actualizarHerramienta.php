@@ -22,11 +22,7 @@
       <title>Actualizar datos de herramientas</title>
    </head>
    <body> 
-           <header>
-         <div>
-             <img src="../../imagenes/cabecera/nav3.png" width="100%">
-         </div>
-      </header>    
+
          <?php
          session_start();
                  
@@ -38,7 +34,11 @@
          }
          
          ?>
-                
+     <header>
+         <div>
+             <img src="../../imagenes/cabecera/nav3.png" width="100%">
+         </div>
+      </header>         
             <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
               <img src="../../imagenes/nav/logoTaller.png" height="50" width="120">
               <a class="navbar-brand" href="index.html">Taller Mecanico</a>
@@ -100,14 +100,9 @@
       </form>
        </div>   
 
-      <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-      <script src="js/bootstrap.js" ></script>
-      
-          <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+       <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-   </body>
+  </body>
 </html>

@@ -1,18 +1,19 @@
 <?php
     require ('../conexion/conexion.php');
 
-    $id = $_GET["id"];
+    $idHer = $_GET["idH"];
    
     
 
-    $sql = "DELETE FROM herramientas WHERE Id =".$id;
+    $sql = "DELETE FROM herramientas WHERE Id=".$idHer;
 
     $resultado=mysqli_query($conexion, $sql);
 
-    if($resultado==true){   
-        header("Location: ../../paginas/controlHerramientas/controlHerramientas.php?");    
+    if($resultado==true){  
+        
+        header("Location: ../../paginas/controlHerramientas/controlHerramientas.php");   
+        
     }else{
-        echo "lo siento";
     }
 
     mysqli_free_result($resultado);

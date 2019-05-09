@@ -1,7 +1,6 @@
 <?php
    require ('../../operacionesPhp/conexion/conexion.php');
-    
-   
+
    $where="";
    
    $sql = "SELECT * FROM herramientas";
@@ -9,18 +8,30 @@
    $resultado = mysqli_query($conexion, $sql);
    
    ?>
-   <!doctype html>
+   
 <html lang="es">
   <head>
     <!-- Required meta tags -->
+    
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+         <script type="text/javascript">
+         function confirmar(){
+        var respuesta = confirm("¿Seguro que desea eliminar este elemento?");
+        if(respuesta == true){
+            return true;
+        }else{
+            return false;
+        }
+         }
+     </script>
     <title>Login</title>
+    
   </head>
-  <body>
+  <bodys>
               
                <?php
                    session_start();
@@ -45,6 +56,9 @@
               </button>
               <div class="collapse navbar-collapse">
                 <ul class="navbar-nav ml-auto">
+                 <li class="nav-item">
+                           <a class="nav-link" href="../controlHerramientas/controlHerramientas.php?id=<?php echo $_GET['id']?>">Herramientas</a>
+                        </li>
                   <li class="nav-item active">
                    <a class="nav-link" href="../../operacionesPhp/sesion/cerrarSesion.php">Cerrar Sesion</a>
                   </li>
@@ -56,24 +70,31 @@
             <div class="container">
                <div class="row pt-5 pb-5">
                 <div class="col-lg-2" style="background-color: #FFFFFF" align="center">
-                     <div>
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Nuevo</button>  
+                    <div>
+                     <!-- Button trigger modal -->
+                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" width="100%">
+                     Nuevo
+                     </button>
                      </div>
+                     <div>
+                         
+                     </div>
+                     <!-- Modal -->
                      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog" role="document">
                            <div class="modal-content">
                               <div class="modal-header">
-                                 <h5 class="modal-title" id="exampleModalLabel">Crear cliente</h5>
+                                 <h5 class="modal-title" id="exampleModalLabel">Crear Herramienta</h5>
                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                  <span aria-hidden="true">&times;</span>
                                  </button>
                               </div>
                               <div class="modal-body">
-                                 <form method="post" action="../../operacionesPhp/crudeHerramientas/crearHerramienta.php">
+                                 <form method="post" action="../../operacionesPhp/crudeHerramientas/creaHerramienta.php">
                                     <div class="form-row">
                                        <div class="form-group col-md-6">
                                           <label for="inputEmail4">Nombre</label>
-                                          <input class="form-control" placeholder="Herramienta" name="nombre">
+                                          <input class="form-control" placeholder="Nombre" name="nombre">
                                        </div>
                                        <div class="form-group col-md-6">
                                           <label for="inputPassword4">Marca</label>
@@ -82,15 +103,16 @@
                                     </div>
                                     <div class="form-group">
                                        <label for="inputAddress">Descripcion</label>
-                                       <input type="text" class="form-control" placeholder="Descipcion" name="descripcion">
+                                       <input type="text" class="form-control" placeholder="Descripcion" name="descripcion">
                                     </div>
                                     <div class="form-group">
-                                       <label for="inputAddress2">Cantidad</label>
-                                       <input type="cantidad" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Cantidad" name="cantidad">
+                                       <label for="inputAddress">Cantidad</label>
+                                       <input type="text" class="form-control" placeholder="Cantidad" name="cantidad">
                                     </div>
-                                    <div>
+                                      <div>
                                        <input type='hidden' name='id' value='<?php echo $_GET['id']?>'>
                                     </div>
+                
                                     <div>
                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
                                        <button type="submit" class="btn btn-primary">Guardar</button>
@@ -103,10 +125,9 @@
                 </div>
                 <div class="col-lg-10" style="background-color: #FFFFFF">
                     <div class="row table-responsive">
-                     <table class="table table-striped">
+                                          <table class="table table-striped">
                         <thead>
                            <tr>
-                              <th>ID</th>
                               <th>Nombre</th>
                               <th>Marca</th>
                               <th>Descripcion</th>
@@ -121,9 +142,6 @@
                               ?>
                            <tr>
                               <td>
-                                 <?php echo $r=$row['Id']?>
-                              </td>
-                              <td>
                                  <?php echo $row['Nombre']?>
                               </td>
                               <td>
@@ -136,38 +154,13 @@
                                  <?php echo $row['Cantidad']?>
                               </td>
                               <td>
-                                 <a href="actualizarHerramienta.php?id=<?php echo $r?>">
+                                 <a href="actualizarHerramienta.php?id=<?php echo $row['Id']?>">
                                  <button type="button" class="btn btn-dark">M</button>
                                  </a>
                               </td>
                               <td>
-                                 <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#eliminar">E</button>
+                                 <a href="../../operacionesPhp/crudeHerramientas/eliminarHerramienta.php?idH=<?php echo $row['Id']?>"><button button onclick="return confirmar()" type="button" class="btn btn-dark">E</button></a>
                               </td>
-                              <div class="modal" tabindex="-1" role="dialog" id="eliminar">
-                                 <div class="modal-dialog" role="document">
-                                    <div class="modal-content">
-                                       <div class="modal-header">
-                                          <h5 class="modal-title">Eliminar</h5>
-                                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                          <span aria-hidden="true">&times;</span>
-                                          </button>
-                                       </div>
-                                       <div class="modal-body">
-                                          <p>¿Seguro que desea eliminar la herramienta?</p>
-                                       </div>
-                                       <div class="modal-footer">
-                                          <button type="button" class="btn btn-dark" >
-                                          <a onClick="return eliminar(
-                                             &id=<?php echo $row['Id']?>);" style="text-decoration: none" href="../../operacionesPhp/crudeHerramientas/eliminarHerramienta.php?
-                                             id=<?php echo $row['Id'];?>">Eliminar
-                                          </a>
-                                          </button>
-                                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                                       </div>
-                                    </div>
-                                 </div>
-                              </div>
-                           </tr>
                            <?php } ?>
                         </tbody>
                      </table>
