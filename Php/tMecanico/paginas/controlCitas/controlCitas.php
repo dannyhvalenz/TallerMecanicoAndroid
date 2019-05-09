@@ -4,7 +4,7 @@
    
    $where="";
    
-   $sql = "SELECT * FROM cliente";
+   $sql = "SELECT * FROM citas";
    
    $resultado = mysqli_query($conexion, $sql);
    
@@ -18,8 +18,7 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-     
-     <script type="text/javascript">
+    <script type="text/javascript">
          function confirmar(){
         var respuesta = confirm("¿Seguro que desea elimianr este elemento?");
         if(respuesta == true){
@@ -29,8 +28,7 @@
         }
          }
      </script>
-     
-      
+
     <title>Login</title>
   </head>
   <body>
@@ -56,14 +54,7 @@
               <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
               </button>
-               <div class="collapse navbar-collapse">
-                <ul class="navbar-nav ml-auto">
-                  <li class="nav-item active">
-                   <a class="nav-link" href="../controlHerramientas/controlHerramientas.php">Herramientas</a>
-                  </li>
-                </ul>                
-              </div>
-               <div class="collapse navbar-collapse">
+              <div class="collapse navbar-collapse">
                 <ul class="navbar-nav ml-auto">
                   <li class="nav-item active">
                    <a class="nav-link" href="../../operacionesPhp/sesion/cerrarSesion.php">Cerrar Sesion</a>
@@ -79,44 +70,35 @@
                      <div>
                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Nuevo</button>  
                      </div>
-                     <div>
-                         <form method="post" action="../buscar/buscar.php?id=<?php echo $_GET['id']?>">
-                              <div class="form-group">
-                              <h5>Introdusca la matricula que desee buscar</h5>
-                               <input type="text" id="BMatricula" placeholder="Buscar matricula" name="matricula">
-                               <button type="submit" class="btn btn-primary">Burcar</button>
-                               
-                              </div>
-                            </form>
-                     </div>
+                     
                      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog" role="document">
                            <div class="modal-content">
                               <div class="modal-header">
-                                 <h5 class="modal-title" id="exampleModalLabel">Crear cliente</h5>
+                                 <h5 class="modal-title" id="exampleModalLabel">Crear Cita</h5>
                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                  <span aria-hidden="true">&times;</span>
                                  </button>
                               </div>
                               <div class="modal-body">
-                                 <form method="post" action="../../operacionesPhp/crudeCliente/crearUsuario.php">
+                                 <form method="post" action="../../operacionesPhp/crudeCita/crearCita.php">
                                     <div class="form-row">
                                        <div class="form-group col-md-6">
-                                          <label for="inputEmail4">Nombre</label>
+                                          <label for="inputEmail4">Nombre usuario</label>
                                           <input class="form-control" placeholder="Cliente" name="nombre">
                                        </div>
                                        <div class="form-group col-md-6">
-                                          <label for="inputPassword4">Telefono</label>
-                                          <input class="form-control" placeholder="Telefono" name="telefono">
+                                          <label for="inputPassword4">Fecha</label>
+                                          <input class="form-control" placeholder="Fecha /Dia/Mes/Año" name="fecha">
                                        </div>
                                     </div>
                                     <div class="form-group">
-                                       <label for="inputAddress">Direccion</label>
-                                       <input type="text" class="form-control" placeholder="Calle-Numero-Ciudad" name="direccion">
+                                       <label for="inputAddress">Hora</label>
+                                       <input type="text" class="form-control" placeholder="Hora-Cita" name="hora">
                                     </div>
                                     <div class="form-group">
-                                       <label for="inputAddress2">Correo</label>
-                                       <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Correo electronico" name="correo">
+                                       <label for="inputAddress">Motivo</label>
+                                       <input type="text" class="form-control" placeholder="Motivo - Cita - Revision" name="motivo">
                                     </div>
                                     <div>
                                        <input type='hidden' name='id' value='<?php echo $_GET['id']?>'>
@@ -138,9 +120,9 @@
                            <tr>
                               <th>ID</th>
                               <th>Nombre</th>
-                              <th>Telefono</th>
-                              <th>Direccion</th>
-                              <th>Correo</th>
+                              <th>Fecha</th>
+                              <th>Hora</th>
+                              <th>Motivo</th>
                               <th></th>
                               <th></th>
                               <th></th>
@@ -151,40 +133,36 @@
                               ?>
                            <tr>
                               <td>
-                                 <?php echo $row['Identificador']?>
+                                 <?php echo $r=$row['Identificador']?>
                               </td>
                               <td>
                                  <?php echo $row['Nombre']?>
                               </td>
                               <td>
-                                 <?php echo $row['Telefono']?>
+                                 <?php echo $row['Fecha']?>
                               </td>
                               <td>
-                                 <?php echo $row['Direccion']?>
+                                 <?php echo $row['Hora']?>
                               </td>
                               <td>
-                                 <?php echo $row['Correo']?>
+                                 <?php echo $row['Motivo']?>
                               </td>
                               <td>
-                                 <a href="actualizarCliente.php?id=<?php echo $row['Identificador']?>">
+                                 <a href="actualizarCita.php?id=<?php echo $r?>">
                                  <button type="button" class="btn btn-dark">M</button>
                                  </a>
                               </td>
-                              
-                              
                               <td>
-                                  <a href="../../operacionesPhp/crudeCliente/eliminarUsuario.php?id=<?php echo $row['Identificador']?>&idA=<?php echo $row['id_aministrador']?>"><button onclick="return confirmar()" type="button" class="btn btn-dark">E</button></a>        
-                              </td>
-                              
 
-                              <td>
-                                 <a href="../controlAutos/controlAutos.php?id=<?php echo $row['Identificador']?>&idA=<?php echo $_GET['id']?>">
-                                 <button type="button" class="btn btn-success">Autos</button>
+                              <a href="../../operacionesPhp/crudeCita/eliminarCita.php?id=
+                                             <?php echo $row['Identificador']?>&idA=<?php echo $row['id_administrador']?>"> 
+                                 <button type="button" class="btn btn-dark" onclick="return confirmar()" >E</button>
                                  </a>
                               </td>
+                              
                               <td>
-                                 <a href="../controlCitas/controlCitas.php?id=<?php echo $row['Identificador']?>&idA=<?php echo $_GET['id']?>">
-                                 <button type="button" class="btn btn-warning">Citas</button>
+                                 <a href="../controlClientes/control.php?id=<?php echo $row['Identificador']?>&idA=<?php echo $_GET['id']?>">
+                                 <button type="button" class="btn btn-success">Clientes</button>
                                  </a>
                               </td>
                            </tr>
