@@ -72,7 +72,7 @@ public class VisualizarAutomovilesActivity extends AppCompatActivity {
                 /*Clase que utilizaremos*/Automovil.class,
                 /*La interfaz grafica*/R.layout.automovil,
                 /*ViewHolder archivo ClienteAdapter*/AutomovilAdapter.ViewHolder.class,
-                /*La referencia de firebase donde buscara*/firebase.child("Automovil").child(nombrecliente)
+                /*La referencia de firebase donde buscara*/firebase.child("Cliente").child(nombrecliente).child("Automovil")
         ) {
             @Override
             protected void populateViewHolder(final AutomovilAdapter.ViewHolder viewHolder, Automovil model, int position) {

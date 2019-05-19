@@ -56,6 +56,7 @@ public class ConsultarAutomovilActivity extends AppCompatActivity {
         modelo = getIntent().getStringExtra("modelo");
         color = getIntent().getStringExtra("color");
         urlimagen = getIntent().getStringExtra("urlimagen");
+
         nombre = getIntent().getStringExtra("nombre");
 
         edt_placa_consultar.setText(getIntent().getStringExtra("placa"));
@@ -85,7 +86,7 @@ public class ConsultarAutomovilActivity extends AppCompatActivity {
                 eliminar.setPositiveButton("Si", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        firebase.child("Automovil").child(nombre).child(placa).removeValue();
+                        firebase.child("Cliente").child(nombre).child("Automovil").child(placa).removeValue();
                         finish();
                     }
                 });
@@ -115,6 +116,7 @@ public class ConsultarAutomovilActivity extends AppCompatActivity {
             case R.id.action_repar:
                 Intent intent3 = new Intent(ConsultarAutomovilActivity.this, VisualizarReparacionesActivity.class);
                 intent3.putExtra("placa",placa);
+                intent3.putExtra("nombre",nombre);
                 startActivity(intent3);
                 break;
         }

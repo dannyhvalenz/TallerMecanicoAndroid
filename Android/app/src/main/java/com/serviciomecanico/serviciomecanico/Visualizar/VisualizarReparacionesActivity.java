@@ -11,6 +11,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
@@ -35,7 +36,7 @@ public class VisualizarReparacionesActivity extends AppCompatActivity {
     FloatingActionButton btn_float_registrar_reparaciones;
     ProgressBar progressBar_visualizar_reparaciones;
 
-    String placa;
+    String placa, nombre;
 
     //Adapter
     FirebaseRecyclerAdapter<Reparacion, ReparacionAdapter.ViewHolder> adapter;
@@ -60,6 +61,8 @@ public class VisualizarReparacionesActivity extends AppCompatActivity {
         progressBar_visualizar_reparaciones.setVisibility(View.VISIBLE);
 
         placa = getIntent().getStringExtra("placa");
+        nombre = getIntent().getStringExtra("nombre");
+        Toast.makeText(getApplicationContext(),nombre,Toast.LENGTH_SHORT).show();
 
         //Setear al linerlayaour manager nuestro reciclerView
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
@@ -71,7 +74,7 @@ public class VisualizarReparacionesActivity extends AppCompatActivity {
                 /*Clase que utilizaremos*/Reparacion.class,
                 /*La interfaz grafica*/R.layout.reparacion,
                 /*ViewHolder archivo ClienteAdapter*/ReparacionAdapter.ViewHolder.class,
-                /*La referencia de firebase donde buscara*/firebase.child("Reparacion").child(placa)
+                /*La referencia de firebase donde buscara*/firebase.child("Cliente").child(nombre).child("Automovil").child(placa).child("Reparacion")
         ) {
             @Override
             protected void populateViewHolder(final ReparacionAdapter.ViewHolder viewHolder, Reparacion model, int position) {
@@ -82,7 +85,7 @@ public class VisualizarReparacionesActivity extends AppCompatActivity {
                 Glide.with(getApplicationContext())
                         .load(urlchida)
                         .into(viewHolder.imageView_reparacion);
-                final String idReparacion = placa+model.getTipo()+model.getKilometraje();
+                final String idReparacion = model.getKilometraje();
                 final String descripcionFalla = model.getDescripcionFalla();
                 final String descripcionMantenimiento = model.getDescripcionMantenimiento();
                 final String urlimagen = model.getUrlImagenAReparacion();
@@ -97,6 +100,7 @@ public class VisualizarReparacionesActivity extends AppCompatActivity {
                         intent.putExtra("descripcionMantenimiento",descripcionMantenimiento);
                         intent.putExtra("urlimagen",urlimagen);
                         intent.putExtra("placa",placa);
+                        intent.putExtra("nombre",nombre);
                         intent.putExtra("idReparacion",idReparacion);
                         startActivity(intent);
                     }
@@ -131,6 +135,7 @@ public class VisualizarReparacionesActivity extends AppCompatActivity {
     public void btn_float_registrar_reparaciones (View view){
         Intent intent = new Intent(VisualizarReparacionesActivity.this, RegistrarReparacionActivity.class);
         intent.putExtra("placa",placa);
+        intent.putExtra("nombre",nombre);
         startActivity(intent);
     }
 

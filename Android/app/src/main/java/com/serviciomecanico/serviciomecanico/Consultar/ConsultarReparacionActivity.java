@@ -6,10 +6,12 @@ import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.google.firebase.database.DatabaseReference;
@@ -26,7 +28,7 @@ public class ConsultarReparacionActivity extends AppCompatActivity {
     Conexion  conexion = new Conexion();
     DatabaseReference firebase;
     EditText edt_tipo_consultar, edt_descripcionFalla_consultar, edt_descripcionMantenimiento_consultar,edt_kilometraje_consultar,edt_costo_consultar;
-    String tipo, descripcionFalla, descripcionMantenimiento, kilometraje, costo, urlimagen, idReparacion, placa;
+    String tipo, descripcionFalla, descripcionMantenimiento, kilometraje, costo, urlimagen, idReparacion, placa, nombre;
     ImageView img_avatar_consultar_reparacion;
 
     @Override
@@ -57,6 +59,9 @@ public class ConsultarReparacionActivity extends AppCompatActivity {
         kilometraje = getIntent().getStringExtra("kilometraje");
         costo = getIntent().getStringExtra("costo");
         urlimagen = getIntent().getStringExtra("urlimagen");
+
+        nombre = getIntent().getStringExtra("nombre");
+        Toast.makeText(getApplicationContext(),nombre,Toast.LENGTH_SHORT).show();
         placa = getIntent().getStringExtra("placa");
         idReparacion = getIntent().getStringExtra("idReparacion");
 
@@ -87,7 +92,7 @@ public class ConsultarReparacionActivity extends AppCompatActivity {
                 eliminar.setPositiveButton("Si", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        firebase.child("Reparacion").child(placa).child(idReparacion).removeValue();
+                        firebase.child("Cliente").child(nombre).child("Automovil").child(placa).child("Reparacion").child(idReparacion).removeValue();
                         finish();
                     }
                 });
@@ -111,6 +116,7 @@ public class ConsultarReparacionActivity extends AppCompatActivity {
                 intent2.putExtra("costo",costo);
                 intent2.putExtra("placa",placa);
                 intent2.putExtra("idReparacion",idReparacion);
+                intent2.putExtra("nombre",nombre);
                 intent2.putExtra("urlimagen",urlimagen);
                 startActivity(intent2);
                 break;

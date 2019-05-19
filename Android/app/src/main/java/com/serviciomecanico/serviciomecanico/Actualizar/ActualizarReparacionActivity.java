@@ -26,7 +26,7 @@ public class ActualizarReparacionActivity extends AppCompatActivity {
     DatabaseReference firebase;
 
     EditText edt_tipo_actualizar, edt_descripcionFalla_actualizar, edt_descripcionoMantenimiento_actualizar,edt_kilometraje_actualizar,edt_costo_actualizar;
-    String urlimagen, placaAntigua, idReparacion;
+    String urlimagen, placaAntigua, idReparacion, nombre;
     ImageView img_avatar_actualizar_reparacion;
 
     @Override
@@ -49,6 +49,7 @@ public class ActualizarReparacionActivity extends AppCompatActivity {
         edt_costo_actualizar = findViewById(R.id.edt_costo_actualizar);
         img_avatar_actualizar_reparacion = findViewById(R.id.img_avatar_actualizar_reparacion);
 
+        nombre = getIntent().getStringExtra("nombre");
         placaAntigua = getIntent().getStringExtra("placa");
         idReparacion = getIntent().getStringExtra("idReparacion");
 
@@ -63,7 +64,7 @@ public class ActualizarReparacionActivity extends AppCompatActivity {
                 .load(urlimagen)
                 .into(img_avatar_actualizar_reparacion);
 
-        firebase.child("Reparacion").child(placaAntigua).child(idReparacion).removeValue();
+        //firebase.child("Reparacion").child(placaAntigua).child(idReparacion).removeValue();
     }
 
     public void btn_actualizar_reparacion(View view){
@@ -72,7 +73,6 @@ public class ActualizarReparacionActivity extends AppCompatActivity {
         String descripcionMantenimiento = edt_descripcionoMantenimiento_actualizar.getText().toString();
         String kilometraje = edt_kilometraje_actualizar.getText().toString();
         String costo = edt_costo_actualizar.getText().toString();
-        idReparacion = placaAntigua+tipo+kilometraje;
 
         if (TextUtils.isEmpty(tipo)) {
             Toast.makeText(getApplicationContext(), "Ingresar tipo", Toast.LENGTH_SHORT).show();
@@ -90,7 +90,11 @@ public class ActualizarReparacionActivity extends AppCompatActivity {
             //nombreReferenciaFirebase.nodoHijo.nodoHijo.setValue(Valor)
             //Esto se guarda en la base de datos es decir decimos que en la referencia en firebase
             //Guarde en cliente un hijo llamado nombre con el valor de el cliente que estamos creando
-            firebase.child("Reparacion").child(placaAntigua).child(idReparacion).setValue(reparacion);
+            firebase.child("Cliente").child(nombre).child("Automovil").child(placaAntigua).child("Reparacion").child(idReparacion).child("costo").setValue(costo);
+            firebase.child("Cliente").child(nombre).child("Automovil").child(placaAntigua).child("Reparacion").child(idReparacion).child("descripcionFalla").setValue(descripcionFalla);
+            firebase.child("Cliente").child(nombre).child("Automovil").child(placaAntigua).child("Reparacion").child(idReparacion).child("descripcionMantenimiento").setValue(descripcionMantenimiento);
+            firebase.child("Cliente").child(nombre).child("Automovil").child(placaAntigua).child("Reparacion").child(idReparacion).child("kilometraje").setValue(kilometraje);
+            firebase.child("Cliente").child(nombre).child("Automovil").child(placaAntigua).child("Reparacion").child(idReparacion).child("tipo").setValue(tipo);
             Toast.makeText(getApplicationContext(),"Automovil agregado correctamente",Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(ActualizarReparacionActivity.this, VisualizarReparacionesActivity.class);
             intent.putExtra("placa",placaAntigua);

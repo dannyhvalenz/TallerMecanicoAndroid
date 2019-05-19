@@ -47,6 +47,7 @@ public class ActualizarClienteActivity extends AppCompatActivity {
         img_avatar_actualizar = findViewById(R.id.img_avatar_actualizar);
 
         recibonombre = getIntent().getStringExtra("nombre");
+        Toast.makeText(getApplicationContext(),recibonombre,Toast.LENGTH_SHORT).show();
 
         edt_nombre_actualizar.setText(getIntent().getStringExtra("nombre"));
         edt_correo_actualizar.setText(getIntent().getStringExtra("correo"));
@@ -60,23 +61,20 @@ public class ActualizarClienteActivity extends AppCompatActivity {
                 .load(urlimagen)
                 .into(img_avatar_actualizar);
 
-        firebase.child("Cliente").child(recibonombre).removeValue();
+        //firebase.child("Cliente").child(recibonombre).removeValue();
     }
 
     public void btn_actualizar_cliente(View view){
-        String nombre = edt_nombre_actualizar.getText().toString();
         String correo = edt_correo_actualizar.getText().toString();
         String telefono = edt_telefono_actualizar.getText().toString();
 
-        if (TextUtils.isEmpty(nombre)) {
-            Toast.makeText(getApplicationContext(), "Ingresar nombre", Toast.LENGTH_SHORT).show();
-        }else if (TextUtils.isEmpty(correo)) {
+         if (TextUtils.isEmpty(correo)) {
             Toast.makeText(getApplicationContext(), "Ingresar correo", Toast.LENGTH_SHORT).show();
         }else if (TextUtils.isEmpty(telefono)) {
             Toast.makeText(getApplicationContext(), "Ingresar telefono", Toast.LENGTH_SHORT).show();
-        }else if (!TextUtils.isEmpty(nombre) && !TextUtils.isEmpty(correo) && !TextUtils.isEmpty(telefono)) {
-            Cliente cliente = new Cliente(nombre, correo, telefono, urlimagen, latitud, longitud);
-            firebase.child("Cliente").child(nombre).setValue(cliente);
+        }else if (!TextUtils.isEmpty(correo) && !TextUtils.isEmpty(telefono)) {
+            firebase.child("Cliente").child(recibonombre).child("correo").setValue(correo);
+            firebase.child("Cliente").child(recibonombre).child("telefono").setValue(telefono);
             Toast.makeText(getApplicationContext(), "Cliente acutalizado correctamente", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(ActualizarClienteActivity.this, VisualizarClientesActivity.class);
             startActivity(intent);

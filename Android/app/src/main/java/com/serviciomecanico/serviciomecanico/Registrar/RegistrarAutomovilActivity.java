@@ -129,7 +129,7 @@ public class RegistrarAutomovilActivity extends AppCompatActivity {
             //nombreReferenciaFirebase.nodoHijo.nodoHijo.setValue(Valor)
             //Esto se guarda en la base de datos es decir decimos que en la referencia en firebase
             //Guarde en cliente un hijo llamado nombre con el valor de el cliente que estamos creando
-            firebase.child("Automovil").child(nombrecliente).child(placa).setValue(automovil);
+            firebase.child("Cliente").child(nombrecliente).child("Automovil").child(placa).setValue(automovil);
             Toast.makeText(getApplicationContext(),"Automovil agregado correctamente",Toast.LENGTH_SHORT).show();
             finish();
         }
