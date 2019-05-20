@@ -1,11 +1,11 @@
 <?php
    require ('../../operacionesPhp/conexion/conexion.php');
     
-  $R = $_POST['tipo'];
+  $M = $_POST['matricula'];
    
    $where="";
 
-    $sql = "SELECT * FROM reparacion INNER JOIN automovil ON reparacion.matricula_auto = automovil.Matricula and reparacion.Tipo ='$R'";
+    $sql = "SELECT * FROM automovil INNER JOIN cliente ON automovil.id_cliente = cliente.Identificador and automovil.Matricula ='$M'";
    
    $resultado = mysqli_query($conexion, $sql);
    
@@ -41,7 +41,7 @@
                   <div class="ml-auto">
                      <ul class="navbar-nav">
                         <li class="nav-item">
-                           <a class="nav-link" href="../controlReparaciones/controlReparaciones.php?M=<?php echo $_GET['M']?>&id=<?php echo $_GET['id']?>&idA=<?php echo $_GET['idA']?>">Automovil</a>
+                           <a class="nav-link" href="../controlAutos/controlAutos.php?id=<?php echo $_GET['id']?>&idA=<?php echo $_GET['idA']?>">Automoviles</a>
                         </li>
                         <li class="nav-item">
                            <a class="nav-link" href="php/sesion/cerrarSesion.php">Cerrar Sesion</a>
@@ -68,12 +68,15 @@
                      <table class="table table-striped">
                         <thead>
                            <tr>
-                              <th>Tipo</th>
+                              <th>Cliente</th>
+                              <th>Telefono</th>
+                              <th>Direccion</th>
+                              <th>Correo</th>
                               <th>Matricula</th>
                               <th>Marca</th>
-                              <th>Costo</th>
-                              <th>Falla</th>
-                              <th>Reparacion</th>
+                              <th>Modelo</th>
+                              <th>Linea</th>
+                              <th>Color</th>
                            </tr>
                         </thead>
                         <tbody>
@@ -81,7 +84,16 @@
                               ?>
                            <tr>
                               <td>
-                                 <?php echo $row['Tipo']?>
+                                 <?php echo $row['Nombre']?>
+                              </td>
+                              <td>
+                                 <?php echo $row['Telefono']?>
+                              </td>
+                              <td>
+                                 <?php echo $row['Direccion']?>
+                              </td>
+                              <td>
+                                 <?php echo $row['Correo']?>
                               </td>
                               <td>
                                  <?php echo $row['Matricula']?>
@@ -90,13 +102,13 @@
                                  <?php echo $row['Marca']?>
                               </td>
                               <td>
-                                 <?php echo $row['Costo']?>
+                                 <?php echo $row['Modelo']?>
                               </td>
                               <td>
-                                 <?php echo $row['Descripcion_falla']?>
+                                 <?php echo $row['Linea']?>
                               </td>
                               <td>
-                                 <?php echo $row['Descripcion_reparacion']?>
+                                 <?php echo $row['Color']?>
                               </td>
                            </tr>
                            <?php } ?>

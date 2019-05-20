@@ -88,7 +88,7 @@
                               <h5>Introdusca el correo que desee buscar</h5>
                                <input type="text" id="BCorreo" placeholder="Buscar correo" name="correo">
                                <div class="mt-2">
-                               <button type="submit" class="btn btn-primary">Burcar</button>
+                               <button type="submit" class="btn btn-primary">Buscar</button>
                                </div>
                                </div>                      
                             </form>

@@ -1,11 +1,11 @@
 <?php
    require ('../../operacionesPhp/conexion/conexion.php');
     
-  $M = $_POST['matricula'];
+  $R = $_POST['tipo'];
    
    $where="";
 
-    $sql = "SELECT * FROM automovil INNER JOIN cliente ON automovil.id_cliente = cliente.Identificador and automovil.Matricula ='$M'";
+    $sql = "SELECT * FROM reparacion INNER JOIN automovil ON reparacion.matricula_auto = automovil.Matricula and reparacion.Tipo ='$R'";
    
    $resultado = mysqli_query($conexion, $sql);
    
@@ -41,7 +41,7 @@
                   <div class="ml-auto">
                      <ul class="navbar-nav">
                         <li class="nav-item">
-                           <a class="nav-link" href="control.php?id=<?php echo $_GET['id']?>">Clientes</a>
+                           <a class="nav-link" href="../controlReparaciones/controlReparaciones.php?M=<?php echo $_GET['M']?>&id=<?php echo $_GET['id']?>&idA=<?php echo $_GET['idA']?>">Reparaciones</a>
                         </li>
                         <li class="nav-item">
                            <a class="nav-link" href="php/sesion/cerrarSesion.php">Cerrar Sesion</a>
@@ -68,15 +68,12 @@
                      <table class="table table-striped">
                         <thead>
                            <tr>
-                              <th>Cliente</th>
-                              <th>Telefono</th>
-                              <th>Direccion</th>
-                              <th>Correo</th>
+                              <th>Tipo</th>
                               <th>Matricula</th>
                               <th>Marca</th>
-                              <th>Modelo</th>
-                              <th>Linea</th>
-                              <th>Color</th>
+                              <th>Costo</th>
+                              <th>Falla</th>
+                              <th>Reparacion</th>
                            </tr>
                         </thead>
                         <tbody>
@@ -84,16 +81,7 @@
                               ?>
                            <tr>
                               <td>
-                                 <?php echo $row['Nombre']?>
-                              </td>
-                              <td>
-                                 <?php echo $row['Telefono']?>
-                              </td>
-                              <td>
-                                 <?php echo $row['Direccion']?>
-                              </td>
-                              <td>
-                                 <?php echo $row['Correo']?>
+                                 <?php echo $row['Tipo']?>
                               </td>
                               <td>
                                  <?php echo $row['Matricula']?>
@@ -102,13 +90,13 @@
                                  <?php echo $row['Marca']?>
                               </td>
                               <td>
-                                 <?php echo $row['Modelo']?>
+                                 <?php echo $row['Costo']?>
                               </td>
                               <td>
-                                 <?php echo $row['Linea']?>
+                                 <?php echo $row['Descripcion_falla']?>
                               </td>
                               <td>
-                                 <?php echo $row['Color']?>
+                                 <?php echo $row['Descripcion_reparacion']?>
                               </td>
                            </tr>
                            <?php } ?>

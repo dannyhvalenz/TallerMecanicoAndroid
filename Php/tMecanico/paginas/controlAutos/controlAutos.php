@@ -30,7 +30,7 @@
     <title>Login</title>
     
   </head>
-  <bodys>
+  <body>
               
                <?php
                    session_start();
@@ -68,14 +68,14 @@
                <section>
             <div class="container">
                <div class="row pt-5 pb-5">
-                <div class="col-lg-2" style="background-color: #FFFFFF" align="center">
+                <div class="col-lg-2" style="background-color: #FFFFFF" aling="center">
                     <div class="row">
                      <!-- Button trigger modal -->
                      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" width="100%">
                      Nuevo
                      </button>
                      </div>                                          
-                     <div class="row" align="left">
+                     <div class="row" aling="left">
                      <div>
                          <form method="post" action="../buscar/buscarAuto.php?id=<?php echo $_GET['id']?>&idA=<?php echo $_GET['idA']?>">
                               <div class="form-group">
