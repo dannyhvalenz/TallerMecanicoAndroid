@@ -2,4 +2,18 @@
     <string name="app_name">Mecanicos</string>
     <string name="title_activity_maps">Map</string>
     <string name="title_activity_maps2">Map</string>
+    <string name="title_activity_menu_principal">MenuPrincipalActivity</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Bienvenido al menu</string>
+    <string name="nav_header_subtitle">Hola usuario: </string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_registrar_administrador">Registrar administrador</string>
+    <string name="menu_clientes">Clientes</string>
+    <string name="menu_citas">Citas</string>
+    <string name="menu_inventario">Inventario</string>
+    <string name="menu_herramientas">Herramientas</string>
+    <string name="menu_cerrar_sesion">Cerrar sesión</string>
 </resources>

@@ -15,6 +15,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.serviciomecanico.serviciomecanico.Conexion.Conexion;
+import com.serviciomecanico.serviciomecanico.MenuPrincipalActivity;
 import com.serviciomecanico.serviciomecanico.R;
 import com.serviciomecanico.serviciomecanico.Visualizar.VisualizarClientesActivity;
 
@@ -62,7 +63,7 @@ public class IniciarSeionActivity extends AppCompatActivity {
                                 Toast.makeText(getApplicationContext(), "Correo o contraseña incorrectos", Toast.LENGTH_SHORT).show();
                                 progressBar_iniciar_sesion.setVisibility(View.INVISIBLE);
                             }else {
-                                Intent intent = new Intent(IniciarSeionActivity.this, VisualizarClientesActivity.class);
+                                Intent intent = new Intent(IniciarSeionActivity.this, MenuPrincipalActivity.class);
                                 startActivity(intent);
                                 progressBar_iniciar_sesion.setVisibility(View.INVISIBLE);
                             }

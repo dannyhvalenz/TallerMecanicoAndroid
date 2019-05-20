@@ -6,19 +6,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".Visualizar.VisualizarClientesActivity">
-
-    <include
-        android:id="@+id/toolbar"
-        layout="@layout/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true" />
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".MenuCitasActivity"
+    tools:showIn="@layout/app_bar_menu_principal">
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/rcv_visualizar_inventario"
+        android:id="@+id/rcv_visualizar_citas"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/toolbar"
@@ -38,7 +31,6 @@
         android:layout_alignParentBottom="true"
         android:layout_marginRight="15dp"
         android:layout_marginBottom="15dp"
-        android:onClick="btn_float_registrar_cliente"
         android:src="@drawable/ic_agregar"
         app:backgroundTint="@color/colorPrimary" />
 
