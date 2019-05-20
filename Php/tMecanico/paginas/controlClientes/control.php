@@ -77,17 +77,22 @@
                <div class="row pt-5 pb-5">
                 <div class="col-lg-2" style="background-color: #FFFFFF" align="center">
                      <div>
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Nuevo</button>  
+                     <div class="row" align="left">
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" >Nuevo</button>  
                      </div>
+                     </div>
+                     <div class="row" align="left">
                      <div>
                          <form method="post" action="../buscar/buscar.php?id=<?php echo $_GET['id']?>">
                               <div class="form-group">
-                              <h5>Introdusca la matricula que desee buscar</h5>
-                               <input type="text" id="BMatricula" placeholder="Buscar matricula" name="matricula">
+                              <h5>Introdusca el correo que desee buscar</h5>
+                               <input type="text" id="BCorreo" placeholder="Buscar correo" name="correo">
+                               <div class="mt-2">
                                <button type="submit" class="btn btn-primary">Burcar</button>
-                               
-                              </div>
+                               </div>
+                               </div>                      
                             </form>
+                     </div>
                      </div>
                      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog" role="document">

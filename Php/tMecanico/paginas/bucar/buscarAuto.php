@@ -1,11 +1,11 @@
 <?php
    require ('../../operacionesPhp/conexion/conexion.php');
     
-    $correo = $_POST['correo'];
+  $M = $_POST['matricula'];
    
    $where="";
 
-    $sql = "SELECT * FROM cliente WHERE Correo = '$correo'";
+    $sql = "SELECT * FROM automovil INNER JOIN cliente ON automovil.id_cliente = cliente.Identificador and automovil.Matricula ='$M'";
    
    $resultado = mysqli_query($conexion, $sql);
    
@@ -41,7 +41,7 @@
                   <div class="ml-auto">
                      <ul class="navbar-nav">
                         <li class="nav-item">
-                           <a class="nav-link" href="../controlClientes/control.php?id=<?php echo $_GET['id']?>">Clientes</a>
+                           <a class="nav-link" href="control.php?id=<?php echo $_GET['id']?>">Clientes</a>
                         </li>
                         <li class="nav-item">
                            <a class="nav-link" href="php/sesion/cerrarSesion.php">Cerrar Sesion</a>
@@ -68,20 +68,21 @@
                      <table class="table table-striped">
                         <thead>
                            <tr>
-                              <th>Identificador</th>
                               <th>Cliente</th>
                               <th>Telefono</th>
                               <th>Direccion</th>
                               <th>Correo</th>
+                              <th>Matricula</th>
+                              <th>Marca</th>
+                              <th>Modelo</th>
+                              <th>Linea</th>
+                              <th>Color</th>
                            </tr>
                         </thead>
                         <tbody>
                            <?php while($row = mysqli_fetch_array($resultado)){
                               ?>
                            <tr>
-                             <td>
-                                  <?php echo $row['Identificador']?>
-                             </td>
                               <td>
                                  <?php echo $row['Nombre']?>
                               </td>
@@ -93,6 +94,21 @@
                               </td>
                               <td>
                                  <?php echo $row['Correo']?>
+                              </td>
+                              <td>
+                                 <?php echo $row['Matricula']?>
+                              </td>
+                              <td>
+                                 <?php echo $row['Marca']?>
+                              </td>
+                              <td>
+                                 <?php echo $row['Modelo']?>
+                              </td>
+                              <td>
+                                 <?php echo $row['Linea']?>
+                              </td>
+                              <td>
+                                 <?php echo $row['Color']?>
                               </td>
                            </tr>
                            <?php } ?>

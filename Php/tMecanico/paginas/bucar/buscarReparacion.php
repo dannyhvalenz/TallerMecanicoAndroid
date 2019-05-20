@@ -1,11 +1,11 @@
 <?php
    require ('../../operacionesPhp/conexion/conexion.php');
     
-    $correo = $_POST['correo'];
+  $R = $_POST['tipo'];
    
    $where="";
 
-    $sql = "SELECT * FROM cliente WHERE Correo = '$correo'";
+    $sql = "SELECT * FROM reparacion INNER JOIN automovil ON reparacion.matricula_auto = automovil.Matricula and reparacion.Tipo ='$R'";
    
    $resultado = mysqli_query($conexion, $sql);
    
@@ -41,7 +41,7 @@
                   <div class="ml-auto">
                      <ul class="navbar-nav">
                         <li class="nav-item">
-                           <a class="nav-link" href="../controlClientes/control.php?id=<?php echo $_GET['id']?>">Clientes</a>
+                           <a class="nav-link" href="../controlReparaciones/controlReparaciones.php?M=<?php echo $_GET['M']?>&id=<?php echo $_GET['id']?>&idA=<?php echo $_GET['idA']?>">Automovil</a>
                         </li>
                         <li class="nav-item">
                            <a class="nav-link" href="php/sesion/cerrarSesion.php">Cerrar Sesion</a>
@@ -68,31 +68,35 @@
                      <table class="table table-striped">
                         <thead>
                            <tr>
-                              <th>Identificador</th>
-                              <th>Cliente</th>
-                              <th>Telefono</th>
-                              <th>Direccion</th>
-                              <th>Correo</th>
+                              <th>Tipo</th>
+                              <th>Matricula</th>
+                              <th>Marca</th>
+                              <th>Costo</th>
+                              <th>Falla</th>
+                              <th>Reparacion</th>
                            </tr>
                         </thead>
                         <tbody>
                            <?php while($row = mysqli_fetch_array($resultado)){
                               ?>
                            <tr>
-                             <td>
-                                  <?php echo $row['Identificador']?>
-                             </td>
                               <td>
-                                 <?php echo $row['Nombre']?>
+                                 <?php echo $row['Tipo']?>
                               </td>
                               <td>
-                                 <?php echo $row['Telefono']?>
+                                 <?php echo $row['Matricula']?>
                               </td>
                               <td>
-                                 <?php echo $row['Direccion']?>
+                                 <?php echo $row['Marca']?>
                               </td>
                               <td>
-                                 <?php echo $row['Correo']?>
+                                 <?php echo $row['Costo']?>
+                              </td>
+                              <td>
+                                 <?php echo $row['Descripcion_falla']?>
+                              </td>
+                              <td>
+                                 <?php echo $row['Descripcion_reparacion']?>
                               </td>
                            </tr>
                            <?php } ?>
