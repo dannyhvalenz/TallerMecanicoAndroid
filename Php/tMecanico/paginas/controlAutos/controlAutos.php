@@ -30,7 +30,7 @@
     <title>Login</title>
     
   </head>
-  <bodys>
+  <body>
               
                <?php
                    session_start();
@@ -68,16 +68,27 @@
                <section>
             <div class="container">
                <div class="row pt-5 pb-5">
-                <div class="col-lg-2" style="background-color: #FFFFFF" align="center">
-                    <div>
+                <div class="col-lg-2" style="background-color: #FFFFFF" aling="center">
+                    <div class="row">
                      <!-- Button trigger modal -->
                      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" width="100%">
                      Nuevo
                      </button>
-                     </div>
+                     </div>                                          
+                     <div class="row" aling="left">
                      <div>
-                         
+                         <form method="post" action="../buscar/buscarAuto.php?id=<?php echo $_GET['id']?>&idA=<?php echo $_GET['idA']?>">
+                              <div class="form-group">
+                              <h5>Introdusca la matricula que desee buscar</h5>
+                               <input type="text" id="BMatricula" placeholder="Buscar matricula" name="matricula">
+                               <div class="mt-2">
+                               <button type="submit" class="btn btn-primary">Burcar</button>
+                               </div>
+                               </div>                      
+                            </form>
                      </div>
+                     </div>
+
                      <!-- Modal -->
                      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog" role="document">
