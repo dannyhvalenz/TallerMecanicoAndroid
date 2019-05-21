@@ -10,10 +10,10 @@
         <item name="colorControlActivated">@color/colorPrimary</item>
     </style>
 
-    <style name="boton_principal" parent="Theme.AppCompat.Light">
-        <item name="colorButtonNormal">@color/colorPrimaryLight</item>
-        <item name="colorControlHighlight">@color/colorPrimaryDark</item>
-        <item name="android:textColor">@android:color/white</item>
+    <style name="boton_principal" parent="Theme.AppCompat.NoActionBar">
+        <item name="colorButtonNormal">@color/colorBlanco</item>
+        <item name="colorControlHighlight">@color/colorRojo</item>
+        <item name="android:textColor">@android:color/black</item>
         <item name="android:bottomLeftRadius">10dp</item>
         <item name="android:bottomRightRadius">10dp</item>
         <item name="android:topLeftRadius">10dp</item>

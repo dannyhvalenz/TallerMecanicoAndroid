@@ -18,22 +18,25 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Registrar.RegistrarCitaActivity"></activity>
+        <activity
+            android:name=".Registrar.RegistrarCitaActivity"
+            android:label="@string/titulo_registrar_administrador"
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity
             android:name=".MenuPrincipalActivity"
-            android:label="@string/title_activity_menu_principal"
+            android:label="@string/titulo_lista_clientes"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".MenuCitasActivity"
-            android:label="@string/title_activity_menu_principal"
+            android:label="@string/titulo_lista_citas"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".MenuInventarioActivity"
-            android:label="@string/title_activity_menu_principal"
+            android:label="@string/titulo_lista_inventario"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".MenuHerramientasActivity"
-            android:label="@string/title_activity_menu_principal"
+            android:label="@string/titulo_lista_herramientas"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".Registrar.RegistrarAutomovilActivity" />
         <!--
@@ -66,10 +69,13 @@
         <activity android:name=".Actualizar.ActualizarReparacionActivity" />
         <activity android:name=".Registrar.RegistrarReparacionActivity" />
         <activity android:name=".Visualizar.VisualizarAutomovilesActivity" />
-        <activity android:name=".Sesion.IniciarSeionActivity">
+
+        <activity
+            android:name=".Sesion.IniciarSeionActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

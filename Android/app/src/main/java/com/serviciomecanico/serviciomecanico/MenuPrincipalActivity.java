@@ -17,6 +17,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
@@ -36,7 +37,7 @@ public class MenuPrincipalActivity extends AppCompatActivity
     DatabaseReference firebase;
 
     RecyclerView rcv_visualizar_clientes;
-    FloatingActionButton btn_float_registrar_cliente;
+    FloatingActionButton btn_float_registrar_clientes;
     ProgressBar progressBar_visualizar_clientes;
 
     //Adapter
@@ -58,8 +59,8 @@ public class MenuPrincipalActivity extends AppCompatActivity
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
 
-        rcv_visualizar_clientes = findViewById(R.id.rcv_visualizar_cliente);
-        btn_float_registrar_cliente = findViewById(R.id.btn_float_registrar_cliente);
+        rcv_visualizar_clientes = findViewById(R.id.rcv_visualizar_clientes);
+        btn_float_registrar_clientes = findViewById(R.id.btn_float_registrar_clientes);
         progressBar_visualizar_clientes = findViewById(R.id.progressBar_visualizar_clientes);
 
         progressBar_visualizar_clientes.setVisibility(View.VISIBLE);
@@ -114,15 +115,15 @@ public class MenuPrincipalActivity extends AppCompatActivity
             public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
                 super.onScrollStateChanged(recyclerView, newState);
                 if(newState == RecyclerView.SCROLL_STATE_IDLE){
-                    btn_float_registrar_cliente.show();
+                    btn_float_registrar_clientes.show();
                 }
             }
 
             @Override
             public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
-                if(dy>0 || dy<0 && btn_float_registrar_cliente.isShown()){
-                    btn_float_registrar_cliente.hide();
+                if(dy>0 || dy<0 && btn_float_registrar_clientes.isShown()){
+                    btn_float_registrar_clientes.hide();
                 }
             }
         });
@@ -177,7 +178,7 @@ public class MenuPrincipalActivity extends AppCompatActivity
         return true;
     }
 
-    public void btn_float_registrar_cliente (View view){
+    public void btn_float_registrar_clientes (View view){
         Intent intent = new Intent(MenuPrincipalActivity.this, RegistrarClienteActivity.class);
         startActivity(intent);
     }

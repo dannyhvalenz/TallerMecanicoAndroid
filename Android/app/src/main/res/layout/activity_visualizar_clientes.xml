@@ -8,17 +8,8 @@
     android:orientation="vertical"
     tools:context=".Visualizar.VisualizarClientesActivity">
 
-    <include
-        android:id="@+id/toolbar"
-        layout="@layout/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true" />
-
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/rcv_visualizar_inventario"
+        android:id="@+id/rcv_visualizar_clientes"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/toolbar"
@@ -31,7 +22,7 @@
     </android.support.v7.widget.RecyclerView>
 
     <android.support.design.widget.FloatingActionButton
-        android:id="@+id/btn_float_registrar_citas"
+        android:id="@+id/btn_float_registrar_clientes"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
@@ -43,7 +34,7 @@
         app:backgroundTint="@color/colorPrimary" />
 
     <ProgressBar
-        android:id="@+id/progressBar_visualizar_citas"
+        android:id="@+id/progressBar_visualizar_clientes"
         android:layout_width="217dp"
         android:layout_height="217dp"
         android:layout_below="@+id/toolbar"

@@ -1,12 +1,32 @@
 <resources>
+
+    <string name="titulo_principal">Servicio mecánico</string>
+    <string name="edt_correo_iniciar_sesion">Correo electrónico</string>
+    <string name="edt_contraseña_iniciar_sesion">Contraseña</string>
+    <string name="btn_iniciar_sesion">Iniciar sesión</string>
+
+    <string name="titulo_registrar_administrador">Registrar administrador</string>
+    <string name="titulo_lista_clientes">Lista de clientes</string>
+    <string name="titulo_lista_citas">Lista de citas</string>
+    <string name="titulo_lista_inventario">Lista de inventario</string>
+    <string name="titulo_lista_herramientas">Lista de herramientas</string>
+
+    <string name="nav_titulo_cabecera">Bienvenido al menú principal</string>
+    <string name="nav_titulo_subcabecera">Navega en las diferentes opciones</string>
+
+    <string name="edt_nombre_cliente">Nombre del cliente</string>
+    <string name="edt_correo_cliente">Correo electrónico</string>
+    <string name="edt_telefono_cliente">Teléfono del cliente</string>
+    <string name="btn_ubicacion_cliente">Dirección</string>
+    <string name="btn_agregar_cliente">Agregar cliente</string>
+
     <string name="app_name">Mecanicos</string>
     <string name="title_activity_maps">Map</string>
     <string name="title_activity_maps2">Map</string>
     <string name="title_activity_menu_principal">MenuPrincipalActivity</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="nav_header_title">Bienvenido al menu</string>
-    <string name="nav_header_subtitle">Hola usuario: </string>
+
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
 

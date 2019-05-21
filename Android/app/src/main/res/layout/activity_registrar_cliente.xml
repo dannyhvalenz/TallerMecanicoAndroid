@@ -9,8 +9,7 @@
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@drawable/ic_registrar_cliente">
+        android:layout_height="match_parent">
 
         <include
             android:id="@+id/toolbar"
@@ -49,7 +48,7 @@
                 android:layout_height="wrap_content"
                 android:drawableStart="@drawable/ic_correo"
                 android:drawablePadding="5dp"
-                android:hint="Nombre del cliente"
+                android:hint="@string/edt_nombre_cliente"
                 android:inputType="text" />
 
         </android.support.design.widget.TextInputLayout>
@@ -70,9 +69,9 @@
                 android:id="@+id/edt_correo_registrar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:drawableStart="@drawable/ic_email"
+                android:drawableStart="@drawable/ic_correo"
                 android:drawablePadding="5dp"
-                android:hint="Correo del cliente"
+                android:hint="@string/edt_correo_cliente"
                 android:inputType="text" />
 
         </android.support.design.widget.TextInputLayout>
@@ -93,9 +92,9 @@
                 android:id="@+id/edt_telefono_registrar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:drawableStart="@drawable/ic_phone"
+                android:drawableStart="@drawable/ic_telefono"
                 android:drawablePadding="5dp"
-                android:hint="Telefono del cliente"
+                android:hint="@string/edt_telefono_cliente"
                 android:inputType="number" />
 
         </android.support.design.widget.TextInputLayout>
@@ -110,7 +109,7 @@
             android:layout_marginBottom="40dp"
             android:drawableStart="@drawable/ic_ubicacion_white"
             android:drawablePadding="5dp"
-            android:hint="Dirección del cliente"
+            android:hint="@string/btn_ubicacion_cliente"
             android:inputType="text"
             android:onClick="direccioncliente"
             android:textColor="@android:color/white"
@@ -131,7 +130,7 @@
             android:layout_marginEnd="50dp"
             android:layout_marginBottom="32dp"
             android:onClick="btn_agregar_cliente"
-            android:text="Agregar Cliente"
+            android:text="@string/btn_agregar_cliente"
             android:textSize="18sp"
             android:theme="@style/boton_abajo"
             app:layout_constraintBottom_toBottomOf="parent"

@@ -23,7 +23,7 @@ public class IniciarSeionActivity extends AppCompatActivity {
 
     Conexion conexion = new Conexion();
     FirebaseAuth auth;
-    EditText edt_correo_iniciar_sesion, edt_contrasena_iniciar_sesion;
+    EditText edt_correo_iniciar_sesion, edt_contraseña_iniciar_sesion;
     ProgressBar progressBar_iniciar_sesion;
 
 
@@ -34,38 +34,30 @@ public class IniciarSeionActivity extends AppCompatActivity {
         auth = conexion.autenticacion();
 
         edt_correo_iniciar_sesion = findViewById(R.id.edt_correo_iniciar_sesion);
-        edt_contrasena_iniciar_sesion = findViewById(R.id.edt_contrasena_iniciar_sesion);
-        progressBar_iniciar_sesion = findViewById(R.id.progressBar_iniciar_sesion);
-
-        progressBar_iniciar_sesion.setVisibility(View.INVISIBLE);
+        edt_contraseña_iniciar_sesion = findViewById(R.id.edt_contraseña_iniciar_sesion);
     }
 
 
     public void btn_iniciar_sesion (View view){
         String correo = edt_correo_iniciar_sesion.getText().toString();
-        String contrasena = edt_contrasena_iniciar_sesion.getText().toString();
-        progressBar_iniciar_sesion.setVisibility(View.VISIBLE);
-        progressBar_iniciar_sesion.setProgress(50);
-        progressBar_iniciar_sesion.setMax(100);
+        String contraseña = edt_contraseña_iniciar_sesion.getText().toString();
 
         if (TextUtils.isEmpty(correo)) {
             Toast.makeText(getApplicationContext(), "Ingresa un correo", Toast.LENGTH_SHORT).show();
             progressBar_iniciar_sesion.setVisibility(View.INVISIBLE);
-        }else if (TextUtils.isEmpty(contrasena)) {
+        }else if (TextUtils.isEmpty(contraseña)) {
             Toast.makeText(getApplicationContext(), "Ingresa un contraseña", Toast.LENGTH_SHORT).show();
             progressBar_iniciar_sesion.setVisibility(View.INVISIBLE);
-        }else if (!TextUtils.isEmpty(correo) && !TextUtils.isEmpty(contrasena))
-           auth.signInWithEmailAndPassword(correo,contrasena)
+        }else if (!TextUtils.isEmpty(correo) && !TextUtils.isEmpty(contraseña))
+           auth.signInWithEmailAndPassword(correo,contraseña)
                    .addOnCompleteListener(IniciarSeionActivity.this, new OnCompleteListener<AuthResult>() {
                        @Override
                        public void onComplete(@NonNull Task<AuthResult> task) {
                             if (!task.isSuccessful()) {
                                 Toast.makeText(getApplicationContext(), "Correo o contraseña incorrectos", Toast.LENGTH_SHORT).show();
-                                progressBar_iniciar_sesion.setVisibility(View.INVISIBLE);
                             }else {
                                 Intent intent = new Intent(IniciarSeionActivity.this, MenuPrincipalActivity.class);
                                 startActivity(intent);
-                                progressBar_iniciar_sesion.setVisibility(View.INVISIBLE);
                             }
                        }
                    });
