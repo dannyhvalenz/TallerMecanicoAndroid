@@ -23,11 +23,14 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.database.DatabaseReference;
+import com.serviciomecanico.serviciomecanico.Adaptadores.CitaAdapter;
 import com.serviciomecanico.serviciomecanico.Adaptadores.ClienteAdapter;
 import com.serviciomecanico.serviciomecanico.Conexion.Conexion;
 import com.serviciomecanico.serviciomecanico.Consultar.ConsultarClienteActivity;
+import com.serviciomecanico.serviciomecanico.Modelo.Cita;
 import com.serviciomecanico.serviciomecanico.Modelo.Cliente;
 import com.serviciomecanico.serviciomecanico.Registrar.RegisterAdministradorActivity;
+import com.serviciomecanico.serviciomecanico.Registrar.RegistrarCitaActivity;
 import com.serviciomecanico.serviciomecanico.Registrar.RegistrarClienteActivity;
 
 public class MenuPrincipalActivity extends AppCompatActivity
@@ -42,6 +45,7 @@ public class MenuPrincipalActivity extends AppCompatActivity
 
     //Adapter
     FirebaseRecyclerAdapter<Cliente, ClienteAdapter.ViewHolder> adapter;
+    FirebaseRecyclerAdapter<Cita, CitaAdapter.ViewHolder> adapter2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -127,6 +131,7 @@ public class MenuPrincipalActivity extends AppCompatActivity
                 }
             }
         });
+
     }
 
     @Override
@@ -156,19 +161,120 @@ public class MenuPrincipalActivity extends AppCompatActivity
             Intent intent = new Intent(MenuPrincipalActivity.this, RegisterAdministradorActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_clientes) {
-            Toast.makeText(getApplicationContext(),"Ya te encuestras en clientes",Toast.LENGTH_SHORT).show();
+            //FirebaseUI definido para llamar de nuestro firebase la lista
+            adapter = new FirebaseRecyclerAdapter<Cliente, ClienteAdapter.ViewHolder>(
+                    /*Clase que utilizaremos*/Cliente.class,
+                    /*La interfaz grafica*/R.layout.cliente,
+                    /*ViewHolder archivo ClienteAdapter*/ClienteAdapter.ViewHolder.class,
+                    /*La referencia de firebase donde buscara*/firebase.child("Cliente")
+            ) {
+                @Override
+                protected void populateViewHolder(final ClienteAdapter.ViewHolder viewHolder, Cliente model, final int position) {
+                    viewHolder.txv_cliente_nombre.setText(model.getNombre());
+                    viewHolder.txv_cliente_correo.setText(model.getCorreo());
+                    viewHolder.txv_cliente_telefono.setText(model.getTelefono());
+                    String urlchida = model.getUrlImagen();
+                    Glide.with(getApplicationContext())
+                            .load(urlchida)
+                            .into(viewHolder.imageView_cliente);
+                    final String urlimagen = model.getUrlImagen();
+                    final String latitud = model.getLatitud();
+                    final String longitud = model.getLongitud();
+                    viewHolder.cdv_cliente.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent intent = new Intent(MenuPrincipalActivity.this, ConsultarClienteActivity.class);
+                            intent.putExtra("nombre",viewHolder.txv_cliente_nombre.getText().toString());
+                            intent.putExtra("correo",viewHolder.txv_cliente_correo.getText().toString());
+                            intent.putExtra("telefono",viewHolder.txv_cliente_telefono.getText().toString());
+                            intent.putExtra("urlimagen",urlimagen);
+                            intent.putExtra("latitud",latitud);
+                            intent.putExtra("longitud",longitud);
+                            startActivity(intent);
+                        }
+                    });
+
+                    progressBar_visualizar_clientes.setVisibility(View.INVISIBLE);
+                }
+            };
+
+            rcv_visualizar_clientes.setAdapter(adapter);
+
+            //Scroll funcion boton
+            rcv_visualizar_clientes.addOnScrollListener(new RecyclerView.OnScrollListener() {
+                @Override
+                public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
+                    super.onScrollStateChanged(recyclerView, newState);
+                    if(newState == RecyclerView.SCROLL_STATE_IDLE){
+                        btn_float_registrar_clientes.show();
+                    }
+                }
+
+                @Override
+                public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+                    super.onScrolled(recyclerView, dx, dy);
+                    if(dy>0 || dy<0 && btn_float_registrar_clientes.isShown()){
+                        btn_float_registrar_clientes.hide();
+                    }
+                }
+            });
         } else if (id == R.id.nav_citas) {
-            Intent intent = new Intent(MenuPrincipalActivity.this, MenuCitasActivity.class);
-            startActivity(intent);
-            finish();
+            //FirebaseUI definido para llamar de nuestro firebase la lista
+            adapter2 = new FirebaseRecyclerAdapter<Cita, CitaAdapter.ViewHolder>(
+                    /*Clase que utilizaremos*/Cita.class,
+                    /*La interfaz grafica*/R.layout.cita,
+                    /*ViewHolder archivo ClienteAdapter*/CitaAdapter.ViewHolder.class,
+                    /*La referencia de firebase donde buscara*/firebase.child("Cita")
+            ) {
+                @Override
+                protected void populateViewHolder(final CitaAdapter.ViewHolder viewHolder, Cita model,final int position) {
+                    viewHolder.edt_fecha.setText(model.getFecha());
+                    viewHolder.edt_hora.setText(model.getHora());
+                    viewHolder.txv_nombre.setText(model.getCliente());
+                    viewHolder.txv_descripcion.setText(model.getDescripcion());
+                    viewHolder.cdv_cita.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                        }
+                    });
+
+                    progressBar_visualizar_clientes.setVisibility(View.INVISIBLE);
+                }
+            };
+
+            rcv_visualizar_clientes.setAdapter(adapter2);
+
+            //Scroll funcion boton
+            rcv_visualizar_clientes.addOnScrollListener(new RecyclerView.OnScrollListener() {
+                @Override
+                public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
+                    super.onScrollStateChanged(recyclerView, newState);
+                    if(newState == RecyclerView.SCROLL_STATE_IDLE){
+                        btn_float_registrar_clientes.show();
+                    }
+                }
+
+                @Override
+                public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+                    super.onScrolled(recyclerView, dx, dy);
+                    if(dy>0 || dy<0 && btn_float_registrar_clientes.isShown()){
+                        btn_float_registrar_clientes.hide();
+                    }
+                }
+            });
+
+            btn_float_registrar_clientes.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(MenuPrincipalActivity.this, RegistrarCitaActivity.class);
+                    startActivity(intent);
+                    finish();
+                }
+            });
         } else if (id == R.id.nav_inventario) {
-            Intent intent = new Intent(MenuPrincipalActivity.this, MenuInventarioActivity.class);
-            startActivity(intent);
-            finish();
+
         } else if (id == R.id.nav_herramientas) {
-            Intent intent = new Intent(MenuPrincipalActivity.this, MenuHerramientasActivity.class);
-            startActivity(intent);
-            finish();
+
         } else if (id == R.id.nav_cerrar_sesion) {
             finish();
         }

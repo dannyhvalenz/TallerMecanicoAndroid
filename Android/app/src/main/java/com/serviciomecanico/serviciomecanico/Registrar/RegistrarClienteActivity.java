@@ -26,6 +26,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.serviciomecanico.serviciomecanico.Adaptadores.ImagenClienteAdapter;
 import com.serviciomecanico.serviciomecanico.Conexion.Conexion;
 import com.serviciomecanico.serviciomecanico.Mapas.MapsActivity;
+import com.serviciomecanico.serviciomecanico.MenuPrincipalActivity;
 import com.serviciomecanico.serviciomecanico.Modelo.Cliente;
 import com.serviciomecanico.serviciomecanico.R;
 import com.serviciomecanico.serviciomecanico.Visualizar.VisualizarClientesActivity;
@@ -69,6 +70,7 @@ public class RegistrarClienteActivity extends AppCompatActivity {
         edt_correo_registrar = findViewById(R.id.edt_correo_registrar);
         edt_telefono_registrar = findViewById(R.id.edt_telefono_registrar);
         edt_direccion_registrar = findViewById(R.id.edt_direccion_registrar);
+        Toast.makeText(getApplicationContext(),"Seleccione un avatar para el cliente",Toast.LENGTH_LONG).show();
 
         getImages();
 
@@ -113,15 +115,15 @@ public class RegistrarClienteActivity extends AppCompatActivity {
         String nombre = edt_nombre_registrar.getText().toString();
         String correo = edt_correo_registrar.getText().toString();
         String telefono = edt_telefono_registrar.getText().toString();
-        String direccion = edt_direccion_registrar.getText().toString();
-
 
         if (TextUtils.isEmpty(nombre)) {
-            Toast.makeText(getApplicationContext(), "Ingresa nombre", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "Ingresa el nombre", Toast.LENGTH_SHORT).show();
         }else if (TextUtils.isEmpty(correo)) {
-            Toast.makeText(getApplicationContext(), "Ingresar correo", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "Ingresa el correo electrónico", Toast.LENGTH_SHORT).show();
         }else if (TextUtils.isEmpty(telefono)) {
-            Toast.makeText(getApplicationContext(), "Ingresar telefono", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "Ingresa el teléfono", Toast.LENGTH_SHORT).show();
+        }else if (TextUtils.isEmpty(longitud)) {
+            Toast.makeText(getApplicationContext(), "Ingresa la dirección", Toast.LENGTH_SHORT).show();
         }else if (!TextUtils.isEmpty(nombre) && !TextUtils.isEmpty(correo) && !TextUtils.isEmpty(telefono)) {
             //Creacion de un nuevo cliente mediante los parametros obtenidos
             Cliente cliente = new Cliente(nombre,correo,telefono,urlimagen,latitud,longitud);
@@ -184,7 +186,7 @@ public class RegistrarClienteActivity extends AppCompatActivity {
         switch (item.getItemId()){
             case android.R.id.home:
 
-                Intent intent = new Intent(RegistrarClienteActivity.this, VisualizarClientesActivity.class);
+                Intent intent = new Intent(RegistrarClienteActivity.this, MenuPrincipalActivity.class);
                 startActivity(intent);
                 finish();
                 return true;

@@ -12,8 +12,18 @@
 
     <style name="boton_principal" parent="Theme.AppCompat.NoActionBar">
         <item name="colorButtonNormal">@color/colorBlanco</item>
-        <item name="colorControlHighlight">@color/colorRojo</item>
+        <item name="colorControlHighlight">@color/colorGris</item>
         <item name="android:textColor">@android:color/black</item>
+        <item name="android:bottomLeftRadius">10dp</item>
+        <item name="android:bottomRightRadius">10dp</item>
+        <item name="android:topLeftRadius">10dp</item>
+        <item name="android:topRightRadius">10dp</item>
+    </style>
+
+    <style name="boton_rojo" parent="Theme.AppCompat.NoActionBar">
+        <item name="colorButtonNormal">@color/colorRojo</item>
+        <item name="colorControlHighlight">@color/colorPrimaryDark</item>
+        <item name="android:textColor">@color/colorBlanco</item>
         <item name="android:bottomLeftRadius">10dp</item>
         <item name="android:bottomRightRadius">10dp</item>
         <item name="android:topLeftRadius">10dp</item>

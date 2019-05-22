@@ -7,4 +7,6 @@
     <color name="colorPrimaryText">#000000</color>
     <color name="colorRojo">#D50000</color>
     <color name="colorBlanco">#FFFFFF</color>
+    <color name="colorGris">#ACA4A4</color>
+
 </resources>

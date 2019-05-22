@@ -20,8 +20,7 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".Registrar.RegistrarCitaActivity"
-            android:label="@string/titulo_registrar_administrador"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:label="@string/titulo_registrar_cita"/>
         <activity
             android:name=".MenuPrincipalActivity"
             android:label="@string/titulo_lista_clientes"

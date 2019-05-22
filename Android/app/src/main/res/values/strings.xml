@@ -1,6 +1,7 @@
 <resources>
 
-    <string name="titulo_principal">Servicio mecánico</string>
+    <string name="titulo_principal1">Servicio</string>
+    <string name="titulo_principal2">mecánico</string>
     <string name="edt_correo_iniciar_sesion">Correo electrónico</string>
     <string name="edt_contraseña_iniciar_sesion">Contraseña</string>
     <string name="btn_iniciar_sesion">Iniciar sesión</string>
@@ -16,9 +17,16 @@
 
     <string name="edt_nombre_cliente">Nombre del cliente</string>
     <string name="edt_correo_cliente">Correo electrónico</string>
-    <string name="edt_telefono_cliente">Teléfono del cliente</string>
+    <string name="edt_telefono_cliente">Teléfono</string>
     <string name="btn_ubicacion_cliente">Dirección</string>
     <string name="btn_agregar_cliente">Agregar cliente</string>
+
+    <string name="titulo_registrar_cita">Registrar cita</string>
+    <string name="btn_fecha">Fecha</string>
+    <string name="btn_hora">Hora</string>
+    <string name="btn_agregar_cita">Agregar cita</string>
+    <string name="edt_nombre_cita">Nombre del cliente</string>
+    <string name="edt_descripcion_cita">Descripción</string>
 
     <string name="app_name">Mecanicos</string>
     <string name="title_activity_maps">Map</string>
