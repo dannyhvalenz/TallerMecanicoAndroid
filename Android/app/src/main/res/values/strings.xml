@@ -28,6 +28,23 @@
     <string name="edt_nombre_cita">Nombre del cliente</string>
     <string name="edt_descripcion_cita">Descripción</string>
 
+    <string name="edt_placa">Placa del automóvil</string>
+    <string name="edt_marca">Marca</string>
+    <string name="edt_linea">Linea</string>
+    <string name="edt_modelo">Modelo</string>
+    <string name="edt_color">Color</string>
+    <string name="titulo_registrar_automovil">Registrar automóvil</string>
+    <string name="btn_agrager_automovil">Agregar automóvil</string>
+
+    <string name="edt_tipo_reparacion">Tipo de reparación</string>
+    <string name="edt_descripcion_falla">Descripción falla</string>
+    <string name="edt_descripcion_mantenimiento">Descripción mantenimiento</string>
+    <string name="edt_kilometraje">Kilometraje</string>
+    <string name="edt_costo">Costo</string>
+    <string name="titulo_registrar_reparacion">Registrar reparación</string>
+    <string name="btn_agregar_reparacion">Agregar reparación</string>
+    <string name="btn_buscar_reparaciones">Reparaciones del automóvil</string>
+
     <string name="app_name">Mecanicos</string>
     <string name="title_activity_maps">Map</string>
     <string name="title_activity_maps2">Map</string>

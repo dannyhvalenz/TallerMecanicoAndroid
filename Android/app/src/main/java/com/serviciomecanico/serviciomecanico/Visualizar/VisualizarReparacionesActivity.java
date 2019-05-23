@@ -63,7 +63,6 @@ public class VisualizarReparacionesActivity extends AppCompatActivity {
 
         placa = getIntent().getStringExtra("placa");
         nombre = getIntent().getStringExtra("nombre");
-        Toast.makeText(getApplicationContext(),nombre,Toast.LENGTH_SHORT).show();
 
         //Setear al linerlayaour manager nuestro reciclerView
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
@@ -80,8 +79,8 @@ public class VisualizarReparacionesActivity extends AppCompatActivity {
             @Override
             protected void populateViewHolder(final ReparacionAdapter.ViewHolder viewHolder, Reparacion model, int position) {
                 viewHolder.txv_reparacion_tipo.setText(model.getTipo());
-                viewHolder.txv_reparacion_kilometraje.setText(model.getKilometraje());
-                viewHolder.txv_reparacion_costo.setText(model.getCosto());
+                viewHolder.txv_reparacion_kilometraje.setText(model.getKilometraje()+" Km");
+                viewHolder.txv_reparacion_costo.setText("$ "+model.getCosto());
                 String urlchida = model.getUrlImagenAReparacion();
                 Glide.with(getApplicationContext())
                         .load(urlchida)
@@ -144,12 +143,8 @@ public class VisualizarReparacionesActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case android.R.id.home:
-
-                Intent intent = new Intent(VisualizarReparacionesActivity.this, MenuPrincipalActivity.class);
-                startActivity(intent);
                 finish();
                 return true;
-
             default:
                 return super.onOptionsItemSelected(item);
         }

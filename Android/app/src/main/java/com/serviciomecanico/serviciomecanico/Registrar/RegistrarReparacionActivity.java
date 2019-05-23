@@ -50,7 +50,7 @@ public class RegistrarReparacionActivity extends AppCompatActivity {
         //Toolbar
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Registrar reparacion");
+        getSupportActionBar().setTitle("Registrar reparación");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
@@ -140,9 +140,6 @@ public class RegistrarReparacionActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case android.R.id.home:
-
-                Intent intent = new Intent(RegistrarReparacionActivity.this, MenuPrincipalActivity.class);
-                startActivity(intent);
                 finish();
                 return true;
 

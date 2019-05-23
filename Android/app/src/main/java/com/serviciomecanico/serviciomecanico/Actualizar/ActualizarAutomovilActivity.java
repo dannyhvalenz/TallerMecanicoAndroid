@@ -9,6 +9,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
@@ -23,7 +24,8 @@ public class ActualizarAutomovilActivity extends AppCompatActivity {
     Conexion conexion = new Conexion();
     DatabaseReference firebase;
 
-    EditText edt_placa_actualizar, edt_marca_actualizar, edt_linea_actualizar,edt_modelo_actualizar,edt_color_actualizar;
+    TextView edt_placa_actualizar;
+    EditText edt_marca_actualizar, edt_linea_actualizar,edt_modelo_actualizar,edt_color_actualizar;
     String recibonombre, urlimagen, placaAntigua;
     ImageView img_avatar_actualizar_automovil;
 

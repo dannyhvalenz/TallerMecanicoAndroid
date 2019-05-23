@@ -9,6 +9,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
@@ -23,7 +24,8 @@ public class ActualizarClienteActivity extends AppCompatActivity {
     Conexion conexion = new Conexion();
     DatabaseReference firebase;
 
-    EditText edt_nombre_actualizar, edt_correo_actualizar, edt_telefono_actualizar;
+    TextView edt_nombre_actualizar;
+    EditText edt_correo_actualizar, edt_telefono_actualizar;
     String recibonombre, urlimagen, latitud, longitud;
     ImageView img_avatar_actualizar;
 

@@ -21,6 +21,13 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <android.support.constraint.Guideline
+            android:id="@+id/guideline23"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.5" />
+
         <ImageView
             android:id="@+id/img_avatar_consultar_reparacion"
             android:layout_width="0dp"
@@ -41,79 +48,89 @@
             android:orientation="horizontal"
             app:layout_constraintGuide_percent="0.3" />
 
-        <EditText
+        <TextView
             android:id="@+id/edt_tipo_consultar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="32dp"
-            android:layout_marginBottom="16dp"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="50dp"
             android:drawablePadding="5dp"
             android:focusable="false"
+            android:gravity="center_horizontal"
             android:inputType="text"
-            app:layout_constraintBottom_toTopOf="@+id/edt_descripcionFalla_consultar"
+            android:textColor="@android:color/black"
+            android:textSize="24sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/guideline4" />
 
-        <EditText
+        <TextView
             android:id="@+id/edt_descripcionFalla_consultar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginEnd="32dp"
-            android:layout_marginBottom="16dp"
-            android:drawablePadding="5dp"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="50dp"
+            android:drawableStart="@drawable/ic_descripcion_falla"
+            android:drawablePadding="15dp"
             android:focusable="false"
             android:inputType="text"
-            app:layout_constraintBottom_toTopOf="@+id/edt_descripcionMantenimiento_consultar"
+            android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/edt_kilometraje_consultar" />
 
-        <EditText
+        <TextView
             android:id="@+id/edt_descripcionMantenimiento_consultar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginEnd="32dp"
-            android:layout_marginBottom="16dp"
-            android:drawablePadding="5dp"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="50dp"
+            android:layout_marginBottom="8dp"
+            android:drawableStart="@drawable/ic_descripcion_mantenimiento"
+            android:drawablePadding="15dp"
             android:focusable="false"
             android:inputType="text"
-            app:layout_constraintBottom_toTopOf="@+id/edt_kilometraje_consultar"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
-
-        <EditText
-            android:id="@+id/edt_kilometraje_consultar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginEnd="32dp"
-            android:layout_marginBottom="16dp"
-            android:drawablePadding="5dp"
-            android:focusable="false"
-            android:inputType="number"
-            app:layout_constraintBottom_toTopOf="@+id/edt_costo_consultar"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent" />" />
-
-        <EditText
-            android:id="@+id/edt_costo_consultar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginEnd="32dp"
-            android:layout_marginBottom="212dp"
-            android:drawablePadding="5dp"
-            android:focusable="false"
-            android:inputType="text"
+            android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/edt_descripcionFalla_consultar" />
+
+        <TextView
+            android:id="@+id/edt_kilometraje_consultar"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="32dp"
+            android:drawableStart="@drawable/ic_kilometraje"
+            android:drawablePadding="15dp"
+            android:focusable="false"
+            android:inputType="number"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toStartOf="@+id/guideline23"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/edt_tipo_consultar" />" />
+
+        <TextView
+            android:id="@+id/edt_costo_consultar"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="32dp"
+            android:drawableStart="@drawable/ic_costo_reparacion"
+            android:drawablePadding="15dp"
+            android:focusable="false"
+            android:inputType="text"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/guideline23"
+            app:layout_constraintTop_toBottomOf="@+id/edt_tipo_consultar" />
 
 
     </android.support.constraint.ConstraintLayout>

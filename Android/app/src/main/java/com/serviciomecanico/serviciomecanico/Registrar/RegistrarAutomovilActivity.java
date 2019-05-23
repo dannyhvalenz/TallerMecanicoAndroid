@@ -51,7 +51,7 @@ public class RegistrarAutomovilActivity extends AppCompatActivity {
         //Toolbar
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Registrar automovil");
+        getSupportActionBar().setTitle("Registrar automóvil");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
@@ -139,9 +139,6 @@ public class RegistrarAutomovilActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case android.R.id.home:
-
-                Intent intent = new Intent(RegistrarAutomovilActivity.this, MenuPrincipalActivity.class);
-                startActivity(intent);
                 finish();
                 return true;
 

@@ -18,6 +18,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
+import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -69,7 +70,6 @@ public class MenuPrincipalActivity extends AppCompatActivity
         rcv_visualizar_clientes = findViewById(R.id.rcv_visualizar_clientes);
         btn_float_registrar_clientes = findViewById(R.id.btn_float_registrar_clientes);
         progressBar_visualizar_clientes = findViewById(R.id.progressBar_visualizar_clientes);
-
         progressBar_visualizar_clientes.setVisibility(View.VISIBLE);
 
         //Setear al linerlayaour manager nuestro reciclerView
@@ -237,10 +237,12 @@ public class MenuPrincipalActivity extends AppCompatActivity
                     viewHolder.edt_hora.setText(model.getHora());
                     viewHolder.txv_nombre.setText(model.getCliente());
                     viewHolder.txv_descripcion.setText(model.getDescripcion());
-                    idCita = model.getCliente();
+                    idCita = viewHolder.txv_nombre.getText().toString();
+                    final String idCitas = model.getCliente();
                     viewHolder.cdv_cita.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
+                            idCita = idCitas;
                         }
                     });
 
@@ -295,6 +297,7 @@ public class MenuPrincipalActivity extends AppCompatActivity
     }
 
     public void btn_eliminar_cita(View view){
+
         AlertDialog.Builder eliminar = new AlertDialog.Builder(this);
         eliminar.setMessage("¿Desea eliminar esta cita?");
         eliminar.setTitle("Eliminar cita");

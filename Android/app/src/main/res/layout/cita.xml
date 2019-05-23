@@ -43,7 +43,7 @@
             android:gravity="center_vertical"
             android:text="correo"
             android:textSize="14sp"
-            app:layout_constraintEnd_toStartOf="@+id/button5"
+            app:layout_constraintEnd_toStartOf="@+id/btn_eliminar_cita"
             app:layout_constraintStart_toStartOf="@+id/guideline21"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -98,7 +98,7 @@
             app:layout_constraintTop_toBottomOf="@+id/txv_cliente_nombre" />
 
         <Button
-            android:id="@+id/button5"
+            android:id="@+id/btn_eliminar_cita"
             android:layout_width="25dp"
             android:layout_height="25dp"
             android:layout_marginTop="8dp"
