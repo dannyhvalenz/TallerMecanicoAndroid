@@ -10,12 +10,14 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.Query;
 import com.serviciomecanico.serviciomecanico.Adaptadores.AutomovilAdapter;
 import com.serviciomecanico.serviciomecanico.Adaptadores.ReparacionAdapter;
 import com.serviciomecanico.serviciomecanico.Conexion.Conexion;
@@ -36,6 +38,7 @@ public class VisualizarReparacionesActivity extends AppCompatActivity {
     RecyclerView rcv_visualizar_reparaciones;
     FloatingActionButton btn_float_registrar_reparaciones;
     ProgressBar progressBar_visualizar_reparaciones;
+    EditText searchReparacion;
 
     String placa, nombre;
 
@@ -58,6 +61,7 @@ public class VisualizarReparacionesActivity extends AppCompatActivity {
         rcv_visualizar_reparaciones = findViewById(R.id.rcv_visualizar_reparaciones);
         btn_float_registrar_reparaciones = findViewById(R.id.btn_float_registrar_reparaciones);
         progressBar_visualizar_reparaciones = findViewById(R.id.progressBar_visualizar_reparaciones);
+        searchReparacion = findViewById(R.id.searchReparacion);
 
         progressBar_visualizar_reparaciones.setVisibility(View.VISIBLE);
 
@@ -148,6 +152,72 @@ public class VisualizarReparacionesActivity extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    public void buscarReparacion(View view){
+        String text = searchReparacion.getText().toString();
+        Query fireBaseSearch = firebase.child("Cliente").child(nombre).child("Automovil").child(placa).child("Reparacion").orderByChild("tipo").startAt(text).endAt(text + "\uf8ff");
+        //FirebaseUI definido para llamar de nuestro firebase la lista
+        adapter = new FirebaseRecyclerAdapter<Reparacion, ReparacionAdapter.ViewHolder>(
+                /*Clase que utilizaremos*/Reparacion.class,
+                /*La interfaz grafica*/R.layout.reparacion,
+                /*ViewHolder archivo ClienteAdapter*/ReparacionAdapter.ViewHolder.class,
+                /*La referencia de firebase donde buscara*/fireBaseSearch
+        ) {
+            @Override
+            protected void populateViewHolder(final ReparacionAdapter.ViewHolder viewHolder, Reparacion model, int position) {
+                viewHolder.txv_reparacion_tipo.setText(model.getTipo());
+                viewHolder.txv_reparacion_kilometraje.setText(model.getKilometraje()+" Km");
+                viewHolder.txv_reparacion_costo.setText("$ "+model.getCosto());
+                String urlchida = model.getUrlImagenAReparacion();
+                Glide.with(getApplicationContext())
+                        .load(urlchida)
+                        .into(viewHolder.imageView_reparacion);
+                final String idReparacion = model.getKilometraje();
+                final String descripcionFalla = model.getDescripcionFalla();
+                final String descripcionMantenimiento = model.getDescripcionMantenimiento();
+                final String urlimagen = model.getUrlImagenAReparacion();
+                viewHolder.cdv_reparacion.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(VisualizarReparacionesActivity.this, ConsultarReparacionActivity.class);
+                        intent.putExtra("tipo",viewHolder.txv_reparacion_tipo.getText().toString());
+                        intent.putExtra("kilometraje",viewHolder.txv_reparacion_kilometraje.getText().toString());
+                        intent.putExtra("costo",viewHolder.txv_reparacion_costo.getText().toString());
+                        intent.putExtra("descripcionFalla",descripcionFalla);
+                        intent.putExtra("descripcionMantenimiento",descripcionMantenimiento);
+                        intent.putExtra("urlimagen",urlimagen);
+                        intent.putExtra("placa",placa);
+                        intent.putExtra("nombre",nombre);
+                        intent.putExtra("idReparacion",idReparacion);
+                        startActivity(intent);
+                    }
+                });
+
+                progressBar_visualizar_reparaciones.setVisibility(View.INVISIBLE);
+            }
+        };
+
+        rcv_visualizar_reparaciones.setAdapter(adapter);
+
+        //Scroll funcion boton
+        rcv_visualizar_reparaciones.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+                if(newState == RecyclerView.SCROLL_STATE_IDLE){
+                    btn_float_registrar_reparaciones.show();
+                }
+            }
+
+            @Override
+            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+                if(dy>0 || dy<0 && btn_float_registrar_reparaciones.isShown()){
+                    btn_float_registrar_reparaciones.hide();
+                }
+            }
+        });
     }
 
 }

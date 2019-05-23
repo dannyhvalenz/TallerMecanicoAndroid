@@ -47,7 +47,7 @@ public class MenuPrincipalActivity extends AppCompatActivity
     RecyclerView rcv_visualizar_clientes;
     FloatingActionButton btn_float_registrar_clientes;
     ProgressBar progressBar_visualizar_clientes;
-    String idCita;
+    String idCita, idNavegacion;
     EditText search;
 
     //Adapter
@@ -60,6 +60,8 @@ public class MenuPrincipalActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_principal);
         firebase = conexion.conexion();
+
+        idNavegacion = "Cliente";
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -227,8 +229,10 @@ public class MenuPrincipalActivity extends AppCompatActivity
                     }
                 }
             });
+            idNavegacion = "Cliente";
         } else if (id == R.id.nav_citas) {
             getSupportActionBar().setTitle("Lista de citas");
+            idNavegacion = "Cita";
             //FirebaseUI definido para llamar de nuestro firebase la lista
             adapter2 = new FirebaseRecyclerAdapter<Cita, CitaAdapter.ViewHolder>(
                     /*Clase que utilizaremos*/Cita.class,
@@ -283,6 +287,7 @@ public class MenuPrincipalActivity extends AppCompatActivity
                     startActivity(intent);
                 }
             });
+            idNavegacion = "Cita";
         } else if (id == R.id.nav_inventario) {
 
         } else if (id == R.id.nav_herramientas) {
@@ -324,64 +329,128 @@ public class MenuPrincipalActivity extends AppCompatActivity
         dialog.show();
     }
 
-    public void buscarCliente(View view){
-        String text = search.getText().toString();
-        Query fireBaseSearch = firebase.child("Cliente").orderByChild("nombre").startAt(text).endAt(text+"\uf8ff");
-        adapter3 = new FirebaseRecyclerAdapter<Cliente, ClienteAdapter.ViewHolder>(
-                /*Clase que utilizaremos*/Cliente.class,
-                /*La interfaz grafica*/R.layout.cliente,
-                /*ViewHolder archivo ClienteAdapter*/ClienteAdapter.ViewHolder.class,
-                /*La referencia de firebase donde buscara*/fireBaseSearch
-        ) {
-            @Override
-            protected void populateViewHolder(final ClienteAdapter.ViewHolder viewHolder, Cliente model, final int position) {
-                viewHolder.txv_cliente_nombre.setText(model.getNombre());
-                viewHolder.txv_cliente_correo.setText(model.getCorreo());
-                viewHolder.txv_cliente_telefono.setText(model.getTelefono());
-                String urlchida = model.getUrlImagen();
-                Glide.with(getApplicationContext())
-                        .load(urlchida)
-                        .into(viewHolder.imageView_cliente);
-                final String urlimagen = model.getUrlImagen();
-                final String latitud = model.getLatitud();
-                final String longitud = model.getLongitud();
-                viewHolder.cdv_cliente.setOnClickListener(new View.OnClickListener() {
+    public void buscarCliente(View view) {
+        switch (idNavegacion) {
+            case "Cliente":
+                String text = search.getText().toString();
+                Query fireBaseSearch = firebase.child("Cliente").orderByChild("nombre").startAt(text).endAt(text + "\uf8ff");
+                adapter3 = new FirebaseRecyclerAdapter<Cliente, ClienteAdapter.ViewHolder>(
+                        /*Clase que utilizaremos*/Cliente.class,
+                        /*La interfaz grafica*/R.layout.cliente,
+                        /*ViewHolder archivo ClienteAdapter*/ClienteAdapter.ViewHolder.class,
+                        /*La referencia de firebase donde buscara*/fireBaseSearch
+                ) {
                     @Override
-                    public void onClick(View v) {
-                        Intent intent = new Intent(MenuPrincipalActivity.this, ConsultarClienteActivity.class);
-                        intent.putExtra("nombre",viewHolder.txv_cliente_nombre.getText().toString());
-                        intent.putExtra("correo",viewHolder.txv_cliente_correo.getText().toString());
-                        intent.putExtra("telefono",viewHolder.txv_cliente_telefono.getText().toString());
-                        intent.putExtra("urlimagen",urlimagen);
-                        intent.putExtra("latitud",latitud);
-                        intent.putExtra("longitud",longitud);
-                        startActivity(intent);
+                    protected void populateViewHolder(final ClienteAdapter.ViewHolder viewHolder, Cliente model, final int position) {
+                        viewHolder.txv_cliente_nombre.setText(model.getNombre());
+                        viewHolder.txv_cliente_correo.setText(model.getCorreo());
+                        viewHolder.txv_cliente_telefono.setText(model.getTelefono());
+                        String urlchida = model.getUrlImagen();
+                        Glide.with(getApplicationContext())
+                                .load(urlchida)
+                                .into(viewHolder.imageView_cliente);
+                        final String urlimagen = model.getUrlImagen();
+                        final String latitud = model.getLatitud();
+                        final String longitud = model.getLongitud();
+                        viewHolder.cdv_cliente.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                Intent intent = new Intent(MenuPrincipalActivity.this, ConsultarClienteActivity.class);
+                                intent.putExtra("nombre", viewHolder.txv_cliente_nombre.getText().toString());
+                                intent.putExtra("correo", viewHolder.txv_cliente_correo.getText().toString());
+                                intent.putExtra("telefono", viewHolder.txv_cliente_telefono.getText().toString());
+                                intent.putExtra("urlimagen", urlimagen);
+                                intent.putExtra("latitud", latitud);
+                                intent.putExtra("longitud", longitud);
+                                startActivity(intent);
+                            }
+                        });
+
+                        progressBar_visualizar_clientes.setVisibility(View.INVISIBLE);
+                    }
+                };
+
+                rcv_visualizar_clientes.setAdapter(adapter3);
+
+                //Scroll funcion boton
+                rcv_visualizar_clientes.addOnScrollListener(new RecyclerView.OnScrollListener() {
+                    @Override
+                    public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
+                        super.onScrollStateChanged(recyclerView, newState);
+                        if (newState == RecyclerView.SCROLL_STATE_IDLE) {
+                            btn_float_registrar_clientes.show();
+                        }
+                    }
+
+                    @Override
+                    public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+                        super.onScrolled(recyclerView, dx, dy);
+                        if (dy > 0 || dy < 0 && btn_float_registrar_clientes.isShown()) {
+                            btn_float_registrar_clientes.hide();
+                        }
+                    }
+                });
+                break;
+            case "Cita":
+                getSupportActionBar().setTitle("Lista de citas");
+                text = search.getText().toString();
+                fireBaseSearch = firebase.child("Cita").orderByChild("cliente").startAt(text).endAt(text + "\uf8ff");
+                //FirebaseUI definido para llamar de nuestro firebase la lista
+                adapter2 = new FirebaseRecyclerAdapter<Cita, CitaAdapter.ViewHolder>(
+                        /*Clase que utilizaremos*/Cita.class,
+                        /*La interfaz grafica*/R.layout.cita,
+                        /*ViewHolder archivo ClienteAdapter*/CitaAdapter.ViewHolder.class,
+                        /*La referencia de firebase donde buscara*/fireBaseSearch
+                ) {
+                    @Override
+                    protected void populateViewHolder(final CitaAdapter.ViewHolder viewHolder, Cita model,final int position) {
+                        viewHolder.edt_fecha.setText(model.getFecha());
+                        viewHolder.edt_hora.setText(model.getHora());
+                        viewHolder.txv_nombre.setText(model.getCliente());
+                        viewHolder.txv_descripcion.setText(model.getDescripcion());
+                        idCita = viewHolder.txv_nombre.getText().toString();
+                        final String idCitas = model.getCliente();
+                        viewHolder.cdv_cita.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                idCita = idCitas;
+                            }
+                        });
+
+                        progressBar_visualizar_clientes.setVisibility(View.INVISIBLE);
+                    }
+                };
+
+                rcv_visualizar_clientes.setAdapter(adapter2);
+
+                //Scroll funcion boton
+                rcv_visualizar_clientes.addOnScrollListener(new RecyclerView.OnScrollListener() {
+                    @Override
+                    public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
+                        super.onScrollStateChanged(recyclerView, newState);
+                        if(newState == RecyclerView.SCROLL_STATE_IDLE){
+                            btn_float_registrar_clientes.show();
+                        }
+                    }
+
+                    @Override
+                    public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+                        super.onScrolled(recyclerView, dx, dy);
+                        if(dy>0 || dy<0 && btn_float_registrar_clientes.isShown()){
+                            btn_float_registrar_clientes.hide();
+                        }
                     }
                 });
 
-                progressBar_visualizar_clientes.setVisibility(View.INVISIBLE);
-            }
-        };
-
-        rcv_visualizar_clientes.setAdapter(adapter3);
-
-        //Scroll funcion boton
-        rcv_visualizar_clientes.addOnScrollListener(new RecyclerView.OnScrollListener() {
-            @Override
-            public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
-                super.onScrollStateChanged(recyclerView, newState);
-                if(newState == RecyclerView.SCROLL_STATE_IDLE){
-                    btn_float_registrar_clientes.show();
-                }
-            }
-
-            @Override
-            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
-                super.onScrolled(recyclerView, dx, dy);
-                if(dy>0 || dy<0 && btn_float_registrar_clientes.isShown()){
-                    btn_float_registrar_clientes.hide();
-                }
-            }
-        });
+                btn_float_registrar_clientes.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(MenuPrincipalActivity.this, RegistrarCitaActivity.class);
+                        startActivity(intent);
+                    }
+                });
+                break;
+            default:
+        }
     }
 }
