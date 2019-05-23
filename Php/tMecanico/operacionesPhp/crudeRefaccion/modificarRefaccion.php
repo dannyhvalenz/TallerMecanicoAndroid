@@ -1,24 +1,20 @@
 <?php
     require ('../conexion/conexion.php');
 
-    $idRefaccion = $_POST['idRefaccion'];
-    $nombreRefaccion = $_POST['nombreRefaccion'];
-    $descripcionRefaccion = $_POST['descripcionRefaccion'];
-    $unidadRefaccion = $_POST['unidadRefaccion'];
-    $precioRefaccion = $_POST['precioRefaccion'];
-    
-    //$matricula = $_POST['Matricula'];
-    $idA = $_POST['idAdmin'];
-    $idCliente = $_POST['idCliente'];
+    $id = $_POST["id"];
+    $nombreRefaccion = $_POST['nombre'];
+    $descripcionRefaccion = $_POST['descripcion'];
+    $unidadRefaccion = $_POST['unidad'];
+    $precioRefaccion = $_POST['precio'];
+    $idAdmin = $_POST['idAdmin'];
 
-    $sql = "UPDATE refacciones SET nombreRefaccion = '$nombreRefaccion', descripcionRefaccion='$nombreRefaccion', unidadRefaccion='$unidadRefaccion', precioRefaccion='$precioRefaccion' WHERE idRefaccion= '$idRefaccion'";
+    $sql = "UPDATE refacciones SET nombreRefaccion='$nombreRefaccion', descripcionRefaccion='$descripcionRefaccion', unidadRefaccion='$unidadRefaccion', precioRefaccion='$precioRefaccion' WHERE idRefaccion='$id'";
+    
     $resultado=mysqli_query($conexion, $sql);
 
     if($resultado == true){
-        echo "idc= ".$idCliente;
-        echo "idA= ".$idA;
-        header("Location:../../paginas/controlRefacciones/controlRefacciones.php?id=$idCliente&idA=$idA&M=$matricula");
+        header("Location:../../paginas/controlRefacciones/controlRefacciones.php?id=$idA");
     }else{
-        echo "ella no te ama, campeon :( ";
+        echo "Algo paso y no se quien fue :x";
     }
 ?>

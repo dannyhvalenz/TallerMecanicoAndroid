@@ -1,25 +1,20 @@
 <?php
     require ('../conexion/conexion.php');
 
-    /* $idRefaccion = $_POST['idRefaccion']; */
-    $nombreRefaccion = $_POST['nombreRefaccion'];
-    $descripcionRefaccion = $_POST['descripcionRefaccion'];
-    $unidadRefaccion = $_POST['unidadRefaccion'];
-    $precioRefaccion = $_POST['precioRefaccion'];
-    $matricula = $_POST['matricula'];
+   
+    $nombreRefaccion = $_POST['nombre'];
+    $descripcionRefaccion = $_POST['descripcion'];
+    $unidadRefaccion = $_POST['unidad'];
+    $precioRefaccion = $_POST['precio'];
+    
 
-    $sql = "INSERT INTO refacciones (nombreRefaccion, descripcionRefaccion, unidadRefaccion, precioRefaccion, Matricula) VALUES ('$nombreRefaccion', '$descripcionRefaccion', '$unidadRefaccion', '$precioRefaccion', '$matricula')"; 
+    $sql = "INSERT INTO refacciones (nombreRefaccion, descripcionRefaccion, unidadRefaccion, precioRefaccion) VALUES ('$nombreRefaccion', '$descripcionRefaccion', '$unidadRefaccion', '$precioRefaccion')"; 
     $resultado = mysqli_query($conexion, $sql);
 
     if($resultado == true){
-        header ("Location: ../../paginas/controlRefacciones/controlRefacciones.php?M=$matricula&id=$idCliente&idA=$idAdmin");
+        header ("Location: ../../paginas/controlRefacciones/controlRefacciones.php?id=$idAdmin");
     }else{
-        /* echo "idRefaccion= ".$idRefaccion; */
-        echo "nombreRefaccion= ".$nombreRefaccion;
-        echo "descripcionRefaccion= ".$descripcionRefaccion;
-        echo "unidadRefaccion= ".$unidadRefaccion;
-        echo "precioRefaccion= ".$precioRefaccion;
-        echo "Matricula= ".$matricula;
+       echo "Lo siento :(";
     }
 
     mysqli_free_result($resultado);

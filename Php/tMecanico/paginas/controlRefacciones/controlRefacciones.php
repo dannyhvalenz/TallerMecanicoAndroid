@@ -1,17 +1,18 @@
 <!-- Obtenemos la conexion-->
 <?php 
     require ('../../operacionesPhp/conexion/conexion.php');
-    $param = (String) $Matricula = $_GET["M"];
-
+    //$param = (String) $Matricula = $_GET["M"];
     $where = "";
+    $sql = "SELECT * FROM refacciones";
     
-    $sql = "SELECT * FROM refacciones WHERE Matricula='$param'";
+    //$sql = "SELECT * FROM refacciones";
+    //$sql = "SELECT * FROM refacciones WHERE Matricula='$param'";
 
     $resultado = mysqli_query($conexion, $sql);
 ?>
 
 <!--Comenzamos con lo que es la pagina web -->
-
+<!doctype html>
 <html lang="es">
 
 <head>
@@ -24,18 +25,16 @@
     <title>Refacciones</title>
 
     <script type="text/javascript">
-         function confirmar(){
+    function confirmar() {
         var respuesta = confirm("¿Seguro que desea elimianr este elemento?");
-        if(respuesta == true){
+        if (respuesta == true) {
             return true;
-        }else{
+        } else {
             return false;
         }
-         }
-     </script>
+    }
+    </script>
 </head>
-
-<!-- El pinche cuerpo de la pagina alv -->
 
 <body>
 
@@ -66,9 +65,6 @@
 
         <div class="collapse navbar-collapse">
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="../controlClientes/control.php?id=<?php echo $_GET['idA']?>">Cliente</a>
-                </li>
                 <li class="nav-item active">
                     <a class="nav-link" href="../../operacionesPhp/sesion/cerrarSesion.php">Cerrar Sesion</a>
                 </li>
@@ -82,19 +78,11 @@
             <div class="row pt-5 pb-5">
                 <div class="col-lg-2" style="background-color: #FFFFFF" aling="center">
                     <div>
-                        <!-- Button trigger modal -->
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"
-                            width="100%">
-                            Nuevo
-                        </button>
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Nuevo</button>
                     </div>
-
-                    <div>
-                    </div>
-
+                    
                     <!-- Aqui esta el form para editar las cosas -->
-                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
-                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
 
@@ -112,41 +100,37 @@
 
                                             <div class="form-group ">
                                                 <label for="inputEmail">Nombre</label>
-                                                <input class="form-control" placeholder="Nombre" name="nombreRefaccion">
+                                                <input class="form-control" placeholder="Nombre" name="nombre">
                                             </div>
 
                                             <div class="form-group ">
                                                 <label for="inputPassword">Descripcion</label>
-                                                <input class="form-control" placeholder="Descripcion"
-                                                    name="descripcionRefaccion">
+                                                <input class="form-control" placeholder="Descripcion" name="descripcion">
                                             </div>
                                         </div>
 
                                         <div class="form-group">
                                             <label for="inputAddress">Unidad</label>
-                                            <input type="text" class="form-control" placeholder="Unidad"
-                                                name="unidadRefaccion">
+                                            <input type="text" class="form-control" placeholder="Unidad" name="unidad">
                                         </div>
                                         <div class="form-group">
                                             <label for="inputAddress">Precio</label>
-                                            <input type="text" class="form-control" placeholder="Precio"
-                                                name="precioRefaccion">
+                                            <input type="text" class="form-control" placeholder="Precio" name="precio">
                                         </div>
-                                        
-                                        <div>
+
+                                        <!-- <div>
                                             <input type='hidden' name='matricula' value='<?php echo $_GET['M']?>'>
-                                        </div>
+                                        </div> -->
                                         <div>
                                             <input type='hidden' name='id' value='<?php echo $_GET['id']?>'>
                                         </div>
 
-                                        <div>
+                                        <!-- <div>
                                             <input type='hidden' name='idA' value='<?php echo $_GET['idA']?>'>
-                                        </div>
+                                        </div> -->
 
                                         <div>
-                                            <button type="button" class="btn btn-secondary"
-                                                data-dismiss="modal">Cancelar</button>
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
                                             <button type="submit" class="btn btn-primary">Guardar</button>
                                         </div>
                                     </form>
@@ -160,11 +144,12 @@
                         <table class="table table-striped">
                             <thead>
                                 <tr>
+                                    <th>ID</th>
                                     <th>Nombre</th>
                                     <th>Descripcion</th>
                                     <th>Unidad</th>
                                     <th>Precio</th>
-                                    <th>Matricula</th>
+                                    <!-- <th>Matricula</th> --> 
                                     <th></th>
                                     <th></th>
                                     <th></th>
@@ -174,6 +159,9 @@
 
                                 <?php while($row = mysqli_fetch_array($resultado)){ ?>
                                 <tr>
+                                    <td>
+                                        <?php echo $r = $row ['idRefaccion']?>
+                                    </td> 
                                     <td>
                                         <?php echo $row['nombreRefaccion']?>
                                     </td>
@@ -186,23 +174,27 @@
                                     <td>
                                         <?php echo $row['precioRefaccion']?>
                                     </td>
-                                    <td>
+                                   <!--  <td>
                                         <?php echo $row['Matricula']; ?>
-                                    </td>
+                                    </td> -->
 
                                     <td>
-
-                                      <a href="actualizarRefacciones.php?id=<?php echo $_GET['id']?>&idA=<?php echo $_GET['idA']?>&M= <?php echo $_GET['M']?>">
-                                      <button type="button" class="btn btn-dark">M</button>
+                                        <a href="actualizarRefacciones.php?id=<?php echo $r?>">
+                                            <button type="button" class="btn btn-dark">M</button>
                                         </a>
                                     </td>
-                                    
+
                                     <td>
-                                        <a href="../../operacionesPhp/crudeRefaccion/eliminarRefaccion.php?idR=<?php echo $row['idRefaccion']?>&id=<?php echo $_GET['id']?>&idA=<?php echo $_GET['idA']?>&M=<?php echo $_GET['M']?>">
+                                        <a href="../../operacionesPhp/crudeRefaccion/eliminarRefaccion.php?id=<?php echo $row['idRefaccion']?>&idA=<?php echo $row['id_administrador']?>">
                                             <button type="button" class="btn btn-dark" onClick="return confirmar()">E</button>
                                         </a>
                                     </td>
-                                    
+
+                                    <td>
+                                        <a href="../controlClientes/control.php?id=<?php echo $row['idRefaccion']?>&idA=<?php echo $_GET['id']?>">
+                                            <button type="button" class="btn btn-success">Clientes</button>
+                                        </a>
+                                    </td>
                                 </tr>
                                 <?php } ?>
                             </tbody>
@@ -215,15 +207,9 @@
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
-    </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
-    </script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
-    </script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </body>
 
 </html>
