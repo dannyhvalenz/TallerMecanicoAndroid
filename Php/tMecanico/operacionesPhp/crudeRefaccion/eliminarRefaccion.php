@@ -1,20 +1,17 @@
 <?php
     require ('../conexion/conexion.php');
 
-    $idR = $_GET["idR"];
     $id = $_GET["id"];
-    $idAdmin = $_GET["idA"];
-    $m = $_GET["M"];
+    $idA = $_GET["idA"];
 
-    $sql = "DELETE FROM refacciones WHERE idRefaccion=".$idR;
+    $sql = "DELETE FROM refacciones WHERE idRefaccion=".$id;
 
     $resultado = mysqli_query($conexion, $sql);
 
     if($resultado==true){   
-        header("Location: ../../paginas/controlRefacciones/controlRefacciones.php?M=$m&id=$id&idA=$idAdmin");    
+        header("Location: ../../paginas/controlRefacciones/controlRefacciones.php?id=$idA");    
     }else{
-        echo "lo siento";
-        echo "id= ".$id;
+        echo "lo siento, algo fallo";
     }
 
     mysqli_free_result($resultado);
