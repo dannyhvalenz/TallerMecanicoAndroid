@@ -19,6 +19,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -26,6 +27,7 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.Query;
 import com.serviciomecanico.serviciomecanico.Adaptadores.CitaAdapter;
 import com.serviciomecanico.serviciomecanico.Adaptadores.ClienteAdapter;
 import com.serviciomecanico.serviciomecanico.Conexion.Conexion;
@@ -46,10 +48,12 @@ public class MenuPrincipalActivity extends AppCompatActivity
     FloatingActionButton btn_float_registrar_clientes;
     ProgressBar progressBar_visualizar_clientes;
     String idCita;
+    EditText search;
 
     //Adapter
     FirebaseRecyclerAdapter<Cliente, ClienteAdapter.ViewHolder> adapter;
     FirebaseRecyclerAdapter<Cita, CitaAdapter.ViewHolder> adapter2;
+    FirebaseRecyclerAdapter<Cliente, ClienteAdapter.ViewHolder> adapter3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,6 +74,7 @@ public class MenuPrincipalActivity extends AppCompatActivity
         rcv_visualizar_clientes = findViewById(R.id.rcv_visualizar_clientes);
         btn_float_registrar_clientes = findViewById(R.id.btn_float_registrar_clientes);
         progressBar_visualizar_clientes = findViewById(R.id.progressBar_visualizar_clientes);
+        search = findViewById(R.id.search);
         progressBar_visualizar_clientes.setVisibility(View.VISIBLE);
 
         //Setear al linerlayaour manager nuestro reciclerView
@@ -317,5 +322,66 @@ public class MenuPrincipalActivity extends AppCompatActivity
 
         AlertDialog dialog = eliminar.create();
         dialog.show();
+    }
+
+    public void buscarCliente(View view){
+        String text = search.getText().toString();
+        Query fireBaseSearch = firebase.child("Cliente").orderByChild("nombre").startAt(text).endAt(text+"\uf8ff");
+        adapter3 = new FirebaseRecyclerAdapter<Cliente, ClienteAdapter.ViewHolder>(
+                /*Clase que utilizaremos*/Cliente.class,
+                /*La interfaz grafica*/R.layout.cliente,
+                /*ViewHolder archivo ClienteAdapter*/ClienteAdapter.ViewHolder.class,
+                /*La referencia de firebase donde buscara*/fireBaseSearch
+        ) {
+            @Override
+            protected void populateViewHolder(final ClienteAdapter.ViewHolder viewHolder, Cliente model, final int position) {
+                viewHolder.txv_cliente_nombre.setText(model.getNombre());
+                viewHolder.txv_cliente_correo.setText(model.getCorreo());
+                viewHolder.txv_cliente_telefono.setText(model.getTelefono());
+                String urlchida = model.getUrlImagen();
+                Glide.with(getApplicationContext())
+                        .load(urlchida)
+                        .into(viewHolder.imageView_cliente);
+                final String urlimagen = model.getUrlImagen();
+                final String latitud = model.getLatitud();
+                final String longitud = model.getLongitud();
+                viewHolder.cdv_cliente.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(MenuPrincipalActivity.this, ConsultarClienteActivity.class);
+                        intent.putExtra("nombre",viewHolder.txv_cliente_nombre.getText().toString());
+                        intent.putExtra("correo",viewHolder.txv_cliente_correo.getText().toString());
+                        intent.putExtra("telefono",viewHolder.txv_cliente_telefono.getText().toString());
+                        intent.putExtra("urlimagen",urlimagen);
+                        intent.putExtra("latitud",latitud);
+                        intent.putExtra("longitud",longitud);
+                        startActivity(intent);
+                    }
+                });
+
+                progressBar_visualizar_clientes.setVisibility(View.INVISIBLE);
+            }
+        };
+
+        rcv_visualizar_clientes.setAdapter(adapter3);
+
+        //Scroll funcion boton
+        rcv_visualizar_clientes.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+                if(newState == RecyclerView.SCROLL_STATE_IDLE){
+                    btn_float_registrar_clientes.show();
+                }
+            }
+
+            @Override
+            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+                if(dy>0 || dy<0 && btn_float_registrar_clientes.isShown()){
+                    btn_float_registrar_clientes.hide();
+                }
+            }
+        });
     }
 }
