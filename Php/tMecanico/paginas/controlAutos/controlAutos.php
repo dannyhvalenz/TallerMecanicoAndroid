@@ -1,7 +1,6 @@
 <?php
    require ('../../operacionesPhp/conexion/conexion.php');
     $id = $_GET["id"];
-
    $where="";
    
    $sql = "SELECT * FROM automovil WHERE id_cliente=".$id;
@@ -34,8 +33,6 @@
               
                <?php
                    session_start();
-
-
                    if(isset($_SESSION['usuario'])){                   
                    }else{
                        header("Location:iniciarSesion.php");
