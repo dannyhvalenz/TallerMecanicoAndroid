@@ -17,7 +17,6 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.serviciomecanico.serviciomecanico.Conexion.Conexion;
 import com.serviciomecanico.serviciomecanico.MenuPrincipalActivity;
 import com.serviciomecanico.serviciomecanico.R;
-import com.serviciomecanico.serviciomecanico.Visualizar.VisualizarClientesActivity;
 
 public class IniciarSeionActivity extends AppCompatActivity {
 

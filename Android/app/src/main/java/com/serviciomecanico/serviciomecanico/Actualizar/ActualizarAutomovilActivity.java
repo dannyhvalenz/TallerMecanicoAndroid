@@ -15,10 +15,8 @@ import com.bumptech.glide.Glide;
 import com.google.firebase.database.DatabaseReference;
 import com.serviciomecanico.serviciomecanico.Conexion.Conexion;
 import com.serviciomecanico.serviciomecanico.Modelo.Automovil;
-import com.serviciomecanico.serviciomecanico.Modelo.Cliente;
 import com.serviciomecanico.serviciomecanico.R;
 import com.serviciomecanico.serviciomecanico.Visualizar.VisualizarAutomovilesActivity;
-import com.serviciomecanico.serviciomecanico.Visualizar.VisualizarClientesActivity;
 
 public class ActualizarAutomovilActivity extends AppCompatActivity {
 

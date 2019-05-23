@@ -25,18 +25,6 @@
             android:name=".MenuPrincipalActivity"
             android:label="@string/titulo_lista_clientes"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".MenuCitasActivity"
-            android:label="@string/titulo_lista_citas"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".MenuInventarioActivity"
-            android:label="@string/titulo_lista_inventario"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".MenuHerramientasActivity"
-            android:label="@string/titulo_lista_herramientas"
-            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".Registrar.RegistrarAutomovilActivity" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
@@ -58,7 +46,6 @@
             android:label="@string/title_activity_maps" />
         <activity android:name=".Actualizar.ActualizarClienteActivity" />
         <activity android:name=".Consultar.ConsultarClienteActivity" />
-        <activity android:name=".Visualizar.VisualizarClientesActivity" />
         <activity android:name=".Visualizar.VisualizarReparacionesActivity" />
         <activity android:name=".Registrar.RegistrarClienteActivity" />
         <activity android:name=".Registrar.RegisterAdministradorActivity" />

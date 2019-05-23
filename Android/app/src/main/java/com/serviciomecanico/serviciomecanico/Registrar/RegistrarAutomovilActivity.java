@@ -19,9 +19,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
 import com.serviciomecanico.serviciomecanico.Adaptadores.ImagenAutomovilAdapter;
 import com.serviciomecanico.serviciomecanico.Conexion.Conexion;
+import com.serviciomecanico.serviciomecanico.MenuPrincipalActivity;
 import com.serviciomecanico.serviciomecanico.Modelo.Automovil;
 import com.serviciomecanico.serviciomecanico.R;
-import com.serviciomecanico.serviciomecanico.Visualizar.VisualizarClientesActivity;
 
 import java.util.ArrayList;
 
@@ -140,7 +140,7 @@ public class RegistrarAutomovilActivity extends AppCompatActivity {
         switch (item.getItemId()){
             case android.R.id.home:
 
-                Intent intent = new Intent(RegistrarAutomovilActivity.this, VisualizarClientesActivity.class);
+                Intent intent = new Intent(RegistrarAutomovilActivity.this, MenuPrincipalActivity.class);
                 startActivity(intent);
                 finish();
                 return true;

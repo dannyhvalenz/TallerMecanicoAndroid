@@ -19,13 +19,11 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
 import com.serviciomecanico.serviciomecanico.Adaptadores.ImagenAutomovilAdapter;
 import com.serviciomecanico.serviciomecanico.Conexion.Conexion;
-import com.serviciomecanico.serviciomecanico.Modelo.Automovil;
+import com.serviciomecanico.serviciomecanico.MenuPrincipalActivity;
 import com.serviciomecanico.serviciomecanico.Modelo.Reparacion;
 import com.serviciomecanico.serviciomecanico.R;
-import com.serviciomecanico.serviciomecanico.Visualizar.VisualizarClientesActivity;
 
 import java.util.ArrayList;
-import java.util.UUID;
 
 public class RegistrarReparacionActivity extends AppCompatActivity {
 
@@ -143,7 +141,7 @@ public class RegistrarReparacionActivity extends AppCompatActivity {
         switch (item.getItemId()){
             case android.R.id.home:
 
-                Intent intent = new Intent(RegistrarReparacionActivity.this, VisualizarClientesActivity.class);
+                Intent intent = new Intent(RegistrarReparacionActivity.this, MenuPrincipalActivity.class);
                 startActivity(intent);
                 finish();
                 return true;

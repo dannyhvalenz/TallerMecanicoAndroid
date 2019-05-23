@@ -29,7 +29,6 @@ import com.serviciomecanico.serviciomecanico.Mapas.MapsActivity;
 import com.serviciomecanico.serviciomecanico.MenuPrincipalActivity;
 import com.serviciomecanico.serviciomecanico.Modelo.Cliente;
 import com.serviciomecanico.serviciomecanico.R;
-import com.serviciomecanico.serviciomecanico.Visualizar.VisualizarClientesActivity;
 
 import java.util.ArrayList;
 

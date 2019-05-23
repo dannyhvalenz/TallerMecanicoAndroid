@@ -1,9 +1,11 @@
 package com.serviciomecanico.serviciomecanico;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -42,6 +44,7 @@ public class MenuPrincipalActivity extends AppCompatActivity
     RecyclerView rcv_visualizar_clientes;
     FloatingActionButton btn_float_registrar_clientes;
     ProgressBar progressBar_visualizar_clientes;
+    String idCita;
 
     //Adapter
     FirebaseRecyclerAdapter<Cliente, ClienteAdapter.ViewHolder> adapter;
@@ -161,6 +164,7 @@ public class MenuPrincipalActivity extends AppCompatActivity
             Intent intent = new Intent(MenuPrincipalActivity.this, RegisterAdministradorActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_clientes) {
+            getSupportActionBar().setTitle("Lista de clientes");
             //FirebaseUI definido para llamar de nuestro firebase la lista
             adapter = new FirebaseRecyclerAdapter<Cliente, ClienteAdapter.ViewHolder>(
                     /*Clase que utilizaremos*/Cliente.class,
@@ -219,6 +223,7 @@ public class MenuPrincipalActivity extends AppCompatActivity
                 }
             });
         } else if (id == R.id.nav_citas) {
+            getSupportActionBar().setTitle("Lista de citas");
             //FirebaseUI definido para llamar de nuestro firebase la lista
             adapter2 = new FirebaseRecyclerAdapter<Cita, CitaAdapter.ViewHolder>(
                     /*Clase que utilizaremos*/Cita.class,
@@ -232,6 +237,7 @@ public class MenuPrincipalActivity extends AppCompatActivity
                     viewHolder.edt_hora.setText(model.getHora());
                     viewHolder.txv_nombre.setText(model.getCliente());
                     viewHolder.txv_descripcion.setText(model.getDescripcion());
+                    idCita = model.getCliente();
                     viewHolder.cdv_cita.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
@@ -268,7 +274,6 @@ public class MenuPrincipalActivity extends AppCompatActivity
                 public void onClick(View v) {
                     Intent intent = new Intent(MenuPrincipalActivity.this, RegistrarCitaActivity.class);
                     startActivity(intent);
-                    finish();
                 }
             });
         } else if (id == R.id.nav_inventario) {
@@ -287,5 +292,27 @@ public class MenuPrincipalActivity extends AppCompatActivity
     public void btn_float_registrar_clientes (View view){
         Intent intent = new Intent(MenuPrincipalActivity.this, RegistrarClienteActivity.class);
         startActivity(intent);
+    }
+
+    public void btn_eliminar_cita(View view){
+        AlertDialog.Builder eliminar = new AlertDialog.Builder(this);
+        eliminar.setMessage("¿Desea eliminar esta cita?");
+        eliminar.setTitle("Eliminar cita");
+        eliminar.setPositiveButton("Si", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                firebase.child("Cita").child(idCita).removeValue();
+            }
+        });
+
+        eliminar.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+
+        AlertDialog dialog = eliminar.create();
+        dialog.show();
     }
 }

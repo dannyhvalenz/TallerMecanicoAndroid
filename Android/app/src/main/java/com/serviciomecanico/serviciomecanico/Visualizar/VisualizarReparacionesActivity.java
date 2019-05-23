@@ -21,6 +21,7 @@ import com.serviciomecanico.serviciomecanico.Adaptadores.ReparacionAdapter;
 import com.serviciomecanico.serviciomecanico.Conexion.Conexion;
 import com.serviciomecanico.serviciomecanico.Consultar.ConsultarAutomovilActivity;
 import com.serviciomecanico.serviciomecanico.Consultar.ConsultarReparacionActivity;
+import com.serviciomecanico.serviciomecanico.MenuPrincipalActivity;
 import com.serviciomecanico.serviciomecanico.Modelo.Automovil;
 import com.serviciomecanico.serviciomecanico.Modelo.Reparacion;
 import com.serviciomecanico.serviciomecanico.R;
@@ -144,7 +145,7 @@ public class VisualizarReparacionesActivity extends AppCompatActivity {
         switch (item.getItemId()){
             case android.R.id.home:
 
-                Intent intent = new Intent(VisualizarReparacionesActivity.this, VisualizarClientesActivity.class);
+                Intent intent = new Intent(VisualizarReparacionesActivity.this, MenuPrincipalActivity.class);
                 startActivity(intent);
                 finish();
                 return true;

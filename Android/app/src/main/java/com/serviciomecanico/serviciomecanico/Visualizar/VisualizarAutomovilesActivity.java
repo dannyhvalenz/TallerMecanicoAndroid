@@ -20,6 +20,7 @@ import com.serviciomecanico.serviciomecanico.Adaptadores.ClienteAdapter;
 import com.serviciomecanico.serviciomecanico.Conexion.Conexion;
 import com.serviciomecanico.serviciomecanico.Consultar.ConsultarAutomovilActivity;
 import com.serviciomecanico.serviciomecanico.Consultar.ConsultarClienteActivity;
+import com.serviciomecanico.serviciomecanico.MenuPrincipalActivity;
 import com.serviciomecanico.serviciomecanico.Modelo.Automovil;
 import com.serviciomecanico.serviciomecanico.Modelo.Cliente;
 import com.serviciomecanico.serviciomecanico.R;
@@ -138,7 +139,7 @@ public class VisualizarAutomovilesActivity extends AppCompatActivity {
         switch (item.getItemId()){
             case android.R.id.home:
 
-                Intent intent = new Intent(VisualizarAutomovilesActivity.this, VisualizarClientesActivity.class);
+                Intent intent = new Intent(VisualizarAutomovilesActivity.this, MenuPrincipalActivity.class);
                 startActivity(intent);
                 finish();
                 return true;

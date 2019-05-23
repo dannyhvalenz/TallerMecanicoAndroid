@@ -2,6 +2,7 @@ package com.serviciomecanico.serviciomecanico.Registrar;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.content.Intent;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -9,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.CalendarView;
 import android.widget.DatePicker;
@@ -18,6 +20,7 @@ import android.widget.Toast;
 
 import com.google.firebase.database.DatabaseReference;
 import com.serviciomecanico.serviciomecanico.Conexion.Conexion;
+import com.serviciomecanico.serviciomecanico.MenuPrincipalActivity;
 import com.serviciomecanico.serviciomecanico.Modelo.Cita;
 import com.serviciomecanico.serviciomecanico.R;
 
@@ -102,6 +105,21 @@ public class RegistrarCitaActivity extends AppCompatActivity {
             firebase.child("Cita").child(id).setValue(cita);
             Toast.makeText(getApplicationContext(),"Cita agregada correctamente",Toast.LENGTH_SHORT).show();
             finish();
+        }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case android.R.id.home:
+
+                Intent intent = new Intent(RegistrarCitaActivity.this, MenuPrincipalActivity.class);
+                startActivity(intent);
+                finish();
+                return true;
+
+            default:
+                return super.onOptionsItemSelected(item);
         }
     }
 }
