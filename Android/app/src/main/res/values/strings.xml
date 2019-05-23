@@ -45,6 +45,19 @@
     <string name="btn_agregar_reparacion">Agregar reparación</string>
     <string name="btn_buscar_reparaciones">Reparaciones del automóvil</string>
 
+    <string name="edt_inventario">Nombre del inventario</string>
+    <string name="edt_descripcion_inventario">Descripción</string>
+    <string name="edt_precio_inventario">Precio</string>
+    <string name="edt_cantidad_inventario">Cantidad</string>
+    <string name="edt_costo_inventario">Costo</string>
+    <string name="btn_agregar_inventario">Agregar inventario</string>
+
+    <string name="edt_herramienta">Nombre de la herramienta</string>
+    <string name="edt_descripcion_herramienta">Descripción</string>
+    <string name="edt_cantidad_herramienta">Cantidad</string>
+    <string name="edt_marca_herramienta">Costo</string>
+    <string name="btn_agregar_herramienta">Agregar herramienta</string>
+
     <string name="app_name">Mecanicos</string>
     <string name="title_activity_maps">Map</string>
     <string name="title_activity_maps2">Map</string>

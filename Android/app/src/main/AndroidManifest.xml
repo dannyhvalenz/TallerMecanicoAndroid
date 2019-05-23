@@ -18,9 +18,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".Registrar.RegistrarHerramientas"></activity>
+        <activity android:name=".RegistrarInventario" />
         <activity
             android:name=".Registrar.RegistrarCitaActivity"
-            android:label="@string/titulo_registrar_cita"/>
+            android:label="@string/titulo_registrar_cita" />
         <activity
             android:name=".MenuPrincipalActivity"
             android:label="@string/titulo_lista_clientes"
@@ -55,13 +57,13 @@
         <activity android:name=".Actualizar.ActualizarReparacionActivity" />
         <activity android:name=".Registrar.RegistrarReparacionActivity" />
         <activity android:name=".Visualizar.VisualizarAutomovilesActivity" />
-
         <activity
             android:name=".Sesion.IniciarSeionActivity"
-            android:theme="@style/Theme.AppCompat.NoActionBar"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

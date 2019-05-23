@@ -18,11 +18,8 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
@@ -30,13 +27,18 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.Query;
 import com.serviciomecanico.serviciomecanico.Adaptadores.CitaAdapter;
 import com.serviciomecanico.serviciomecanico.Adaptadores.ClienteAdapter;
+import com.serviciomecanico.serviciomecanico.Adaptadores.HerramientaAdapter;
+import com.serviciomecanico.serviciomecanico.Adaptadores.InventarioAdapter;
 import com.serviciomecanico.serviciomecanico.Conexion.Conexion;
 import com.serviciomecanico.serviciomecanico.Consultar.ConsultarClienteActivity;
 import com.serviciomecanico.serviciomecanico.Modelo.Cita;
 import com.serviciomecanico.serviciomecanico.Modelo.Cliente;
+import com.serviciomecanico.serviciomecanico.Modelo.Herramienta;
+import com.serviciomecanico.serviciomecanico.Modelo.Inventario;
 import com.serviciomecanico.serviciomecanico.Registrar.RegisterAdministradorActivity;
 import com.serviciomecanico.serviciomecanico.Registrar.RegistrarCitaActivity;
 import com.serviciomecanico.serviciomecanico.Registrar.RegistrarClienteActivity;
+import com.serviciomecanico.serviciomecanico.Registrar.RegistrarHerramientas;
 
 public class MenuPrincipalActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -47,13 +49,15 @@ public class MenuPrincipalActivity extends AppCompatActivity
     RecyclerView rcv_visualizar_clientes;
     FloatingActionButton btn_float_registrar_clientes;
     ProgressBar progressBar_visualizar_clientes;
-    String idCita, idNavegacion;
+    String idCita, idInventario, idNavegacion, idHerramienta;
     EditText search;
 
     //Adapter
     FirebaseRecyclerAdapter<Cliente, ClienteAdapter.ViewHolder> adapter;
     FirebaseRecyclerAdapter<Cita, CitaAdapter.ViewHolder> adapter2;
     FirebaseRecyclerAdapter<Cliente, ClienteAdapter.ViewHolder> adapter3;
+    FirebaseRecyclerAdapter<Inventario, InventarioAdapter.ViewHolder> adapter4;
+    FirebaseRecyclerAdapter<Herramienta, HerramientaAdapter.ViewHolder> adapter5;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -289,9 +293,121 @@ public class MenuPrincipalActivity extends AppCompatActivity
             });
             idNavegacion = "Cita";
         } else if (id == R.id.nav_inventario) {
+            getSupportActionBar().setTitle("Lista de inventario");
+            idNavegacion = "Inventario";
+            //FirebaseUI definido para llamar de nuestro firebase la lista
+            adapter4 = new FirebaseRecyclerAdapter<Inventario, InventarioAdapter.ViewHolder>(
+                    /*Clase que utilizaremos*/Inventario.class,
+                    /*La interfaz grafica*/R.layout.inventario,
+                    /*ViewHolder archivo ClienteAdapter*/InventarioAdapter.ViewHolder.class,
+                    /*La referencia de firebase donde buscara*/firebase.child("Inventario")
+            ) {
+                @Override
+                protected void populateViewHolder(InventarioAdapter.ViewHolder viewHolder, Inventario model, int position) {
+                    viewHolder.edt_cantidad_inventario.setText("N° "+model.getCantidad());
+                    viewHolder.edt_costo_inventario.setText("$ "+model.getCosto());
+                    viewHolder.txv_nombre_inventario.setText(model.getNombre());
+                    viewHolder.txv_descripcion_inventario.setText(model.getDescripcion());
+                    idInventario = viewHolder.txv_nombre_inventario.getText().toString();
+                    final String idInventarios = model.getNombre();
+                    viewHolder.cdv_inventario.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            idInventario = idInventarios;
+                        }
+                    });
 
+                    progressBar_visualizar_clientes.setVisibility(View.INVISIBLE);
+                }
+            };
+
+            rcv_visualizar_clientes.setAdapter(adapter4);
+
+            //Scroll funcion boton
+            rcv_visualizar_clientes.addOnScrollListener(new RecyclerView.OnScrollListener() {
+                @Override
+                public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
+                    super.onScrollStateChanged(recyclerView, newState);
+                    if(newState == RecyclerView.SCROLL_STATE_IDLE){
+                        btn_float_registrar_clientes.show();
+                    }
+                }
+
+                @Override
+                public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+                    super.onScrolled(recyclerView, dx, dy);
+                    if(dy>0 || dy<0 && btn_float_registrar_clientes.isShown()){
+                        btn_float_registrar_clientes.hide();
+                    }
+                }
+            });
+
+            btn_float_registrar_clientes.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(MenuPrincipalActivity.this, RegistrarInventario.class);
+                    startActivity(intent);
+                }
+            });
+            idNavegacion = "Inventario";
         } else if (id == R.id.nav_herramientas) {
+            getSupportActionBar().setTitle("Lista de herramientas");
+            idNavegacion = "Herramienta";
+            //FirebaseUI definido para llamar de nuestro firebase la lista
+            adapter5 = new FirebaseRecyclerAdapter<Herramienta, HerramientaAdapter.ViewHolder>(
+                    /*Clase que utilizaremos*/Herramienta.class,
+                    /*La interfaz grafica*/R.layout.herramienta,
+                    /*ViewHolder archivo ClienteAdapter*/HerramientaAdapter.ViewHolder.class,
+                    /*La referencia de firebase donde buscara*/firebase.child("Herramienta")
+            ) {
+                @Override
+                protected void populateViewHolder(HerramientaAdapter.ViewHolder viewHolder, Herramienta model, int position) {
+                    viewHolder.edt_marca_herramienta.setText(model.getMarca());
+                    viewHolder.edt_cantidad_herramienta.setText("N° "+model.getCantidad());
+                    viewHolder.txv_nombre_herramienta.setText(model.getNombre());
+                    viewHolder.txv_descripcion_herramienta.setText(model.getDescripcion());
+                    idInventario = viewHolder.txv_nombre_herramienta.getText().toString();
+                    final String idHerramientas = model.getNombre();
+                    viewHolder.cdv_herramienta.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            idHerramienta = idHerramientas;
+                        }
+                    });
 
+                    progressBar_visualizar_clientes.setVisibility(View.INVISIBLE);
+                }
+            };
+
+            rcv_visualizar_clientes.setAdapter(adapter5);
+
+            //Scroll funcion boton
+            rcv_visualizar_clientes.addOnScrollListener(new RecyclerView.OnScrollListener() {
+                @Override
+                public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
+                    super.onScrollStateChanged(recyclerView, newState);
+                    if(newState == RecyclerView.SCROLL_STATE_IDLE){
+                        btn_float_registrar_clientes.show();
+                    }
+                }
+
+                @Override
+                public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+                    super.onScrolled(recyclerView, dx, dy);
+                    if(dy>0 || dy<0 && btn_float_registrar_clientes.isShown()){
+                        btn_float_registrar_clientes.hide();
+                    }
+                }
+            });
+
+            btn_float_registrar_clientes.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(MenuPrincipalActivity.this, RegistrarHerramientas.class);
+                    startActivity(intent);
+                }
+            });
+            idNavegacion = "Herramienta";
         } else if (id == R.id.nav_cerrar_sesion) {
             finish();
         }
@@ -315,6 +431,52 @@ public class MenuPrincipalActivity extends AppCompatActivity
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 firebase.child("Cita").child(idCita).removeValue();
+            }
+        });
+
+        eliminar.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+
+        AlertDialog dialog = eliminar.create();
+        dialog.show();
+    }
+
+    public void btn_eliminar_inventario(View view){
+
+        AlertDialog.Builder eliminar = new AlertDialog.Builder(this);
+        eliminar.setMessage("¿Desea eliminar este inventario?");
+        eliminar.setTitle("Eliminar inventario");
+        eliminar.setPositiveButton("Si", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                firebase.child("Inventario").child(idInventario).removeValue();
+            }
+        });
+
+        eliminar.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+
+        AlertDialog dialog = eliminar.create();
+        dialog.show();
+    }
+
+    public void btn_eliminar_herramienta(View view){
+
+        AlertDialog.Builder eliminar = new AlertDialog.Builder(this);
+        eliminar.setMessage("¿Desea eliminar esta herramienta?");
+        eliminar.setTitle("Eliminar herramienta");
+        eliminar.setPositiveButton("Si", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                firebase.child("Herramienta").child(idHerramienta).removeValue();
             }
         });
 
@@ -446,6 +608,124 @@ public class MenuPrincipalActivity extends AppCompatActivity
                     @Override
                     public void onClick(View v) {
                         Intent intent = new Intent(MenuPrincipalActivity.this, RegistrarCitaActivity.class);
+                        startActivity(intent);
+                    }
+                });
+                break;
+                case "Inventario":
+                    getSupportActionBar().setTitle("Lista de inventario");
+                    text = search.getText().toString();
+                    fireBaseSearch = firebase.child("Inventario").orderByChild("nombre").startAt(text).endAt(text + "\uf8ff");
+                    //FirebaseUI definido para llamar de nuestro firebase la lista
+                    adapter4 = new FirebaseRecyclerAdapter<Inventario, InventarioAdapter.ViewHolder>(
+                            /*Clase que utilizaremos*/Inventario.class,
+                            /*La interfaz grafica*/R.layout.inventario,
+                            /*ViewHolder archivo ClienteAdapter*/InventarioAdapter.ViewHolder.class,
+                            /*La referencia de firebase donde buscara*/fireBaseSearch
+                    ) {
+                        @Override
+                        protected void populateViewHolder(InventarioAdapter.ViewHolder viewHolder, Inventario model, int position) {
+                            viewHolder.edt_cantidad_inventario.setText("N° "+model.getCantidad());
+                            viewHolder.edt_costo_inventario.setText("$ "+model.getCosto());
+                            viewHolder.txv_nombre_inventario.setText(model.getNombre());
+                            viewHolder.txv_descripcion_inventario.setText(model.getDescripcion());
+                            idInventario = viewHolder.txv_nombre_inventario.getText().toString();
+                            final String idInventarios = model.getNombre();
+                            viewHolder.cdv_inventario.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    idInventario = idInventarios;
+                                }
+                            });
+
+                            progressBar_visualizar_clientes.setVisibility(View.INVISIBLE);
+                        }
+                    };
+
+                    rcv_visualizar_clientes.setAdapter(adapter4);
+
+                    //Scroll funcion boton
+                    rcv_visualizar_clientes.addOnScrollListener(new RecyclerView.OnScrollListener() {
+                        @Override
+                        public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
+                            super.onScrollStateChanged(recyclerView, newState);
+                            if(newState == RecyclerView.SCROLL_STATE_IDLE){
+                                btn_float_registrar_clientes.show();
+                            }
+                        }
+
+                        @Override
+                        public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+                            super.onScrolled(recyclerView, dx, dy);
+                            if(dy>0 || dy<0 && btn_float_registrar_clientes.isShown()){
+                                btn_float_registrar_clientes.hide();
+                            }
+                        }
+                    });
+
+                    btn_float_registrar_clientes.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent intent = new Intent(MenuPrincipalActivity.this, RegistrarInventario.class);
+                            startActivity(intent);
+                        }
+                    });
+            break;
+            case "Herramienta":
+                getSupportActionBar().setTitle("Lista de herramientas");
+                text = search.getText().toString();
+                fireBaseSearch = firebase.child("Herramienta").orderByChild("nombre").startAt(text).endAt(text + "\uf8ff");
+                //FirebaseUI definido para llamar de nuestro firebase la lista
+                adapter5 = new FirebaseRecyclerAdapter<Herramienta, HerramientaAdapter.ViewHolder>(
+                        /*Clase que utilizaremos*/Herramienta.class,
+                        /*La interfaz grafica*/R.layout.herramienta,
+                        /*ViewHolder archivo ClienteAdapter*/HerramientaAdapter.ViewHolder.class,
+                        /*La referencia de firebase donde buscara*/fireBaseSearch
+                ) {
+                    @Override
+                    protected void populateViewHolder(HerramientaAdapter.ViewHolder viewHolder, Herramienta model, int position) {
+                        viewHolder.edt_marca_herramienta.setText(model.getMarca());
+                        viewHolder.edt_cantidad_herramienta.setText("N° "+model.getCantidad());
+                        viewHolder.txv_nombre_herramienta.setText(model.getNombre());
+                        viewHolder.txv_descripcion_herramienta.setText(model.getDescripcion());
+                        idInventario = viewHolder.txv_nombre_herramienta.getText().toString();
+                        final String idHerramientas = model.getNombre();
+                        viewHolder.cdv_herramienta.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                idHerramienta = idHerramientas;
+                            }
+                        });
+
+                        progressBar_visualizar_clientes.setVisibility(View.INVISIBLE);
+                    }
+                };
+
+                rcv_visualizar_clientes.setAdapter(adapter5);
+
+                //Scroll funcion boton
+                rcv_visualizar_clientes.addOnScrollListener(new RecyclerView.OnScrollListener() {
+                    @Override
+                    public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
+                        super.onScrollStateChanged(recyclerView, newState);
+                        if(newState == RecyclerView.SCROLL_STATE_IDLE){
+                            btn_float_registrar_clientes.show();
+                        }
+                    }
+
+                    @Override
+                    public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+                        super.onScrolled(recyclerView, dx, dy);
+                        if(dy>0 || dy<0 && btn_float_registrar_clientes.isShown()){
+                            btn_float_registrar_clientes.hide();
+                        }
+                    }
+                });
+
+                btn_float_registrar_clientes.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(MenuPrincipalActivity.this, RegistrarHerramientas.class);
                         startActivity(intent);
                     }
                 });
