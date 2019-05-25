@@ -19,13 +19,11 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
 import com.serviciomecanico.serviciomecanico.Adaptadores.ImagenAutomovilAdapter;
 import com.serviciomecanico.serviciomecanico.Conexion.Conexion;
-import com.serviciomecanico.serviciomecanico.Modelo.Automovil;
+import com.serviciomecanico.serviciomecanico.MenuPrincipalActivity;
 import com.serviciomecanico.serviciomecanico.Modelo.Reparacion;
 import com.serviciomecanico.serviciomecanico.R;
-import com.serviciomecanico.serviciomecanico.Visualizar.VisualizarClientesActivity;
 
 import java.util.ArrayList;
-import java.util.UUID;
 
 public class RegistrarReparacionActivity extends AppCompatActivity {
 
@@ -34,7 +32,7 @@ public class RegistrarReparacionActivity extends AppCompatActivity {
     //Llamando a la clase conexion para la creacion de la referencia
     Conexion conexion = new Conexion();
 
-    String urlimagenReparacion, placa, idReparacion;
+    String urlimagenReparacion, placa, idReparacion, nombre;
 
     int contador=0;
 
@@ -52,7 +50,7 @@ public class RegistrarReparacionActivity extends AppCompatActivity {
         //Toolbar
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Registrar reparacion");
+        getSupportActionBar().setTitle("Registrar reparación");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
@@ -64,6 +62,7 @@ public class RegistrarReparacionActivity extends AppCompatActivity {
         edt_costo_registrar = findViewById(R.id.edt_costo_registrar);
 
         placa = getIntent().getStringExtra("placa");
+        nombre = getIntent().getStringExtra("nombre");
 
         getImages();
     }
@@ -110,7 +109,7 @@ public class RegistrarReparacionActivity extends AppCompatActivity {
         String descripcionMantenimiento = edt_descripcionMantenimiento_registrar.getText().toString();
         String kilometraje = edt_kilometraje_registrar.getText().toString();
         String costo = edt_costo_registrar.getText().toString();
-        idReparacion = placa+tipo+kilometraje;
+        idReparacion = kilometraje;
 
         if(contador==0){
             Toast.makeText(getApplicationContext(), "Precione de nuevo para confirmar", Toast.LENGTH_SHORT).show();
@@ -131,7 +130,7 @@ public class RegistrarReparacionActivity extends AppCompatActivity {
             //nombreReferenciaFirebase.nodoHijo.nodoHijo.setValue(Valor)
             //Esto se guarda en la base de datos es decir decimos que en la referencia en firebase
             //Guarde en cliente un hijo llamado nombre con el valor de el cliente que estamos creando
-            firebase.child("Reparacion").child(placa).child(idReparacion).setValue(reparacion);
+            firebase.child("Cliente").child(nombre).child("Automovil").child(placa).child("Reparacion").child(idReparacion).setValue(reparacion);
             Toast.makeText(getApplicationContext(),"Reparacion agregado correctamente",Toast.LENGTH_SHORT).show();
             finish();
         }
@@ -141,9 +140,6 @@ public class RegistrarReparacionActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case android.R.id.home:
-
-                Intent intent = new Intent(RegistrarReparacionActivity.this, VisualizarClientesActivity.class);
-                startActivity(intent);
                 finish();
                 return true;
 

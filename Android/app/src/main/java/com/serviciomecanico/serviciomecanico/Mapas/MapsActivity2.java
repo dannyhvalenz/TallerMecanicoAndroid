@@ -2,7 +2,10 @@ package com.serviciomecanico.serviciomecanico.Mapas;
 
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.MenuItem;
+import android.view.View;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -22,6 +25,10 @@ public class MapsActivity2 extends FragmentActivity implements OnMapReadyCallbac
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps2);
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
+
+        //Toolbar
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        toolbar.setTitle("Dirección del cliente");
 
         latitud = Double.parseDouble(getIntent().getStringExtra("latitud"));
         longitud = Double.parseDouble(getIntent().getStringExtra("longitud"));
@@ -53,5 +60,9 @@ public class MapsActivity2 extends FragmentActivity implements OnMapReadyCallbac
         mMap.moveCamera(CameraUpdateFactory.newLatLng(ubicacionCliente));
         mMap.setMinZoomPreference(12.0f);
         mMap.setMaxZoomPreference(100.0f);
+    }
+
+    public void btn_atras_mapa(View view) {
+                finish();
     }
 }

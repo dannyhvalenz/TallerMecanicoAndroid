@@ -26,9 +26,9 @@ import com.google.firebase.database.ValueEventListener;
 import com.serviciomecanico.serviciomecanico.Adaptadores.ImagenClienteAdapter;
 import com.serviciomecanico.serviciomecanico.Conexion.Conexion;
 import com.serviciomecanico.serviciomecanico.Mapas.MapsActivity;
+import com.serviciomecanico.serviciomecanico.MenuPrincipalActivity;
 import com.serviciomecanico.serviciomecanico.Modelo.Cliente;
 import com.serviciomecanico.serviciomecanico.R;
-import com.serviciomecanico.serviciomecanico.Visualizar.VisualizarClientesActivity;
 
 import java.util.ArrayList;
 
@@ -69,6 +69,7 @@ public class RegistrarClienteActivity extends AppCompatActivity {
         edt_correo_registrar = findViewById(R.id.edt_correo_registrar);
         edt_telefono_registrar = findViewById(R.id.edt_telefono_registrar);
         edt_direccion_registrar = findViewById(R.id.edt_direccion_registrar);
+        Toast.makeText(getApplicationContext(),"Seleccione un avatar para el cliente",Toast.LENGTH_LONG).show();
 
         getImages();
 
@@ -87,14 +88,14 @@ public class RegistrarClienteActivity extends AppCompatActivity {
     }
 
     public void getImages(){
-        mImagesUrls.add("https://firebasestorage.googleapis.com/v0/b/serviciomecanico-1998.appspot.com/o/AvatarCliente%2Fhombre1.png?alt=media&token=443e6432-6cba-4726-843b-5b95f2bcdd3c");
-        mImagesUrls.add("https://firebasestorage.googleapis.com/v0/b/serviciomecanico-1998.appspot.com/o/AvatarCliente%2Fmujer1.png?alt=media&token=8734d493-92e7-431e-8fbb-fb72d5ace53c");
-        mImagesUrls.add("https://firebasestorage.googleapis.com/v0/b/serviciomecanico-1998.appspot.com/o/AvatarCliente%2Fhombre2.png?alt=media&token=572043fe-4741-41cb-88a6-ab3175bf19ed");
-        mImagesUrls.add("https://firebasestorage.googleapis.com/v0/b/serviciomecanico-1998.appspot.com/o/AvatarCliente%2Fmujer2.png?alt=media&token=3f8b5010-a61e-4e36-8ed9-c33c62b4b87d");
-        mImagesUrls.add("https://firebasestorage.googleapis.com/v0/b/serviciomecanico-1998.appspot.com/o/AvatarCliente%2Fhombre3.png?alt=media&token=1b0bdb91-bd94-420c-8613-3ef88ed8cac1");
-        mImagesUrls.add("https://firebasestorage.googleapis.com/v0/b/serviciomecanico-1998.appspot.com/o/AvatarCliente%2Fmujer3.png?alt=media&token=f7cb2f32-0be0-4cbc-a40b-50d2497b66f0");
-        mImagesUrls.add("https://firebasestorage.googleapis.com/v0/b/serviciomecanico-1998.appspot.com/o/AvatarCliente%2Fhombre4.png?alt=media&token=16d2d142-9af4-4b88-bc79-bdbc91dc694f");
-        mImagesUrls.add("https://firebasestorage.googleapis.com/v0/b/serviciomecanico-1998.appspot.com/o/AvatarCliente%2Fmujer4.png?alt=media&token=3cb2d275-bf3d-42bc-ad10-3c70df2ad8a5");
+        mImagesUrls.add("https://firebasestorage.googleapis.com/v0/b/serviciomecanico-1998.appspot.com/o/AvatarCliente%2Fhipster.png?alt=media&token=7cfa1247-a55d-4532-9557-c5ddaaca3ca2");
+        mImagesUrls.add("https://firebasestorage.googleapis.com/v0/b/serviciomecanico-1998.appspot.com/o/AvatarCliente%2Fwoman%20(1).png?alt=media&token=314f9684-6ca3-44b1-92b7-1931031fd9d4");
+        mImagesUrls.add("https://firebasestorage.googleapis.com/v0/b/serviciomecanico-1998.appspot.com/o/AvatarCliente%2Fman%20(1).png?alt=media&token=6fa23afc-a711-4b19-a14b-6fcb96d08e49");
+        mImagesUrls.add("https://firebasestorage.googleapis.com/v0/b/serviciomecanico-1998.appspot.com/o/AvatarCliente%2Fwoman%20(2).png?alt=media&token=14bb25de-0811-4e72-b096-cf095501a190");
+        mImagesUrls.add("https://firebasestorage.googleapis.com/v0/b/serviciomecanico-1998.appspot.com/o/AvatarCliente%2Fman%20(2).png?alt=media&token=5b2b8f70-d2bd-4a40-8dbf-a990381a658d");
+        mImagesUrls.add("https://firebasestorage.googleapis.com/v0/b/serviciomecanico-1998.appspot.com/o/AvatarCliente%2Fwoman%20(3).png?alt=media&token=8ae489b3-b7ab-443c-b121-ae5d12c5b847");
+        mImagesUrls.add("https://firebasestorage.googleapis.com/v0/b/serviciomecanico-1998.appspot.com/o/AvatarCliente%2Fman.png?alt=media&token=ec4141fd-ff96-4946-8296-a7ab4176f588");
+        mImagesUrls.add("https://firebasestorage.googleapis.com/v0/b/serviciomecanico-1998.appspot.com/o/AvatarCliente%2Fwoman.png?alt=media&token=49441e33-27f6-4edf-980a-63be2cf5e7dd");
         initRecyclerView();
     }
 
@@ -113,15 +114,15 @@ public class RegistrarClienteActivity extends AppCompatActivity {
         String nombre = edt_nombre_registrar.getText().toString();
         String correo = edt_correo_registrar.getText().toString();
         String telefono = edt_telefono_registrar.getText().toString();
-        String direccion = edt_direccion_registrar.getText().toString();
-
 
         if (TextUtils.isEmpty(nombre)) {
-            Toast.makeText(getApplicationContext(), "Ingresa nombre", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "Ingresa el nombre", Toast.LENGTH_SHORT).show();
         }else if (TextUtils.isEmpty(correo)) {
-            Toast.makeText(getApplicationContext(), "Ingresar correo", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "Ingresa el correo electrónico", Toast.LENGTH_SHORT).show();
         }else if (TextUtils.isEmpty(telefono)) {
-            Toast.makeText(getApplicationContext(), "Ingresar telefono", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "Ingresa el teléfono", Toast.LENGTH_SHORT).show();
+        }else if (TextUtils.isEmpty(longitud)) {
+            Toast.makeText(getApplicationContext(), "Ingresa la dirección", Toast.LENGTH_SHORT).show();
         }else if (!TextUtils.isEmpty(nombre) && !TextUtils.isEmpty(correo) && !TextUtils.isEmpty(telefono)) {
             //Creacion de un nuevo cliente mediante los parametros obtenidos
             Cliente cliente = new Cliente(nombre,correo,telefono,urlimagen,latitud,longitud);
@@ -184,7 +185,7 @@ public class RegistrarClienteActivity extends AppCompatActivity {
         switch (item.getItemId()){
             case android.R.id.home:
 
-                Intent intent = new Intent(RegistrarClienteActivity.this, VisualizarClientesActivity.class);
+                Intent intent = new Intent(RegistrarClienteActivity.this, MenuPrincipalActivity.class);
                 startActivity(intent);
                 finish();
                 return true;

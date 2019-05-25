@@ -17,13 +17,13 @@
             android:id="@+id/txv_reparacion_tipo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
+            android:layout_marginStart="16dp"
             android:layout_marginBottom="16dp"
             android:fontFamily="@font/roboto"
             android:gravity="left"
             android:text="nombre"
             android:textColor="@android:color/black"
-            android:textSize="24sp"
+            android:textSize="18sp"
             app:layout_constraintBottom_toTopOf="@+id/txv_reparacion_kilometraje"
             app:layout_constraintStart_toStartOf="@+id/guideline3"
             app:layout_constraintTop_toTopOf="parent" />
@@ -34,10 +34,10 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
             android:layout_marginBottom="16dp"
-            android:drawableLeft="@drawable/ic_correo"
+            android:drawableLeft="@drawable/ic_kilometraje"
             android:drawablePadding="5dp"
             android:text="correo"
-            android:textSize="18sp"
+            android:textSize="14sp"
             app:layout_constraintBottom_toTopOf="@+id/txv_reparacion_costo"
             app:layout_constraintStart_toStartOf="@+id/guideline3" />
 
@@ -47,10 +47,10 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
             android:layout_marginBottom="16dp"
-            android:drawableLeft="@drawable/ic_telefono"
+            android:drawableLeft="@drawable/ic_costo_reparacion"
             android:drawablePadding="5dp"
             android:text="telefono"
-            android:textSize="18sp"
+            android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="@+id/guideline3" />
 

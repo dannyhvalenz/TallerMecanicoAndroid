@@ -8,8 +8,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.google.firebase.database.DatabaseReference;
@@ -24,7 +26,7 @@ public class ConsultarAutomovilActivity extends AppCompatActivity {
 
     Conexion  conexion = new Conexion();
     DatabaseReference firebase;
-    EditText edt_placa_consultar, edt_marca_consultar, edt_linea_consultar,edt_modelo_consultar,edt_color_consultar;
+    TextView edt_placa_consultar, edt_marca_consultar, edt_linea_consultar,edt_modelo_consultar,edt_color_consultar;
     String placa, marca, linea, modelo, color, urlimagen, nombre;
     ImageView img_avatar_consultar_automovil;
 
@@ -37,7 +39,7 @@ public class ConsultarAutomovilActivity extends AppCompatActivity {
         //Toolbar
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Automovil");
+        getSupportActionBar().setTitle("Automóvil");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
@@ -56,6 +58,7 @@ public class ConsultarAutomovilActivity extends AppCompatActivity {
         modelo = getIntent().getStringExtra("modelo");
         color = getIntent().getStringExtra("color");
         urlimagen = getIntent().getStringExtra("urlimagen");
+
         nombre = getIntent().getStringExtra("nombre");
 
         edt_placa_consultar.setText(getIntent().getStringExtra("placa"));
@@ -80,12 +83,12 @@ public class ConsultarAutomovilActivity extends AppCompatActivity {
                 break;
             case R.id.action_delete:
                 AlertDialog.Builder eliminar = new AlertDialog.Builder(this);
-                eliminar.setMessage("¿Desea eliminar este automovil?");
-                eliminar.setTitle("Eliminar automovil");
+                eliminar.setMessage("¿Desea eliminar este automóvil?");
+                eliminar.setTitle("Eliminar automóvil");
                 eliminar.setPositiveButton("Si", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        firebase.child("Automovil").child(nombre).child(placa).removeValue();
+                        firebase.child("Cliente").child(nombre).child("Automovil").child(placa).removeValue();
                         finish();
                     }
                 });
@@ -111,12 +114,6 @@ public class ConsultarAutomovilActivity extends AppCompatActivity {
                 intent2.putExtra("urlimagen",urlimagen);
                 startActivity(intent2);
                 break;
-
-            case R.id.action_repar:
-                Intent intent3 = new Intent(ConsultarAutomovilActivity.this, VisualizarReparacionesActivity.class);
-                intent3.putExtra("placa",placa);
-                startActivity(intent3);
-                break;
         }
         return super.onOptionsItemSelected(item);
     }
@@ -127,7 +124,10 @@ public class ConsultarAutomovilActivity extends AppCompatActivity {
         return true;
     }
 
-
-
-
+    public void btn_buscar_reparaciones(View view){
+        Intent intent3 = new Intent(ConsultarAutomovilActivity.this, VisualizarReparacionesActivity.class);
+        intent3.putExtra("placa",placa);
+        intent3.putExtra("nombre",nombre);
+        startActivity(intent3);
+    }
 }

@@ -6,10 +6,13 @@ import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.google.firebase.database.DatabaseReference;
@@ -25,8 +28,8 @@ public class ConsultarReparacionActivity extends AppCompatActivity {
 
     Conexion  conexion = new Conexion();
     DatabaseReference firebase;
-    EditText edt_tipo_consultar, edt_descripcionFalla_consultar, edt_descripcionMantenimiento_consultar,edt_kilometraje_consultar,edt_costo_consultar;
-    String tipo, descripcionFalla, descripcionMantenimiento, kilometraje, costo, urlimagen, idReparacion, placa;
+    TextView edt_tipo_consultar, edt_descripcionFalla_consultar, edt_descripcionMantenimiento_consultar,edt_kilometraje_consultar,edt_costo_consultar;
+    String tipo, descripcionFalla, descripcionMantenimiento, kilometraje, costo, urlimagen, idReparacion, placa, nombre;
     ImageView img_avatar_consultar_reparacion;
 
     @Override
@@ -38,7 +41,7 @@ public class ConsultarReparacionActivity extends AppCompatActivity {
         //Toolbar
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Automovil");
+        getSupportActionBar().setTitle("Reparación");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
@@ -57,6 +60,8 @@ public class ConsultarReparacionActivity extends AppCompatActivity {
         kilometraje = getIntent().getStringExtra("kilometraje");
         costo = getIntent().getStringExtra("costo");
         urlimagen = getIntent().getStringExtra("urlimagen");
+
+        nombre = getIntent().getStringExtra("nombre");
         placa = getIntent().getStringExtra("placa");
         idReparacion = getIntent().getStringExtra("idReparacion");
 
@@ -75,19 +80,16 @@ public class ConsultarReparacionActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case android.R.id.home:
-                Intent intent = new Intent(ConsultarReparacionActivity.this, VisualizarReparacionesActivity.class);
-                intent.putExtra("placa",placa);
-                startActivity(intent);
                 finish();
                 break;
             case R.id.action_delete:
                 AlertDialog.Builder eliminar = new AlertDialog.Builder(this);
-                eliminar.setMessage("¿Desea eliminar este automovil?");
-                eliminar.setTitle("Eliminar automovil");
+                eliminar.setMessage("¿Desea eliminar esta reparación?");
+                eliminar.setTitle("Eliminar reparación");
                 eliminar.setPositiveButton("Si", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        firebase.child("Reparacion").child(placa).child(idReparacion).removeValue();
+                        firebase.child("Cliente").child(nombre).child("Automovil").child(placa).child("Reparacion").child(idReparacion).removeValue();
                         finish();
                     }
                 });
@@ -111,6 +113,7 @@ public class ConsultarReparacionActivity extends AppCompatActivity {
                 intent2.putExtra("costo",costo);
                 intent2.putExtra("placa",placa);
                 intent2.putExtra("idReparacion",idReparacion);
+                intent2.putExtra("nombre",nombre);
                 intent2.putExtra("urlimagen",urlimagen);
                 startActivity(intent2);
                 break;

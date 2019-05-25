@@ -39,82 +39,108 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.3" />
+            app:layout_constraintGuide_percent="0.34" />
 
-        <EditText
+        <TextView
             android:id="@+id/edt_placa_consultar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="24dp"
-            android:layout_marginEnd="32dp"
-            android:layout_marginBottom="24dp"
-            android:drawablePadding="5dp"
+            android:drawablePadding="15dp"
             android:focusable="false"
+            android:gravity="center_horizontal"
             android:inputType="text"
-            app:layout_constraintBottom_toTopOf="@+id/edt_marca_consultar"
+            android:textColor="@android:color/black"
+            android:textSize="30sp"
+            app:layout_constraintBottom_toTopOf="@+id/guideline17"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/img_avatar_consultar_automovil"
-            app:layout_constraintVertical_bias="1.0" />
+            app:layout_constraintTop_toTopOf="@+id/guideline4" />
 
-        <EditText
+        <android.support.constraint.Guideline
+            android:id="@+id/guideline17"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.43" />
+
+        <TextView
             android:id="@+id/edt_marca_consultar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginEnd="32dp"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="50dp"
             android:layout_marginBottom="32dp"
-            android:drawablePadding="5dp"
+            android:drawableStart="@drawable/ic_marca"
+            android:drawablePadding="15dp"
             android:focusable="false"
             android:inputType="text"
+            android:textSize="18sp"
             app:layout_constraintBottom_toTopOf="@+id/edt_linea_consultar"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/guideline17" />
 
-        <EditText
+        <TextView
             android:id="@+id/edt_linea_consultar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginEnd="32dp"
+            android:layout_marginStart="50dp"
+            android:layout_marginEnd="50dp"
             android:layout_marginBottom="32dp"
-            android:drawablePadding="5dp"
+            android:drawableStart="@drawable/ic_linea"
+            android:drawablePadding="15dp"
             android:focusable="false"
             android:inputType="text"
+            android:textSize="18sp"
             app:layout_constraintBottom_toTopOf="@+id/edt_modelo_consultar"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
-        <EditText
+        <TextView
             android:id="@+id/edt_modelo_consultar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginEnd="32dp"
+            android:layout_marginStart="50dp"
+            android:layout_marginEnd="50dp"
             android:layout_marginBottom="32dp"
-            android:drawablePadding="5dp"
+            android:drawableStart="@drawable/ic_modelo"
+            android:drawablePadding="15dp"
             android:focusable="false"
             android:inputType="number"
+            android:textSize="18sp"
             app:layout_constraintBottom_toTopOf="@+id/edt_color_consultar"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />" />
 
-        <EditText
+        <TextView
             android:id="@+id/edt_color_consultar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginEnd="32dp"
-            android:layout_marginBottom="156dp"
-            android:drawablePadding="5dp"
+            android:layout_marginStart="50dp"
+            android:layout_marginEnd="50dp"
+            android:layout_marginBottom="60dp"
+            android:drawableStart="@drawable/ic_color_coche"
+            android:drawablePadding="15dp"
             android:focusable="false"
             android:inputType="text"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toTopOf="@+id/button5"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <Button
+            android:id="@+id/button5"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:onClick="btn_buscar_reparaciones"
+            android:text="@string/btn_buscar_reparaciones"
+            android:theme="@style/boton_rojo"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
 

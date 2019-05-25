@@ -9,6 +9,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
@@ -25,8 +26,9 @@ public class ActualizarReparacionActivity extends AppCompatActivity {
     Conexion conexion = new Conexion();
     DatabaseReference firebase;
 
-    EditText edt_tipo_actualizar, edt_descripcionFalla_actualizar, edt_descripcionoMantenimiento_actualizar,edt_kilometraje_actualizar,edt_costo_actualizar;
-    String urlimagen, placaAntigua, idReparacion;
+    EditText edt_tipo_actualizar, edt_descripcionFalla_actualizar, edt_descripcionoMantenimiento_actualizar,edt_costo_actualizar;
+    TextView edt_kilometraje_actualizar;
+    String urlimagen, placaAntigua, idReparacion, nombre;
     ImageView img_avatar_actualizar_reparacion;
 
     @Override
@@ -38,7 +40,7 @@ public class ActualizarReparacionActivity extends AppCompatActivity {
         //Toolbar
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Actualizar cliente");
+        getSupportActionBar().setTitle("Actualizar reparación");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
@@ -49,6 +51,7 @@ public class ActualizarReparacionActivity extends AppCompatActivity {
         edt_costo_actualizar = findViewById(R.id.edt_costo_actualizar);
         img_avatar_actualizar_reparacion = findViewById(R.id.img_avatar_actualizar_reparacion);
 
+        nombre = getIntent().getStringExtra("nombre");
         placaAntigua = getIntent().getStringExtra("placa");
         idReparacion = getIntent().getStringExtra("idReparacion");
 
@@ -62,8 +65,6 @@ public class ActualizarReparacionActivity extends AppCompatActivity {
         Glide.with(getApplicationContext())
                 .load(urlimagen)
                 .into(img_avatar_actualizar_reparacion);
-
-        firebase.child("Reparacion").child(placaAntigua).child(idReparacion).removeValue();
     }
 
     public void btn_actualizar_reparacion(View view){
@@ -72,7 +73,6 @@ public class ActualizarReparacionActivity extends AppCompatActivity {
         String descripcionMantenimiento = edt_descripcionoMantenimiento_actualizar.getText().toString();
         String kilometraje = edt_kilometraje_actualizar.getText().toString();
         String costo = edt_costo_actualizar.getText().toString();
-        idReparacion = placaAntigua+tipo+kilometraje;
 
         if (TextUtils.isEmpty(tipo)) {
             Toast.makeText(getApplicationContext(), "Ingresar tipo", Toast.LENGTH_SHORT).show();
@@ -90,7 +90,11 @@ public class ActualizarReparacionActivity extends AppCompatActivity {
             //nombreReferenciaFirebase.nodoHijo.nodoHijo.setValue(Valor)
             //Esto se guarda en la base de datos es decir decimos que en la referencia en firebase
             //Guarde en cliente un hijo llamado nombre con el valor de el cliente que estamos creando
-            firebase.child("Reparacion").child(placaAntigua).child(idReparacion).setValue(reparacion);
+            firebase.child("Cliente").child(nombre).child("Automovil").child(placaAntigua).child("Reparacion").child(idReparacion).child("costo").setValue(costo);
+            firebase.child("Cliente").child(nombre).child("Automovil").child(placaAntigua).child("Reparacion").child(idReparacion).child("descripcionFalla").setValue(descripcionFalla);
+            firebase.child("Cliente").child(nombre).child("Automovil").child(placaAntigua).child("Reparacion").child(idReparacion).child("descripcionMantenimiento").setValue(descripcionMantenimiento);
+            firebase.child("Cliente").child(nombre).child("Automovil").child(placaAntigua).child("Reparacion").child(idReparacion).child("kilometraje").setValue(kilometraje);
+            firebase.child("Cliente").child(nombre).child("Automovil").child(placaAntigua).child("Reparacion").child(idReparacion).child("tipo").setValue(tipo);
             Toast.makeText(getApplicationContext(),"Automovil agregado correctamente",Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(ActualizarReparacionActivity.this, VisualizarReparacionesActivity.class);
             intent.putExtra("placa",placaAntigua);
@@ -103,34 +107,7 @@ public class ActualizarReparacionActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case android.R.id.home:
-                String tipo = edt_tipo_actualizar.getText().toString();
-                String descripcionFalla = edt_descripcionFalla_actualizar.getText().toString();
-                String descripcionMantenimiento = edt_descripcionoMantenimiento_actualizar.getText().toString();
-                String kilometraje = edt_kilometraje_actualizar.getText().toString();
-                String costo = edt_costo_actualizar.getText().toString();
-
-                if (TextUtils.isEmpty(tipo)) {
-                    Toast.makeText(getApplicationContext(), "Ingresar tipo", Toast.LENGTH_SHORT).show();
-                }else if (TextUtils.isEmpty(descripcionFalla)) {
-                    Toast.makeText(getApplicationContext(), "Ingresar descripcion falla", Toast.LENGTH_SHORT).show();
-                }else if (TextUtils.isEmpty(descripcionMantenimiento)) {
-                    Toast.makeText(getApplicationContext(), "Ingresar descripcion mantenimiento", Toast.LENGTH_SHORT).show();
-                }else if (TextUtils.isEmpty(kilometraje)) {
-                    Toast.makeText(getApplicationContext(), "Ingresar kilometraje", Toast.LENGTH_SHORT).show();
-                }else if (TextUtils.isEmpty(costo)) {
-                    Toast.makeText(getApplicationContext(), "Ingresar costo", Toast.LENGTH_SHORT).show();
-                }else if (!TextUtils.isEmpty(tipo) && !TextUtils.isEmpty(descripcionFalla) && !TextUtils.isEmpty(descripcionMantenimiento) && !TextUtils.isEmpty(kilometraje) && !TextUtils.isEmpty(costo)) {
-                    //Creacion de un nuevo cliente mediante los parametros obtenidos
-                    Reparacion reparacion = new Reparacion(tipo,descripcionFalla,descripcionMantenimiento,kilometraje,costo,urlimagen);
-                    //nombreReferenciaFirebase.nodoHijo.nodoHijo.setValue(Valor)
-                    //Esto se guarda en la base de datos es decir decimos que en la referencia en firebase
-                    //Guarde en cliente un hijo llamado nombre con el valor de el cliente que estamos creando
-                    firebase.child("Reparacion").child(placaAntigua).child(idReparacion).setValue(reparacion);
-                    Intent intent = new Intent(ActualizarReparacionActivity.this, VisualizarReparacionesActivity.class);
-                    intent.putExtra("placa",placaAntigua);
-                    startActivity(intent);
                     finish();
-                }
                 return true;
 
             default:

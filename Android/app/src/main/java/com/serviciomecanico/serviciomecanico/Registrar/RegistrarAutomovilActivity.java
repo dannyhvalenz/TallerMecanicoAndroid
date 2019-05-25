@@ -19,9 +19,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
 import com.serviciomecanico.serviciomecanico.Adaptadores.ImagenAutomovilAdapter;
 import com.serviciomecanico.serviciomecanico.Conexion.Conexion;
+import com.serviciomecanico.serviciomecanico.MenuPrincipalActivity;
 import com.serviciomecanico.serviciomecanico.Modelo.Automovil;
 import com.serviciomecanico.serviciomecanico.R;
-import com.serviciomecanico.serviciomecanico.Visualizar.VisualizarClientesActivity;
 
 import java.util.ArrayList;
 
@@ -51,7 +51,7 @@ public class RegistrarAutomovilActivity extends AppCompatActivity {
         //Toolbar
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Registrar automovil");
+        getSupportActionBar().setTitle("Registrar automóvil");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
@@ -129,7 +129,7 @@ public class RegistrarAutomovilActivity extends AppCompatActivity {
             //nombreReferenciaFirebase.nodoHijo.nodoHijo.setValue(Valor)
             //Esto se guarda en la base de datos es decir decimos que en la referencia en firebase
             //Guarde en cliente un hijo llamado nombre con el valor de el cliente que estamos creando
-            firebase.child("Automovil").child(nombrecliente).child(placa).setValue(automovil);
+            firebase.child("Cliente").child(nombrecliente).child("Automovil").child(placa).setValue(automovil);
             Toast.makeText(getApplicationContext(),"Automovil agregado correctamente",Toast.LENGTH_SHORT).show();
             finish();
         }
@@ -139,9 +139,6 @@ public class RegistrarAutomovilActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case android.R.id.home:
-
-                Intent intent = new Intent(RegistrarAutomovilActivity.this, VisualizarClientesActivity.class);
-                startActivity(intent);
                 finish();
                 return true;
 

@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/ic_consultar_cliente"
     android:orientation="vertical"
     tools:context=".Consultar.ConsultarClienteActivity">
 
@@ -35,7 +34,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.3" />
+        app:layout_constraintGuide_percent="0.2995896" />
 
     <TextView
         android:id="@+id/edt_nombre_consultar"
@@ -57,12 +56,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="50dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="32dp"
         android:layout_marginEnd="50dp"
-        android:layout_marginBottom="32dp"
-        android:drawableStart="@drawable/ic_email_white"
+        android:layout_marginBottom="8dp"
+        android:drawableStart="@drawable/ic_correo"
         android:drawablePadding="15dp"
-        android:textColor="@android:color/white"
+        android:textColor="@color/colorGris"
         app:layout_constraintBottom_toTopOf="@+id/edt_telefono_consultar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -75,10 +74,10 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="50dp"
         android:layout_marginEnd="50dp"
-        android:layout_marginBottom="32dp"
-        android:drawableStart="@drawable/ic_phone_white"
+        android:layout_marginBottom="40dp"
+        android:drawableStart="@drawable/ic_telefono"
         android:drawablePadding="15dp"
-        android:textColor="@android:color/white"
+        android:textColor="@color/colorGris"
         app:layout_constraintBottom_toTopOf="@+id/btn_direccion_maps"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
@@ -90,9 +89,11 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="42dp"
         android:layout_marginEnd="42dp"
-        android:layout_marginBottom="144dp"
+        android:layout_marginBottom="100dp"
         android:onClick="btn_direccion_maps"
+        android:drawableStart="@drawable/ic_ubicacion_rojo"
         android:text="Dirección"
+        android:textColor="@color/colorRojo"
         android:theme="@style/boton_principal"
         app:layout_constraintBottom_toTopOf="@+id/guideline2"
         app:layout_constraintEnd_toEndOf="parent"
@@ -105,7 +106,7 @@
         android:layout_height="wrap_content"
         android:onClick="btn_abajo_cliente"
         android:text="Automóviles del Cliente"
-        android:theme="@style/boton_abajo"
+        android:theme="@style/boton_rojo"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -123,6 +124,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="267dp" />
+        app:layout_constraintGuide_percent="0.3652531" />
 
 </android.support.constraint.ConstraintLayout>
