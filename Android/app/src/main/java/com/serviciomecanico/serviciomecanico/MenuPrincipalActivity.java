@@ -39,6 +39,7 @@ import com.serviciomecanico.serviciomecanico.Registrar.RegisterAdministradorActi
 import com.serviciomecanico.serviciomecanico.Registrar.RegistrarCitaActivity;
 import com.serviciomecanico.serviciomecanico.Registrar.RegistrarClienteActivity;
 import com.serviciomecanico.serviciomecanico.Registrar.RegistrarHerramientas;
+import com.serviciomecanico.serviciomecanico.Registrar.RegistrarInventario;
 
 public class MenuPrincipalActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {

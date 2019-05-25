@@ -19,7 +19,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".Registrar.RegistrarHerramientas"></activity>
-        <activity android:name=".RegistrarInventario" />
+        <activity android:name=".Registrar.RegistrarInventario" />
         <activity
             android:name=".Registrar.RegistrarCitaActivity"
             android:label="@string/titulo_registrar_cita" />
