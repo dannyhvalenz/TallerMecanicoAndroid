@@ -40,6 +40,7 @@ import com.serviciomecanico.serviciomecanico.Registrar.RegistrarCitaActivity;
 import com.serviciomecanico.serviciomecanico.Registrar.RegistrarClienteActivity;
 import com.serviciomecanico.serviciomecanico.Registrar.RegistrarHerramientas;
 import com.serviciomecanico.serviciomecanico.Registrar.RegistrarInventario;
+import com.serviciomecanico.serviciomecanico.Sesion.IniciarSeionActivity;
 
 public class MenuPrincipalActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -410,7 +411,8 @@ public class MenuPrincipalActivity extends AppCompatActivity
             });
             idNavegacion = "Herramienta";
         } else if (id == R.id.nav_cerrar_sesion) {
-            finish();
+            Intent intent = new Intent(MenuPrincipalActivity.this, IniciarSeionActivity.class);
+            startActivity(intent);
         }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
