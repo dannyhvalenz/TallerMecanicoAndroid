@@ -65,7 +65,7 @@
                      </button>
                      </div>
                      
-                     <div class="row" align="left">
+                     <div class="row" aling="left">
                      <div>
                          <form method="post" action="../buscar/buscarReparacion.php?M=<?php echo $_GET['M']?>&id=<?php echo $_GET['id']?>&idA=<?php echo $_GET['idA']?>">
                               <div class="form-group">
