@@ -9,8 +9,7 @@
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@drawable/ic_registrar_cliente">
+        android:layout_height="match_parent">
 
         <include
             android:id="@+id/toolbar"
@@ -26,30 +25,28 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.27" />
+            app:layout_constraintGuide_percent="0.32" />
 
         <android.support.design.widget.TextInputLayout
             android:id="@+id/textInputLayout5"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="50dp"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="50dp"
-            android:layout_marginBottom="24dp"
             android:gravity="center"
-            app:layout_constraintBottom_toTopOf="@+id/textInputLayout3"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
+            app:layout_constraintTop_toTopOf="@+id/guideline4">
 
             <EditText
                 android:id="@+id/edt_nombre_registrar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:drawableStart="@drawable/ic_correo"
+                android:drawableStart="@drawable/ic_usuario_gris"
                 android:drawablePadding="5dp"
-                android:hint="Nombre del cliente"
+                android:hint="@string/edt_nombre_cliente"
                 android:inputType="text" />
 
         </android.support.design.widget.TextInputLayout>
@@ -59,20 +56,20 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="50dp"
+            android:layout_marginTop="24dp"
             android:layout_marginEnd="50dp"
-            android:layout_marginBottom="24dp"
-            app:layout_constraintBottom_toTopOf="@+id/textInputLayout2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent">
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textInputLayout5">
 
             <EditText
                 android:id="@+id/edt_correo_registrar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:drawableStart="@drawable/ic_email"
+                android:drawableStart="@drawable/ic_correo"
                 android:drawablePadding="5dp"
-                android:hint="Correo del cliente"
+                android:hint="@string/edt_correo_cliente"
                 android:inputType="text" />
 
         </android.support.design.widget.TextInputLayout>
@@ -82,20 +79,20 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="50dp"
+            android:layout_marginTop="24dp"
             android:layout_marginEnd="50dp"
-            android:layout_marginBottom="24dp"
-            app:layout_constraintBottom_toTopOf="@+id/edt_direccion_registrar"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent">
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textInputLayout3">
 
             <EditText
                 android:id="@+id/edt_telefono_registrar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:drawableStart="@drawable/ic_phone"
+                android:drawableStart="@drawable/ic_telefono"
                 android:drawablePadding="5dp"
-                android:hint="Telefono del cliente"
+                android:hint="@string/edt_telefono_cliente"
                 android:inputType="number" />
 
         </android.support.design.widget.TextInputLayout>
@@ -106,47 +103,52 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="50dp"
+            android:layout_marginTop="24dp"
             android:layout_marginEnd="50dp"
-            android:layout_marginBottom="40dp"
-            android:drawableStart="@drawable/ic_ubicacion_white"
+            android:layout_marginBottom="8dp"
+            android:drawableStart="@drawable/ic_ubicacion_rojo"
             android:drawablePadding="5dp"
-            android:hint="Dirección del cliente"
+            android:hint="@string/btn_ubicacion_cliente"
             android:inputType="text"
             android:onClick="direccioncliente"
-            android:textColor="@android:color/white"
-            android:textColorHighlight="@android:color/white"
-            android:textColorHint="@android:color/white"
-            android:textColorLink="@android:color/white"
+            android:textColor="@color/colorRojo"
+            android:textColorHighlight="@color/colorRojo"
+            android:textColorHint="@color/colorRojo"
+            android:textColorLink="@color/colorRojo"
+            android:textSize="18sp"
             android:theme="@style/boton_principal"
-            app:layout_constraintBottom_toTopOf="@+id/btn_registrar_automovil"
+            app:layout_constraintBottom_toTopOf="@+id/guideline15"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textInputLayout2" />
 
         <Button
             android:id="@+id/btn_registrar_automovil"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="50dp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="50dp"
-            android:layout_marginBottom="32dp"
+            android:layout_marginBottom="8dp"
             android:onClick="btn_agregar_cliente"
-            android:text="Agregar Cliente"
+            android:text="@string/btn_agregar_cliente"
             android:textSize="18sp"
-            android:theme="@style/boton_abajo"
+            android:theme="@style/boton_rojo"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/guideline15" />
 
         <LinearLayout
             android:id="@+id/linearLayout2"
             android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
-            android:layout_marginBottom="16dp"
+            android:layout_marginBottom="8dp"
             android:orientation="horizontal"
             app:layout_constraintBottom_toTopOf="@+id/guideline4"
             app:layout_constraintEnd_toEndOf="parent"
@@ -176,6 +178,13 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="1.0" />
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guideline15"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.85" />
 
     </android.support.constraint.ConstraintLayout>
 </ScrollView>

@@ -19,9 +19,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
 import com.serviciomecanico.serviciomecanico.Adaptadores.ImagenAutomovilAdapter;
 import com.serviciomecanico.serviciomecanico.Conexion.Conexion;
+import com.serviciomecanico.serviciomecanico.MenuPrincipalActivity;
 import com.serviciomecanico.serviciomecanico.Modelo.Automovil;
 import com.serviciomecanico.serviciomecanico.R;
-import com.serviciomecanico.serviciomecanico.Visualizar.VisualizarClientesActivity;
 
 import java.util.ArrayList;
 
@@ -51,7 +51,7 @@ public class RegistrarAutomovilActivity extends AppCompatActivity {
         //Toolbar
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Registrar automovil");
+        getSupportActionBar().setTitle("Registrar automóvil");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
@@ -139,9 +139,6 @@ public class RegistrarAutomovilActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case android.R.id.home:
-
-                Intent intent = new Intent(RegistrarAutomovilActivity.this, VisualizarClientesActivity.class);
-                startActivity(intent);
                 finish();
                 return true;
 

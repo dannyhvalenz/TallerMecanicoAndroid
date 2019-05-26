@@ -13,7 +13,6 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -22,10 +21,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.serviciomecanico.serviciomecanico.Actualizar.ActualizarClienteActivity;
 import com.serviciomecanico.serviciomecanico.Conexion.Conexion;
 import com.serviciomecanico.serviciomecanico.Mapas.MapsActivity2;
+import com.serviciomecanico.serviciomecanico.MenuPrincipalActivity;
 import com.serviciomecanico.serviciomecanico.R;
-import com.serviciomecanico.serviciomecanico.Registrar.RegistrarClienteActivity;
 import com.serviciomecanico.serviciomecanico.Visualizar.VisualizarAutomovilesActivity;
-import com.serviciomecanico.serviciomecanico.Visualizar.VisualizarClientesActivity;
 
 public class ConsultarClienteActivity extends AppCompatActivity {
 
@@ -105,7 +103,7 @@ public class ConsultarClienteActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case android.R.id.home:
-                Intent intent = new Intent(ConsultarClienteActivity.this, VisualizarClientesActivity.class);
+                Intent intent = new Intent(ConsultarClienteActivity.this, MenuPrincipalActivity.class);
                 startActivity(intent);
                 finish();
                 break;

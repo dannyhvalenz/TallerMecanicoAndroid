@@ -149,6 +149,9 @@
                               <th></th>
                               <th></th>
                               <th></th>
+                              <th></th>
+
+
                            </tr>
                         </thead>
                         <tbody>
@@ -190,6 +193,11 @@
                               <td>
                                  <a href="../controlCitas/controlCitas.php?id=<?php echo $row['Identificador']?>&idA=<?php echo $_GET['id']?>">
                                  <button type="button" class="btn btn-warning">Citas</button>
+                                 </a>
+                              </td>
+                              <td>
+                                 <a href="../controlRefacciones/controlRefacciones.php?id=<?php echo $row['Identificador']?>&idA=<?php echo $_GET['id']?>">
+                                    <button type="button" class="btn btn-warning">Refacciones</button>
                                  </a>
                               </td>
                            </tr>

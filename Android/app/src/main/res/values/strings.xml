@@ -1,5 +1,77 @@
 <resources>
+
+    <string name="titulo_principal1">Servicio</string>
+    <string name="titulo_principal2">mecánico</string>
+    <string name="edt_correo_iniciar_sesion">Correo electrónico</string>
+    <string name="edt_contraseña_iniciar_sesion">Contraseña</string>
+    <string name="btn_iniciar_sesion">Iniciar sesión</string>
+
+    <string name="titulo_registrar_administrador">Registrar administrador</string>
+    <string name="titulo_lista_clientes">Lista de clientes</string>
+    <string name="titulo_lista_citas">Lista de citas</string>
+    <string name="titulo_lista_inventario">Lista de inventario</string>
+    <string name="titulo_lista_herramientas">Lista de herramientas</string>
+
+    <string name="nav_titulo_cabecera">Bienvenido al menú principal</string>
+    <string name="nav_titulo_subcabecera">Navega en las diferentes opciones</string>
+
+    <string name="edt_nombre_cliente">Nombre del cliente</string>
+    <string name="edt_correo_cliente">Correo electrónico</string>
+    <string name="edt_telefono_cliente">Teléfono</string>
+    <string name="btn_ubicacion_cliente">Dirección</string>
+    <string name="btn_agregar_cliente">Agregar cliente</string>
+
+    <string name="titulo_registrar_cita">Registrar cita</string>
+    <string name="btn_fecha">Fecha</string>
+    <string name="btn_hora">Hora</string>
+    <string name="btn_agregar_cita">Agregar cita</string>
+    <string name="edt_nombre_cita">Nombre del cliente</string>
+    <string name="edt_descripcion_cita">Descripción</string>
+
+    <string name="edt_placa">Placa del automóvil</string>
+    <string name="edt_marca">Marca</string>
+    <string name="edt_linea">Linea</string>
+    <string name="edt_modelo">Modelo</string>
+    <string name="edt_color">Color</string>
+    <string name="titulo_registrar_automovil">Registrar automóvil</string>
+    <string name="btn_agrager_automovil">Agregar automóvil</string>
+
+    <string name="edt_tipo_reparacion">Tipo de reparación</string>
+    <string name="edt_descripcion_falla">Descripción falla</string>
+    <string name="edt_descripcion_mantenimiento">Descripción mantenimiento</string>
+    <string name="edt_kilometraje">Kilometraje</string>
+    <string name="edt_costo">Costo</string>
+    <string name="titulo_registrar_reparacion">Registrar reparación</string>
+    <string name="btn_agregar_reparacion">Agregar reparación</string>
+    <string name="btn_buscar_reparaciones">Reparaciones del automóvil</string>
+
+    <string name="edt_inventario">Nombre del inventario</string>
+    <string name="edt_descripcion_inventario">Descripción</string>
+    <string name="edt_precio_inventario">Precio</string>
+    <string name="edt_cantidad_inventario">Cantidad</string>
+    <string name="edt_costo_inventario">Costo</string>
+    <string name="btn_agregar_inventario">Agregar inventario</string>
+
+    <string name="edt_herramienta">Nombre de la herramienta</string>
+    <string name="edt_descripcion_herramienta">Descripción</string>
+    <string name="edt_cantidad_herramienta">Cantidad</string>
+    <string name="edt_marca_herramienta">Costo</string>
+    <string name="btn_agregar_herramienta">Agregar herramienta</string>
+
     <string name="app_name">Mecanicos</string>
     <string name="title_activity_maps">Map</string>
     <string name="title_activity_maps2">Map</string>
+    <string name="title_activity_menu_principal">MenuPrincipalActivity</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_registrar_administrador">Registrar administrador</string>
+    <string name="menu_clientes">Clientes</string>
+    <string name="menu_citas">Citas</string>
+    <string name="menu_inventario">Inventario</string>
+    <string name="menu_herramientas">Herramientas</string>
+    <string name="menu_cerrar_sesion">Cerrar sesión</string>
 </resources>

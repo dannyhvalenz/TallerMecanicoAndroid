@@ -18,7 +18,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Registrar.RegistrarAutomovilActivity"/>
+        <activity android:name=".Registrar.RegistrarHerramientas"></activity>
+        <activity android:name=".Registrar.RegistrarInventario" />
+        <activity
+            android:name=".Registrar.RegistrarCitaActivity"
+            android:label="@string/titulo_registrar_cita" />
+        <activity
+            android:name=".MenuPrincipalActivity"
+            android:label="@string/titulo_lista_clientes"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".Registrar.RegistrarAutomovilActivity" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -39,7 +48,6 @@
             android:label="@string/title_activity_maps" />
         <activity android:name=".Actualizar.ActualizarClienteActivity" />
         <activity android:name=".Consultar.ConsultarClienteActivity" />
-        <activity android:name=".Visualizar.VisualizarClientesActivity" />
         <activity android:name=".Visualizar.VisualizarReparacionesActivity" />
         <activity android:name=".Registrar.RegistrarClienteActivity" />
         <activity android:name=".Registrar.RegisterAdministradorActivity" />
@@ -49,7 +57,10 @@
         <activity android:name=".Actualizar.ActualizarReparacionActivity" />
         <activity android:name=".Registrar.RegistrarReparacionActivity" />
         <activity android:name=".Visualizar.VisualizarAutomovilesActivity" />
-        <activity android:name=".Sesion.IniciarSeionActivity">
+        <activity
+            android:name=".Sesion.IniciarSeionActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
