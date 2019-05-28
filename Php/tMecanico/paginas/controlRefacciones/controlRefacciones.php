@@ -78,7 +78,7 @@
 
                     <div class="row" aling="left">
                      <div>
-                         <form method="post" action="../buscar/buscarRefaccion.php?id=<?php echo $_GET['id']?>&idA=<?php echo $_GET['idA']?>">
+                         <form method="post" action="../buscar/buscarRefaccion.php?id=<?php echo $_GET['id']?>">
                               <div class="form-group">
                               <h5>Buscando la refaccion que deseas</h5>
                                <input type="text" id="BRefaccion" placeholder="Buscar refaccion" name="refac">
@@ -191,7 +191,7 @@
                                     </td>
 
                                     <td>
-                                        <a href="../../operacionesPhp/crudeRefaccion/eliminarRefaccion.php?id=<?php echo $row['idRefaccion']?>&idA=<?php echo $row['id_administrador']?>">
+                                        <a href="../../operacionesPhp/crudeRefaccion/eliminarRefaccion.php?id=<?php echo $row['idRefaccion']?>">
                                             <button type="button" class="btn btn-dark" onclick="return confirmar()">E</button>
                                         </a>
                                     </td>
