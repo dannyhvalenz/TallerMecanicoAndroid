@@ -9,7 +9,7 @@
     $resultado=mysqli_query($conexion, $sql);
 
     if($resultado==true){   
-        header("Location: ../../paginas/controlRefacciones/controlRefacciones.php?id=$idA");    
+        header("Location: ../../paginas/controlRefacciones/controlRefacciones.php?id=$id");    
     }else{
         echo "lo siento";
         }
