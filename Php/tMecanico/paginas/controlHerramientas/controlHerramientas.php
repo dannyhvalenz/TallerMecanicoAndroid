@@ -8,11 +8,10 @@
    $resultado = mysqli_query($conexion, $sql);
    
    ?>
-   
+ <!doctype html>  
 <html lang="es">
   <head>
     <!-- Required meta tags -->
-    
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -28,8 +27,11 @@
         }
          }
      </script>
+     
+     
+     
+     
     <title>Login</title>
-    
   </head>
   <bodys>
               
@@ -57,7 +59,7 @@
               <div class="collapse navbar-collapse">
                 <ul class="navbar-nav ml-auto">
                  <li class="nav-item">
-                           <a class="nav-link" href="../controlHerramientas/controlHerramientas.php?id=<?php echo $_GET['id']?>">Herramientas</a>
+                <a class="nav-link" href="../controlHerramientas/controlHerramientas.php?">Herramientas</a>
                         </li>
                   <li class="nav-item active">
                    <a class="nav-link" href="../../operacionesPhp/sesion/cerrarSesion.php">Cerrar Sesion</a>
@@ -71,13 +73,24 @@
                <div class="row pt-5 pb-5">
                 <div class="col-lg-2" style="background-color: #FFFFFF" align="center">
                     <div>
+                    <div class "row" aling = "left">
                      <!-- Button trigger modal -->
-                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" width="100%">
-                     Nuevo
+                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Nuevo
                      </button>
                      </div>
+                     </div>
+                     <div class="row" aling="left">
                      <div>
-                         
+                         <form method="post" action="../buscar/buscarHerramienta.php?">
+                            <div class="form-group">
+                            <h5>Introduzca la herramienta que desea buscar</h5> 
+                               <input type="text" id="BHerramienta" placeholder="Buscar herramienta" name="buscarH">
+                               <div class="mt-2">
+                               <button type="submit" class="btn btn-primary">Buscar</button>
+                               </div>
+                               </div>                      
+                            </form>
+                     </div>         
                      </div>
                      <!-- Modal -->
                      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -90,7 +103,7 @@
                                  </button>
                               </div>
                               <div class="modal-body">
-                                 <form method="post" action="../../operacionesPhp/crudeHerramientas/creaHerramienta.php">
+                                 <form method="post" action="../../operacionesPhp/crudeHerramientas/crearHerramienta.php">
                                     <div class="form-row">
                                        <div class="form-group col-md-6">
                                           <label for="inputEmail4">Nombre</label>
@@ -109,9 +122,9 @@
                                        <label for="inputAddress">Cantidad</label>
                                        <input type="text" class="form-control" placeholder="Cantidad" name="cantidad">
                                     </div>
-                                      <div>
+                                      <!-- <div>
                                        <input type='hidden' name='id' value='<?php echo $_GET['id']?>'>
-                                    </div>
+                                    </div> -->
                 
                                     <div>
                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
