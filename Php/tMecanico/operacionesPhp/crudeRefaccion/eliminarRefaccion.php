@@ -6,13 +6,13 @@
 
     $sql = "DELETE FROM refacciones WHERE idRefaccion=".$id;
 
-    $resultado = mysqli_query($conexion, $sql);
+    $resultado=mysqli_query($conexion, $sql);
 
     if($resultado==true){   
         header("Location: ../../paginas/controlRefacciones/controlRefacciones.php?id=$idA");    
     }else{
-        echo "lo siento, algo fallo";
-    }
+        echo "lo siento";
+        }
 
     mysqli_free_result($resultado);
     mysqli_close($conexion);
