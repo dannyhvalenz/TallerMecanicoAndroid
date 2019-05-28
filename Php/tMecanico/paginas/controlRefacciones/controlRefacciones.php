@@ -1,13 +1,10 @@
 <!-- Obtenemos la conexion-->
 <?php 
     require ('../../operacionesPhp/conexion/conexion.php');
-    //$param = (String) $Matricula = $_GET["M"];
+    
     $where = "";
     $sql = "SELECT * FROM refacciones";
     
-    //$sql = "SELECT * FROM refacciones";
-    //$sql = "SELECT * FROM refacciones WHERE Matricula='$param'";
-
     $resultado = mysqli_query($conexion, $sql);
 ?>
 
@@ -20,34 +17,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Agegamos el bootstrap-->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <title>Refacciones</title>
-
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <script type="text/javascript">
-    function confirmar() {
+         function confirmar(){
         var respuesta = confirm("¿Seguro que desea elimianr este elemento?");
-        if (respuesta == true) {
+        if(respuesta == true){
             return true;
-        } else {
+        }else{
             return false;
         }
-    }
-    </script>
+         }
+     </script>
+     <title>Refacciones</title>
 </head>
 
 <body>
 
     <!-- Un poco de php para no variar -->
-    <!-- <?php
+    <?php
             session_start();
 
             if(isset($_SESSION['usuario'])){
-
             }else{
                 header("Location:iniciarSesion.php");
             }
-        ?> -->
+        ?>
 
     <header>
         <div>
@@ -80,6 +74,22 @@
                     <div>
                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Nuevo</button>
                     </div>
+
+
+                    <div class="row" aling="left">
+                     <div>
+                         <form method="post" action="../buscar/buscarRefaccion.php?id=<?php echo $_GET['id']?>&idA=<?php echo $_GET['idA']?>">
+                              <div class="form-group">
+                              <h5>Buscando la refaccion que deseas</h5>
+                               <input type="text" id="BRefaccion" placeholder="Buscar refaccion" name="refac">
+                               <div class="mt-2">
+                               <button type="submit" class="btn btn-primary">Buscar</button>
+                               </div>
+                               </div>                      
+                            </form>
+                     </div>
+                     </div>
+
                     
                     <!-- Aqui esta el form para editar las cosas -->
                     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -117,17 +127,13 @@
                                             <label for="inputAddress">Precio</label>
                                             <input type="text" class="form-control" placeholder="Precio" name="precio">
                                         </div>
-
-                                        <!-- <div>
-                                            <input type='hidden' name='matricula' value='<?php echo $_GET['M']?>'>
-                                        </div> -->
                                         <div>
                                             <input type='hidden' name='id' value='<?php echo $_GET['id']?>'>
                                         </div>
 
-                                        <!-- <div>
+<!--                                         <div>
                                             <input type='hidden' name='idA' value='<?php echo $_GET['idA']?>'>
-                                        </div> -->
+                                        </div>  -->
 
                                         <div>
                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
@@ -186,7 +192,7 @@
 
                                     <td>
                                         <a href="../../operacionesPhp/crudeRefaccion/eliminarRefaccion.php?id=<?php echo $row['idRefaccion']?>&idA=<?php echo $row['id_administrador']?>">
-                                            <button type="button" class="btn btn-dark" onClick="return confirmar()">E</button>
+                                            <button type="button" class="btn btn-dark" onclick="return confirmar()">E</button>
                                         </a>
                                     </td>
 
