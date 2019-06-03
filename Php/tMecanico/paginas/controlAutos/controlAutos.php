@@ -26,7 +26,35 @@
         }
          }
      </script>
-    <title>Login</title>
+     
+     <script type="text/javascript">
+            function validaCampos(){
+                var matricula = $("#matricula").val();
+                var marca = $("#marca").val();
+                var modelo = $("#modelo").val();
+                var linea = $("#linea").val();
+                var color = $("#color").val();
+                
+                if($.trim(matricula) == ""){
+                    var respuesta = confirm("No se ingreso la matricula del automovil");
+                }                    
+                
+                if($.trim(marca) == ""){
+                    var respuesta = confirm("No se ingreso la marca del automovil");
+                }  
+                if($.trim(modelo) == ""){
+                    var respuesta = confirm("No se ingreso el modelo del automovil");
+                }                    
+                
+                if($.trim(linea) == ""){
+                    var respuesta = confirm("No se ingreso la linea del automovil");
+                }
+                if($.trim(color) == ""){
+                    var respuesta = confirm("No se ingreso el color del automovil");
+                }
+            }
+        </script>
+    <title>Control automoviles</title>
     
   </head>
   <body>
@@ -87,7 +115,7 @@
                      </div>
 
                      <!-- Modal -->
-                     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" onsubmit="return validaCampos()">
                         <div class="modal-dialog" role="document">
                            <div class="modal-content">
                               <div class="modal-header">
