@@ -7,13 +7,31 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    
+    <script type="text/javascript">
+            function validaCampos(){
+                var correo = $("#correo").val();
+                var contraseña = $("#contraseña").val();
+                
+                
+                if($.trim(correo) == ""){
+                    var respuesta = confirm("No se ingreso el correo electrino");
+                }                    
+                
+                if($.trim(contraseña) == ""){
+                    var respuesta = confirm("No se ingreso la contraseña");
+                }           
+            }
+        </script>
+        
     <title>Login</title>
   </head>
   <body>
    <header>
          <div>
              <img src="../../imagenes/cabecera/nav3.png" width="100%">
-         </div>
+         </div>      
+     
       </header>
            
             <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
@@ -49,16 +67,18 @@
                        <img src="../../imagenes/login/usuario2.png" width="150" height="150" class="rounded" style="background-color: #343A40">
                    </div>
                    
-                    <form action="../../operacionesPhp/sesion/validar.php" method="post">
+                    <form action="../../operacionesPhp/sesion/validar.php" method="post" onsubmit="return validaCampos()">
                       <div class="form-group">
                         <label for="exampleInputEmail1"><h5>Correo electronico</h5></label>
-                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="ejemplo@gmail.com" name="correo">
-                        <small id="emailHelp" class="form-text text-muted">Necesitas ser administrador</small>
+                        
+                        <input type="email" class="form-control" id="correo" aria-describedby="emailHelp" placeholder="ejemplo@gmail.com" name="correo">
+                        
+                        <small id="correo" class="form-text text-muted">Necesitas ser administrador</small>
                       </div>
                       <hr class="my-3">
                       <div class="form-group">
                         <label for="exampleInputPassword1"><h5>Constraseña</h5></label>
-                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Contraseña" name="contraseña">
+                        <input type="password" class="form-control" id="contraseña" placeholder="Contraseña" name="contraseña">
                       </div>
                       <hr class="my-3">
                       <div class="form-group form-check" align="center">
