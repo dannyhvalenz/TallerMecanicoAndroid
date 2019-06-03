@@ -17,7 +17,31 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <title>Login</title>
+    <script type="text/javascript">
+            function validaCampos(){
+                var costo = $("#costo").val();
+                var kilometraje = $("#kilometraje").val();
+                var falla = $("#falla").val();
+                var reparacion = $("#reparacion").val();
+                
+                
+                if($.trim(costo) == ""){
+                    var respuesta = confirm("No se ingreso el costo de la reparacion");
+                }                    
+                
+                if($.trim(kilometraje) == ""){
+                    var respuesta = confirm("No se ingreso el kilometraje del automovil");
+                }  
+                if($.trim(falla) == ""){
+                    var respuesta = confirm("No se ingreso la descripcion de la falla");
+                }                    
+                
+                if($.trim(reparacion) == ""){
+                    var respuesta = confirm("No se ingreso la descripcion de la reparacion");
+                }
+            }
+        </script>
+    <title>Control reparaciones</title>
   </head>
   <body>
               
@@ -65,12 +89,28 @@
                      </button>
                      </div>
                      
+<<<<<<< HEAD
+                     <div class="row" align="left">
+=======
                      <div class="row" aling="left">
+>>>>>>> 3108fa01314bc55059b81b2f14fef054007f4da7
                      <div>
                          <form method="post" action="../buscar/buscarReparacion.php?M=<?php echo $_GET['M']?>&id=<?php echo $_GET['id']?>&idA=<?php echo $_GET['idA']?>">
                               <div class="form-group">
                               <h5>Introdusca el tipo de reparacion que desee buscar</h5>
+<<<<<<< HEAD
+                              <select class="form-control" id="exampleFormControlSelect1" name="tipo">
+                                 <option value="Mecanico">Mecanico</option>
+                                 <option value="Electrico">Electrico</option>
+                                 <option value="Lubricacion">Lubricacion</option>
+                                 <option value="Hojalateria">Hojalateria</option>
+                                 <option value="Llantas">Llantas</option>
+                                 <option value="Vestiduras">Vestiduras</option>
+                                 <option value="Mofles">Mofles</option>
+                              </select>
+=======
                                <input type="text" id="BReparacion" placeholder="Buscar reparacion" name="tipo">
+>>>>>>> 3108fa01314bc55059b81b2f14fef054007f4da7
                                <div class="mt-2">
                                <button type="submit" class="btn btn-primary">Burcar</button>
                                </div>
@@ -79,7 +119,7 @@
                      </div>
                      </div>
                      <!-- Modal -->
-                     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" onsubmit="return validaCampos()">
                         <div class="modal-dialog" role="document">
                            <div class="modal-content">
                               <div class="modal-header">
