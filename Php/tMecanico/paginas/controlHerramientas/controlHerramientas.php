@@ -28,7 +28,32 @@
          }
      </script>
      
-     
+     <script type="text/javascript">
+         function validaCampos(){
+             var nombre = $("#nombre").val();
+             var marca = $("#marca").val();
+             var descripcion = $("#descripcion").val();
+             var cantidad = $("#cantidad").val();
+             
+             if ($.trim(nombre)==""){
+                 var respuesta = confirm("No se ingreso el nombre");
+                 return false;
+             }
+              
+             if ($.trim(marca)==""){
+                 var respuesta = confirm("No se ingreso la marca");
+                 return false;
+             }
+             if ($.trim(descripcion)==""){
+                 var respuesta = confirm("No se ingreso la descripción");
+                 return false;
+             }
+             if ($.trim(cantidad)==""){
+                 var respuesta = confirm("No se ingreso la cantidad");
+                 return false;
+             }
+         }
+      </script>
      
      
     <title>Login</title>
@@ -93,7 +118,7 @@
                      </div>         
                      </div>
                      <!-- Modal -->
-                     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" onsubmit="return validaCampos()">
                         <div class="modal-dialog" role="document">
                            <div class="modal-content">
                               <div class="modal-header">
@@ -107,20 +132,20 @@
                                     <div class="form-row">
                                        <div class="form-group col-md-6">
                                           <label for="inputEmail4">Nombre</label>
-                                          <input class="form-control" placeholder="Nombre" name="nombre">
+                                          <input class="form-control" placeholder="Nombre" name="nombre" id="nombre">
                                        </div>
                                        <div class="form-group col-md-6">
                                           <label for="inputPassword4">Marca</label>
-                                          <input class="form-control" placeholder="Marca" name="marca">
+                                          <input class="form-control" placeholder="Marca" name="marca" id="marca">
                                        </div>
                                     </div>
                                     <div class="form-group">
                                        <label for="inputAddress">Descripcion</label>
-                                       <input type="text" class="form-control" placeholder="Descripcion" name="descripcion">
+                                       <input type="text" class="form-control" placeholder="Descripcion" name="descripcion" id="descripcion">
                                     </div>
                                     <div class="form-group">
                                        <label for="inputAddress">Cantidad</label>
-                                       <input type="text" class="form-control" placeholder="Cantidad" name="cantidad">
+                                       <input type="text" class="form-control" placeholder="Cantidad" name="cantidad" id="cantidad">
                                     </div>
                                       <!-- <div>
                                        <input type='hidden' name='id' value='<?php echo $_GET['id']?>'>
