@@ -30,8 +30,33 @@
          }
      </script>
      
+     <script type="text/javascript">
+            function validaCampos(){
+                var nombre = $("#nombre").val();
+                var telefono = $("#telefono").val();
+                var direccion = $("#direccion").val();
+                var correo = $("#correo").val();
+                
+                
+                if($.trim(nombre) == ""){
+                    var respuesta = confirm("No se ingreso el nombre del usuario");
+                }                    
+                
+                if($.trim(telefono) == ""){
+                    var respuesta = confirm("No se ingreso el telefono del usuario");
+                }  
+                if($.trim(direccion) == ""){
+                    var respuesta = confirm("No se ingreso la direccion");
+                }                    
+                
+                if($.trim(correo) == ""){
+                    var respuesta = confirm("No se ingreso el correo electronico");
+                }
+            }
+        </script>
+     
       
-    <title>Login</title>
+    <title>Control clientes</title>
   </head>
   <body>
               
@@ -79,8 +104,13 @@
                      <div>
                      <div class="row" align="left">
                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" >Nuevo</button>  
+<<<<<<< HEAD
                      </div>
                      </div>
+=======
+                     </div>
+                     </div>
+>>>>>>> 3108fa01314bc55059b81b2f14fef054007f4da7
                      <div class="row" align="left">
                      <div>
                          <form method="post" action="../buscar/buscar.php?id=<?php echo $_GET['id']?>">
@@ -94,7 +124,11 @@
                             </form>
                      </div>
                      </div>
+<<<<<<< HEAD
+                     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" onsubmit="return validaCampos()">
+=======
                      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+>>>>>>> 3108fa01314bc55059b81b2f14fef054007f4da7
                         <div class="modal-dialog" role="document">
                            <div class="modal-content">
                               <div class="modal-header">
