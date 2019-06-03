@@ -29,6 +29,33 @@
          }
      </script>
 
+
+         <script type="text/javascript">
+            function validaCampos(){
+               var nombre = $("#nombre").val();
+               var fecha = $("#fecha").val();
+               var hora = $("#hora").val();
+               var motivo = $("#motivo").val();
+
+               if($.trim(nombre) == "" ){
+                  var respuesta = confirm ("No se ingreso el nombre del usuario");
+                  return false;
+               }
+               if($.trim(fecha) == "" ){
+                  var respuesta = confirm ("No se ingreso la fecha del usuario");
+                  return false;
+               }
+               if($.trim(hora) == "" ){
+                  var respuesta = confirm ("No se ingreso la hora del usuario");
+                  return false;
+               }
+               if($.trim(motivo) == "" ){
+                  var respuesta = confirm ("No se ingreso el motivo del usuario");
+                  return false;
+               }
+            }
+         </script>
+
     <title>Login</title>
   </head>
   <body>
@@ -70,8 +97,11 @@
                      <div>
                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Nuevo</button>  
                      </div>
+
+
                      
-                     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"
+                     onsubmit = "return validaCampos()">
                         <div class="modal-dialog" role="document">
                            <div class="modal-content">
                               <div class="modal-header">
@@ -85,20 +115,20 @@
                                     <div class="form-row">
                                        <div class="form-group col-md-6">
                                           <label for="inputEmail4">Nombre usuario</label>
-                                          <input class="form-control" placeholder="Cliente" name="nombre">
+                                          <input class="form-control" placeholder="Cliente" name="nombre" id="nombre">
                                        </div>
                                        <div class="form-group col-md-6">
                                           <label for="inputPassword4">Fecha</label>
-                                          <input class="form-control" placeholder="Fecha /Dia/Mes/Año" name="fecha">
+                                          <input class="form-control" placeholder="Fecha /Dia/Mes/Año" name="fecha" id=fecha>
                                        </div>
                                     </div>
                                     <div class="form-group">
                                        <label for="inputAddress">Hora</label>
-                                       <input type="text" class="form-control" placeholder="Hora-Cita" name="hora">
+                                       <input type="text" class="form-control" placeholder="Hora-Cita" name="hora" id=hora>
                                     </div>
                                     <div class="form-group">
                                        <label for="inputAddress">Motivo</label>
-                                       <input type="text" class="form-control" placeholder="Motivo - Cita - Revision" name="motivo">
+                                       <input type="text" class="form-control" placeholder="Motivo - Cita - Revision" name="motivo" id=motivo>
                                     </div>
                                     <div>
                                        <input type='hidden' name='id' value='<?php echo $_GET['id']?>'>
