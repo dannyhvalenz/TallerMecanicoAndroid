@@ -28,6 +28,30 @@
         }
          }
      </script>
+
+         <script type = "text/javascript">
+            function validaCampos(){
+                var nombre = $("nombre").val();
+                var descripcion = $("descripcion").val();
+                var unidad = $("unidad").val();
+                var precio = $("precio").val();
+
+                if($.trim(nombre) == ""){
+                    var respuesta = confirm("No se ingreso el nombre del usuario");
+                    return false;
+                }if($.trim(descripcion) == ""){
+                    var respuesta = confirm("No se ingreso el nombre del usuario");
+                    return false;
+                }if($.trim(unidad) == ""){
+                    var respuesta = confirm("No se ingreso el nombre del usuario");
+                    return false;
+                }if($.trim(precio) == ""){
+                    var respuesta = confirm("No se ingreso el nombre del usuario");
+                    return false;
+                }
+            }
+         </script>
+
      <title>Refacciones</title>
 </head>
 
@@ -75,7 +99,6 @@
                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Nuevo</button>
                     </div>
 
-
                     <div class="row" aling="left">
                      <div>
                          <form method="post" action="../buscar/buscarRefaccion.php?id=<?php echo $_GET['id']?>">
@@ -92,7 +115,7 @@
 
                     
                     <!-- Aqui esta el form para editar las cosas -->
-                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" onsubmit="validaCampos()">
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
 
@@ -110,22 +133,22 @@
 
                                             <div class="form-group ">
                                                 <label for="inputEmail">Nombre</label>
-                                                <input class="form-control" placeholder="Nombre" name="nombre">
+                                                <input class="form-control" placeholder="Nombre" id="nombre" name="nombre">
                                             </div>
 
                                             <div class="form-group ">
                                                 <label for="inputPassword">Descripcion</label>
-                                                <input class="form-control" placeholder="Descripcion" name="descripcion">
+                                                <input class="form-control" placeholder="Descripcion" id="descripcion" name="descripcion">
                                             </div>
                                         </div>
 
                                         <div class="form-group">
                                             <label for="inputAddress">Unidad</label>
-                                            <input type="text" class="form-control" placeholder="Unidad" name="unidad">
+                                            <input type="text" class="form-control" placeholder="Unidad" id="unidad" name="unidad">
                                         </div>
                                         <div class="form-group">
                                             <label for="inputAddress">Precio</label>
-                                            <input type="text" class="form-control" placeholder="Precio" name="precio">
+                                            <input type="text" class="form-control" placeholder="Precio" id="precio" name="precio">
                                         </div>
                                         <div>
                                             <input type='hidden' name='id' value='<?php echo $_GET['id']?>'>
@@ -180,9 +203,6 @@
                                     <td>
                                         <?php echo $row['precioRefaccion']?>
                                     </td>
-                                   <!--  <td>
-                                        <?php echo $row['Matricula']; ?>
-                                    </td> -->
 
                                     <td>
                                         <a href="actualizarRefacciones.php?id=<?php echo $r?>">
