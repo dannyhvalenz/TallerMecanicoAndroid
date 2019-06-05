@@ -93,11 +93,23 @@
                <section>
             <div class="container">
                <div class="row pt-5 pb-5">
-                <div class="col-lg-2" style="background-color: #FFFFFF" align="center">
+                <div class="col-lg-2" style="background-color: #FFFFFF" aling="center">
                      <div>
                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Nuevo</button>  
                      </div>
-
+                     <div class="row" aling="left">
+                     <div>
+                         <form method="post" action="../buscar/buscarCita.php?id=<?php echo $_GET['id']?>&idA=<?php echo $_GET['idA']?>">
+                              <div class="form-group">
+                              <h5>Introduzca el nombre que desea buscar</h5>
+                               <input type="text" id="BNombre" placeholder="Buscar nombre" name="Nombre">
+                               <div class="mt-2">
+                               <button type="submit" class="btn btn-primary">Buscar</button>
+                               </div>
+                               </div>                      
+                            </form>
+                     </div>
+                     </div>
 
                      
                      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"
