@@ -1,0 +1,13 @@
+Base de datos subida a amazon para poder consumirla
+
+EndPoint
+bdphp.ctxtxmvx7oms.us-east-1.rds.amazonaws.com
+
+Usuario
+admin123
+
+Contraseña
+123
+
+puerto por defecto 
+3306
