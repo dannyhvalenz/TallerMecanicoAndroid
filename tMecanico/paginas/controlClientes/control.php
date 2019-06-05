@@ -87,6 +87,15 @@
                   <li class="nav-item active">
                    <a class="nav-link" href="../controlHerramientas/controlHerramientas.php">Herramientas</a>
                   </li>
+
+                  <div class="collapse navbar-collapse">
+                <ul class="navbar-nav ml-auto">
+                  <li class="nav-item active">
+                  <a class="nav-link" href="../controlCitas/controlCitas.php">Citas</a>
+                  </li>
+                </ul>                
+              </div>
+
                 </ul>                
               </div>
                <div class="collapse navbar-collapse">
@@ -101,13 +110,13 @@
                <section>
             <div class="container">
                <div class="row pt-5 pb-5">
-                <div class="col-lg-2" style="background-color: #FFFFFF" align="center">
+                <div class="col-lg-2" style="background-color: #FFFFFF" aling="center">
                      <div>
-                     <div class="row" align="left">
+                     <div class="row" aling="left">
                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" >Nuevo</button>  
                      </div>
                      </div>
-                     <div class="row" align="left">
+                     <div class="row" aling="left">
                      <div>
                          <form method="post" action="../buscar/buscar.php?id=<?php echo $_GET['id']?>">
                               <div class="form-group">
