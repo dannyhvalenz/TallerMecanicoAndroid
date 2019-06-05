@@ -1,11 +1,11 @@
 <?php
    require ('../../operacionesPhp/conexion/conexion.php');
     
-    $nombre = $_POST['nombre'];
+    $n = $_POST['buscarH'];
    
    $where="";
 
-    $sql = "SELECT * FROM herramientas WHERE Nombre = '$nombre'";
+    $sql = "SELECT * FROM herramientas WHERE Nombre ='$n'";
    
    $resultado = mysqli_query($conexion, $sql);
    
