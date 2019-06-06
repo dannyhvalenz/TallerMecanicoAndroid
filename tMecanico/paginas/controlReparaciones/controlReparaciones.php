@@ -27,17 +27,21 @@
                 
                 if($.trim(costo) == ""){
                     var respuesta = confirm("No se ingreso el costo de la reparacion");
+                    return false;
                 }                    
                 
                 if($.trim(kilometraje) == ""){
                     var respuesta = confirm("No se ingreso el kilometraje del automovil");
+                    return false;
                 }  
                 if($.trim(falla) == ""){
                     var respuesta = confirm("No se ingreso la descripcion de la falla");
+                    return false;
                 }                    
                 
                 if($.trim(reparacion) == ""){
                     var respuesta = confirm("No se ingreso la descripcion de la reparacion");
+                    return false;
                 }
             }
         </script>
@@ -137,20 +141,20 @@
                                        </div>
                                        <div class="form-group col-md-6">
                                           <label for="inputPassword4">Costo</label>
-                                          <input class="form-control" placeholder="Costo" name="costo">
+                                          <input class="form-control" placeholder="Costo" name="costo" id="costo">
                                        </div>
                                     </div>
                                     <div class="form-group">
                                        <label for="inputAddress">Kilometraje</label>
-                                       <input type="text" class="form-control" placeholder="Kilometraje" name="kilometraje">
+                                       <input type="text" class="form-control" placeholder="Kilometraje" name="kilometraje" id="kilometraje">
                                     </div>
                                     <div class="form-group">
                                        <label for="inputAddress">Falla</label>
-                                       <input type="text" class="form-control" placeholder="Falla" name="falla">
+                                       <input type="text" class="form-control" placeholder="Falla" name="falla" id="falla">
                                     </div>
                                     <div class="form-group">
                                        <label for="inputAddress2">Reparacion</label>
-                                       <input type="text" class="form-control" placeholder="Reparacion" name="reparacion">
+                                       <input type="text" class="form-control" placeholder="Reparacion" name="reparacion" id="reparacion">
                                     </div>
                                     <div>
                                        <input type='hidden' name='matricula' value='<?php echo $_GET['M']?>'>

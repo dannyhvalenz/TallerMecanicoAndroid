@@ -37,20 +37,25 @@
                 
                 if($.trim(matricula) == ""){
                     var respuesta = confirm("No se ingreso la matricula del automovil");
+                    return false;
                 }                    
                 
                 if($.trim(marca) == ""){
                     var respuesta = confirm("No se ingreso la marca del automovil");
+                    return false;
                 }  
                 if($.trim(modelo) == ""){
                     var respuesta = confirm("No se ingreso el modelo del automovil");
+                    return false;
                 }                    
                 
                 if($.trim(linea) == ""){
                     var respuesta = confirm("No se ingreso la linea del automovil");
+                    return false;
                 }
                 if($.trim(color) == ""){
                     var respuesta = confirm("No se ingreso el color del automovil");
+                    return false;
                 }
             }
         </script>
@@ -129,24 +134,24 @@
                                     <div class="form-row">
                                        <div class="form-group col-md-6">
                                           <label for="inputEmail4">Matricula</label>
-                                          <input class="form-control" placeholder="Matricula" name="matricula">
+                                          <input class="form-control" placeholder="Matricula" name="matricula" id="matricula">
                                        </div>
                                        <div class="form-group col-md-6">
                                           <label for="inputPassword4">Marca</label>
-                                          <input class="form-control" placeholder="Marca" name="marca">
+                                          <input class="form-control" placeholder="Marca" name="marca" id="marca">
                                        </div>
                                     </div>
                                     <div class="form-group">
                                        <label for="inputAddress">Modelo</label>
-                                       <input type="text" class="form-control" placeholder="Modelo" name="modelo">
+                                       <input type="text" class="form-control" placeholder="Modelo" name="modelo" id="modelo">
                                     </div>
                                     <div class="form-group">
                                        <label for="inputAddress">Linea</label>
-                                       <input type="text" class="form-control" placeholder="Linea" name="linea">
+                                       <input type="text" class="form-control" placeholder="Linea" name="linea" id="linea">
                                     </div>
                                     <div class="form-group">
                                        <label for="inputAddress2">Color</label>
-                                       <input type="text" class="form-control" placeholder="Color" name="color">
+                                       <input type="text" class="form-control" placeholder="Color" name="color" id="color">
                                     </div>
                                     <div>
                                        <input type='hidden' name='id' value='<?php echo $_GET['id']?>'>
