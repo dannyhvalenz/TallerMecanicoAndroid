@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">TutorialClientes</string>
+    <string name="edt_nombre">Nombre del cliente</string>
+    <string name="edt_correo">Correo electronico</string>
+    <string name="edt_direccion">Dirección</string>
+    <string name="edt_telefono">Telefono</string>
+    <string name="btn_agregar">Agregar cliente</string>
+</resources>
