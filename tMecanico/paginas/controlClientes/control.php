@@ -156,7 +156,7 @@
                                     </div>
                                     <div class="form-group">
                                        <label for="inputAddress2">Correo</label>
-                                       <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Correo electronico" name="correo" id="correo">
+                                       <input type="email" class="form-control" aria-describedby="emailHelp" placeholder="Correo electronico" name="correo" id="correo">
                                     </div>
                                     <div>
                                        <input type='hidden' name='id' value='<?php echo $_GET['id']?>'>
